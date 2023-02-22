@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
-import DashboardLeft from './components/dashboardLeft/DashboardLeft'
-import DashboardRight from './components/dashboardRight/DashboardRight'
+import DashboardLeft from "./components/dashboard/dashboardLeft/DashboardLeft";
+import DashboardRight from "./components/dashboard/dashboardRight/DashboardRight";
 import Header from './components/header/Header'
 
 function App() {
