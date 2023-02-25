@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.date-range-selector {
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+  text-decoration: none;
+}
+
+li {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

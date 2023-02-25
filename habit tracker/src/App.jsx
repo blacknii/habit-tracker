@@ -1,16 +1,12 @@
 import styles from "./App.module.css";
-import DashboardLeft from "./components/dashboard/dashboardLeft/DashboardLeft";
-import DashboardRight from "./components/dashboard/dashboardRight/DashboardRight";
+import Dashboard from "./components/dashboard/Dashboard";
 import Header from './components/header/Header'
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.container}>
       <Header/>
-      <div>
-      <DashboardLeft/>
-      <DashboardRight/>
-      </div>
+      <Dashboard/>
     </div>
   )
 }

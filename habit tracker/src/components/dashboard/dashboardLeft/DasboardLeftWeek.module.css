@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+
+.main-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.overall-progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.overall-progress-percentage-comparison {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
