@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./DashboardRight.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {newHabit, removeHabit} from "../../../redux/habits"
 
 function DashboardRight() {
+  const { listOfHabits } = useSelector((state)=> state.habits)
+  const dispatch = useDispatch();
   return (
     <div className={styles.container}>
       <div className={styles.day}>
@@ -13,9 +17,13 @@ function DashboardRight() {
       </div>
       <button>Add Your Bedtime</button>
       <div>
-        <p>task 1</p>
-        <p>task 2</p>
-        <p>task 3</p>
+      <div>
+        <button onClick={() => dispatch(newHabit())} >add</button>
+        <button onClick={() => dispatch(removeHabit())} >remove</button>
+      </div>
+        {listOfHabits.map(habbit => {
+          return <p key={habbit.name}>{habbit.name}</p>
+        })}
       </div>
     </div>
   );
