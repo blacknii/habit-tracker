@@ -41,10 +41,19 @@ export const counterSlice = createSlice({
     removeHabit: (state) => {
       state.listOfHabits.pop();
     },
+    completionsSwitch: (state, action) => {
+      state.listOfHabits.map((habbit) => {
+        if (habbit.name === action.payload[0])
+          habbit.lastWeek[action.payload[1]]
+            ? (habbit.lastWeek[action.payload[1]] = 0)
+            : (habbit.lastWeek[action.payload[1]] = 1);
+      });
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { newHabit, removeHabit } = counterSlice.actions;
+export const { newHabit, removeHabit, completionsSwitch } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;

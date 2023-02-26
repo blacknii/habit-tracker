@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./DashboardRight.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {newHabit, removeHabit} from "../../../redux/habits"
+import DashboardRightHabit from "./DashboardRightHabit";
 
 function DashboardRight() {
   const { listOfHabits } = useSelector((state)=> state.habits)
@@ -22,7 +23,7 @@ function DashboardRight() {
         <button onClick={() => dispatch(removeHabit())} >remove</button>
       </div>
         {listOfHabits.map(habbit => {
-          return <p key={habbit.name}>{habbit.name}</p>
+          return <DashboardRightHabit key={habbit.name} name={habbit.name} startDay={habbit.startDay} lastWeek={habbit.lastWeek}/>
         })}
       </div>
     </div>
