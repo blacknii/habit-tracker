@@ -1,0 +1,23 @@
+.week {
+  display: grid;
+  grid-template-columns: 11.25rem 1fr 5rem;
+  height: 3.75rem;
+}
+
+.days {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.day {
+  height: 1.75rem;
+  width: 1.75rem;
+  background-color: rgb(64, 160, 216);
+}

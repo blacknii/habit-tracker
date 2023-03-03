@@ -7,6 +7,7 @@ const dD = {
 };
 
 const initialState = {
+  stateOfTheWeek: 12,
   listOfHabits: [
     {
       name: "English Gramma",
@@ -43,7 +44,11 @@ export const counterSlice = createSlice({
     },
     completionsSwitch: (state, action) => {
       state.listOfHabits.map((habbit) => {
-        if (habbit.name === action.payload[0])
+        console.log(habbit.lastWeek.length);
+        if (
+          habbit.name === action.payload[0] &&
+          habbit.lastWeek.length - 1 >= action.payload[1]
+        )
           habbit.lastWeek[action.payload[1]]
             ? (habbit.lastWeek[action.payload[1]] = 0)
             : (habbit.lastWeek[action.payload[1]] = 1);

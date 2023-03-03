@@ -1,7 +1,18 @@
 import React from 'react';
 import styles from './DasboardLeftWeek.module.css';
+import DashboardLeftHabit from './DashboardLeftHabit';
+import { useDispatch, useSelector } from "react-redux";
+import {newHabit, removeHabit} from "../../../redux/habits";
+
 
 function DasboardLeftWeek() {
+  const { listOfHabits } = useSelector((state)=> state.habits)
+  const dispatch = useDispatch();
+
+  let curr = new Date()
+  let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7
+
+
   return <div className={styles.container}>
     <div className={styles["main-top"]}>
       <div>
@@ -21,7 +32,24 @@ function DasboardLeftWeek() {
       <p>75% achieved</p>
       </div>
     </div>
-    <p>grid layout</p>
+    <div>
+      <div className={styles.week}>
+        <div></div>
+        <div className={styles.days}>
+          <div className={styles.day}>Tue</div>
+          <div className={styles.day}>Mon</div>
+          <div className={styles.day}>Wen</div>
+          <div className={styles.day}>Thu</div>
+          <di className={styles.day}v>Fri</di>
+          <div className={styles.day}>Sat</div>
+          <div className={styles.day}>Sun</div>
+        </div>
+          <div></div>
+      </div>
+      {listOfHabits.map(habbit => {
+          return <DashboardLeftHabit key={habbit.name} name={habbit.name} startDay={habbit.startDay} lastWeek={habbit.lastWeek} dayOfTheWeek={dayOfTheWeek}/>
+        })}
+    </div>
   </div>
 };
 

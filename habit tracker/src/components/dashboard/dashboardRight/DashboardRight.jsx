@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./DashboardRight.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {newHabit, removeHabit} from "../../../redux/habits"
+import {newHabit, removeHabit} from "../../../redux/habits";
 import DashboardRightHabit from "./DashboardRightHabit";
 
 function DashboardRight() {
