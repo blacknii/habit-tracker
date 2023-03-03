@@ -16,29 +16,45 @@ function DashboardLeftHabit(props) {
         <p>{props.name}</p>
       </div>
       <div className={styles.days}>
-        {/* ############################################################################ */}
-
         {daysArr.map((day) => {
-          return (
-            <button
-              className={styles.day}
-              onClick={() =>
-                dispatch(
-                  completionsSwitch([
-                    props.name,
-                    lastIndex - props.dayOfTheWeek + day,
-                  ])
-                )
-              }
-            >
-              {props.dayOfTheWeek - day >= 0
-                ? reversedArr[props.dayOfTheWeek - day]
-                : "X"}
-            </button>
-          );
+          if (
+            props.dayOfTheWeek - day >= 0 &&
+            reversedArr[props.dayOfTheWeek - day] === 1
+          ) {
+            return (
+              <button
+                className={styles["day-done"]}
+                onClick={() =>
+                  dispatch(
+                    completionsSwitch([
+                      props.name,
+                      lastIndex - props.dayOfTheWeek + day,
+                    ])
+                  )
+                }
+              ></button>
+            );
+          } else if (
+            props.dayOfTheWeek - day >= 0 &&
+            reversedArr[props.dayOfTheWeek - day] === 0
+          ) {
+            return (
+              <button
+                className={styles["day-not-done"]}
+                onClick={() =>
+                  dispatch(
+                    completionsSwitch([
+                      props.name,
+                      lastIndex - props.dayOfTheWeek + day,
+                    ])
+                  )
+                }
+              ></button>
+            );
+          } else {
+            return <button className={styles["day-waining"]}></button>;
+          }
         })}
-
-        {/* ############################################################################ */}
       </div>
       <div className={styles["row-end"]}>
         <p>3/{props.dayOfTheWeek}</p>

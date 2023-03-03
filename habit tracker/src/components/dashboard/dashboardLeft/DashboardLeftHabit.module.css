@@ -16,8 +16,20 @@
   align-items: center;
 }
 
-.day {
+.day-done {
   height: 1.75rem;
   width: 1.75rem;
   background-color: rgb(64, 160, 216);
+}
+
+.day-not-done {
+  height: 1.75rem;
+  width: 1.75rem;
+  background-color: rgb(149, 172, 185);
+}
+
+.day-waining {
+  height: 1.75rem;
+  width: 1.75rem;
+  background-color: rgb(85, 95, 102);
 }
