@@ -12,21 +12,25 @@ const initialState = {
     {
       name: "English Gramma",
       startDay: "2023-02-18",
+      activeDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       lastWeek: [1, 1, 1, 1, 1, 1, 0],
     },
     {
       name: "English Practice",
       startDay: "2023-02-20",
+      activeDays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
       lastWeek: [1, 1, 1, 1, 1],
     },
     {
       name: "Todays Work",
       startDay: "2023-02-15",
+      activeDays: ["Mon", "Thu", "Fri", "Sat", "Sun"],
       lastWeek: [1, 1, 1, 1, 1, 1, 0, 1],
     },
     {
       name: "Reading",
       startDay: "2023-02-18",
+      activeDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       lastWeek: [0, 0, 1, 0, 1, 1, 0],
     },
   ],
