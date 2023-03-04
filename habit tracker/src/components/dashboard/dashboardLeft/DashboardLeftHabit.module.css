@@ -33,3 +33,10 @@
   width: 1.75rem;
   background-color: rgb(85, 95, 102);
 }
+
+.day-inactive {
+  visibility: hidden;
+  height: 1.75rem;
+  width: 1.75rem;
+  background-color: rgb(255, 255, 255);
+}

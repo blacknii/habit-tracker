@@ -10,6 +10,13 @@ function DashboardLeftHabit(props) {
 
   const daysArr = [1, 2, 3, 4, 5, 6, 7];
 
+  let allCurrentDays = 0;
+  let allCurrentDoneDays = 0;
+  // for (let i = 1; i < props.dayOfTheWeek + 1; i++) {
+  //   console.log(i);
+  //   if (props.activeDays.includes(i)) allCurrentDays++;
+  // }
+
   return (
     <div className={styles.week}>
       <div className={styles.days}>
@@ -17,12 +24,20 @@ function DashboardLeftHabit(props) {
       </div>
       <div className={styles.days}>
         {daysArr.map((day) => {
-          if (
+          console.log(reversedArr[props.dayOfTheWeek - day]);
+          if (!props.activeDays.includes(day)) {
+            return (
+              <button key={day} className={styles["day-inactive"]}></button>
+            );
+          } else if (
             props.dayOfTheWeek - day >= 0 &&
             reversedArr[props.dayOfTheWeek - day] === 1
           ) {
+            allCurrentDays++;
+            allCurrentDoneDays++;
             return (
               <button
+                key={day}
                 className={styles["day-done"]}
                 onClick={() =>
                   dispatch(
@@ -38,8 +53,10 @@ function DashboardLeftHabit(props) {
             props.dayOfTheWeek - day >= 0 &&
             reversedArr[props.dayOfTheWeek - day] === 0
           ) {
+            allCurrentDays++;
             return (
               <button
+                key={day}
                 className={styles["day-not-done"]}
                 onClick={() =>
                   dispatch(
@@ -51,13 +68,21 @@ function DashboardLeftHabit(props) {
                 }
               ></button>
             );
+          } else if (props.dayOfTheWeek - day < 0) {
+            return (
+              <button key={day} className={styles["day-waining"]}></button>
+            );
           } else {
-            return <button className={styles["day-waining"]}></button>;
+            return (
+              <button key={day} className={styles["day-inactive"]}></button>
+            );
           }
         })}
       </div>
       <div className={styles["row-end"]}>
-        <p>3/{props.dayOfTheWeek}</p>
+        <p>
+          {allCurrentDoneDays}/{allCurrentDays}
+        </p>
       </div>
     </div>
   );

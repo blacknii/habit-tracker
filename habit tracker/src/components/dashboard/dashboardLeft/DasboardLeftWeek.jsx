@@ -53,6 +53,7 @@ function DasboardLeftWeek() {
               key={habbit.name}
               name={habbit.name}
               startDay={habbit.startDay}
+              activeDays={habbit.activeDays}
               lastWeek={habbit.lastWeek}
               dayOfTheWeek={dayOfTheWeek}
             />
