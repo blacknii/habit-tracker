@@ -24,7 +24,6 @@ function DashboardLeftHabit(props) {
       </div>
       <div className={styles.days}>
         {daysArr.map((day) => {
-          console.log(reversedArr[props.dayOfTheWeek - day]);
           if (!props.activeDays.includes(day)) {
             return (
               <button key={day} className={styles["day-inactive"]}></button>

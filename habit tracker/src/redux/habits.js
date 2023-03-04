@@ -1,4 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, onValue, child } from "firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDrxIfgjnd6loOrkSvpQ5jJbgnQhTgpEfk",
+  authDomain: "test-41a0c.firebaseapp.com",
+  databaseURL: "https://test-41a0c-default-rtdb.firebaseio.com",
+  projectId: "test-41a0c",
+  storageBucket: "test-41a0c.appspot.com",
+  messagingSenderId: "201802665716",
+  appId: "1:201802665716:web:6194737bfd6df7fefcd8a1",
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const tasksRef = ref(database, "tasks");
+const taskId = "-NCylkuCznNCYSSjxGs2";
+
+onValue(child(tasksRef, taskId), (snapshot) => {
+  console.log(snapshot.val().text);
+});
 
 const dD = {
   name: "Dummy",
