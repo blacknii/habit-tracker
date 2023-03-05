@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, child } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDrxIfgjnd6loOrkSvpQ5jJbgnQhTgpEfk",
@@ -14,21 +14,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const tasksRef = ref(database, "tasks");
-const taskId = "-NCylkuCznNCYSSjxGs2";
+const habitsRef = ref(database, "habits");
 
-onValue(child(tasksRef, taskId), (snapshot) => {
-  console.log(snapshot.val().text);
+onValue(habitsRef, (snapshot) => {
+  const habitsData = snapshot.val();
+  console.log(habitsData);
 });
 
 const dD = {
   name: "Dummy",
   startDay: "2023-02-18",
+  activeDays: [1, 2, 3, 4, 5, 6, 7],
   lastWeek: [0, 0, 1, 0, 1, 1, 1],
 };
 
 const initialState = {
-  stateOfTheWeek: 12,
   listOfHabits: [
     {
       name: "English Gramma",
@@ -82,7 +82,6 @@ export const counterSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { newHabit, removeHabit, completionsSwitch } =
   counterSlice.actions;
 
