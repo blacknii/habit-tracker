@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./DasboardLeftWeek.module.css";
 import DashboardLeftHabit from "./DashboardLeftHabit";
 import { useDispatch, useSelector } from "react-redux";
-import { newHabit, removeHabit } from "../../../redux/habits";
 
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
