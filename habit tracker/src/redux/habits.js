@@ -75,10 +75,42 @@ export const counterSlice = createSlice({
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
+    test: (state) => {
+      state.listOfHabits.map((item) => {
+        let date1 = new Date(item.startDay);
+        let date2 = new Date("2023-03-08");
+        // To calculate the time difference of two dates
+        let Difference_In_Time = date2.getTime() - date1.getTime();
+
+        // To calculate the no. of days between two dates
+        let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+        console.log(Difference_In_Days);
+
+        console.log(item.lastWeek.length);
+        if (item.lastWeek.length < Difference_In_Days)
+          for (
+            let index = 0;
+            index < Difference_In_Days - item.lastWeek.length;
+            index++
+          ) {
+            item.lastWeek.push(0);
+            console.log("Test");
+          }
+
+        // console.log(item.startDay);
+        return item;
+      });
+
+      localStorage.setItem(
+        "listOfHabits",
+        JSON.stringify(state.listOfHabits.map((item) => item))
+      );
+    },
   },
 });
 
-export const { newHabit, removeHabit, completionsSwitch } =
+export const { newHabit, removeHabit, completionsSwitch, test } =
   counterSlice.actions;
 
 export default counterSlice.reducer;
