@@ -26,7 +26,7 @@ function DashboardRight() {
           <button>▶</button>
         </div>
       </div>
-      <button onClick={() => dispatch(test(["2023-02-20", "2023-02-23"]))}>
+      <button onClick={() => dispatch(test(["2023-02-27", "2023-03-10", 0]))}>
         Add Your Bedtime
       </button>
       <div>
