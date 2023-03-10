@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./DashboardRight.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { newHabit, removeHabit, test } from "../../../redux/habits";
+import {
+  newHabit,
+  removeHabit,
+  fillingUpEmptyDays,
+  test,
+} from "../../../redux/habits";
 import DashboardRightHabit from "./DashboardRightHabit";
 
 function DashboardRight() {
@@ -9,7 +14,7 @@ function DashboardRight() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(test());
+    dispatch(fillingUpEmptyDays());
   });
 
   return (
@@ -21,7 +26,9 @@ function DashboardRight() {
           <button>▶</button>
         </div>
       </div>
-      <button>Add Your Bedtime</button>
+      <button onClick={() => dispatch(test(["2023-02-20", "2023-02-23"]))}>
+        Add Your Bedtime
+      </button>
       <div>
         <div>
           <button onClick={() => dispatch(newHabit())}>add</button>

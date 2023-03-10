@@ -60,8 +60,9 @@ export const counterSlice = createSlice({
       );
     },
     completionsSwitch: (state, action) => {
+      console.log(action.payload);
       state.listOfHabits.map((habbit) => {
-        console.log(habbit.lastWeek.length);
+        // console.log(habbit.lastWeek.length);
         if (
           habbit.name === action.payload[0] &&
           habbit.lastWeek.length - 1 >= action.payload[1]
@@ -75,19 +76,16 @@ export const counterSlice = createSlice({
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
-    test: (state) => {
+    fillingUpEmptyDays: (state) => {
       state.listOfHabits.map((item) => {
         let date1 = new Date(item.startDay);
-        let date2 = new Date("2023-03-08");
+        let date2 = new Date();
         // To calculate the time difference of two dates
         let Difference_In_Time = date2.getTime() - date1.getTime();
 
         // To calculate the no. of days between two dates
         let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-        console.log(Difference_In_Days);
-
-        console.log(item.lastWeek.length);
         if (item.lastWeek.length < Difference_In_Days)
           for (
             let index = 0;
@@ -95,10 +93,7 @@ export const counterSlice = createSlice({
             index++
           ) {
             item.lastWeek.push(0);
-            console.log("Test");
           }
-
-        // console.log(item.startDay);
         return item;
       });
 
@@ -107,10 +102,45 @@ export const counterSlice = createSlice({
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
+    test: (state, action) => {
+      let imputDateStart = new Date(action.payload[0]);
+      let imputDateEnd = new Date(action.payload[1]);
+
+      let Difference_In_Time_input =
+        imputDateEnd.getTime() - imputDateStart.getTime();
+      let Difference_In_Days_input =
+        Difference_In_Time_input / (1000 * 3600 * 24) + 1;
+      console.log("start", Difference_In_Days_input);
+
+      let Difference_In_Days = 0;
+      let Difference_In_Time = 0;
+      let itemDateStartDay = 0;
+      state.listOfHabits.forEach((item, i) => {
+        itemDateStartDay = new Date(item.startDay);
+        console.log(imputDateStart);
+        console.log(itemDateStartDay);
+        Difference_In_Time =
+          imputDateStart.getTime() - itemDateStartDay.getTime();
+        Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        console.log(i, Difference_In_Days, "Test");
+        item.lastWeek
+          .slice(
+            Difference_In_Days,
+            Difference_In_Days + Difference_In_Days_input
+          )
+          .map((day, j) => console.log(j, day));
+        console.log(item.lastWeek);
+      });
+    },
   },
 });
 
-export const { newHabit, removeHabit, completionsSwitch, test } =
-  counterSlice.actions;
+export const {
+  newHabit,
+  removeHabit,
+  completionsSwitch,
+  fillingUpEmptyDays,
+  test,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;
