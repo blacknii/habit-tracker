@@ -20,13 +20,21 @@ function DasboardLeftWeek() {
   const today = new Date();
   const today2 = new Date();
   const startOfWeek = new Date(
-    today.setDate(today.getDate() - today.getDay() + 1 - 7 * whichWeek)
+    today.setDate(
+      today.getDate() - (today.getDay() ? today.getDay() : 6) - 7 * whichWeek
+    )
   );
+  // let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
   const endOfWeek = new Date(
     today.setDate(today.getDate() - today.getDay() + 7)
   );
   const startOfTheLastWeek = new Date(
-    today2.setDate(today2.getDate() - today2.getDay() + 1 - 7 - 7 * whichWeek)
+    today2.setDate(
+      today2.getDate() -
+        (today.getDay() ? today.getDay() : 6) -
+        7 -
+        7 * whichWeek
+    )
   );
   const endOfTheLastWeek = new Date(
     today2.setDate(today2.getDate() - today2.getDay() + 7)
@@ -74,18 +82,27 @@ function DasboardLeftWeek() {
       listOfHabits.forEach((item, i) => {
         x = new Date();
         itemDateStartDay = new Date(item.startDay);
-        dayOfTheWeek = itemDateStartDay.getDay()
-          ? itemDateStartDay.getDay()
-          : 7;
-        console.log("########################################");
-        console.log(item.startDay);
-        console.log(itemDateStartDay);
-        console.log(itemDateStartDay.getTime());
-        console.log("########################################");
+
+        // console.log(
+        //   "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+        // );
+        // console.log(itemDateStartDay);
+        // console.log(itemDateStartDay.getDay());
+        // console.log(dayOfTheWeek);
+        // console.log(
+        //   "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+        // );
         Difference_In_Time =
           imputDateStart.getTime() - itemDateStartDay.getTime();
         Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
         IsdifferencePositive = Difference_In_Days > 0;
+        if (Difference_In_Days < 0) {
+          dayOfTheWeek = itemDateStartDay.getDay()
+            ? itemDateStartDay.getDay()
+            : 7;
+        } else {
+          dayOfTheWeek = imputDateStart.getDay() ? imputDateStart.getDay() : 7;
+        }
         if (Difference_In_Days + Difference_In_Days_input < 0) {
         } else {
           item.lastWeek
@@ -94,18 +111,36 @@ function DasboardLeftWeek() {
               Difference_In_Days + Difference_In_Days_input
             )
             .map((day, j) => {
-              console.log(day, j, "start", dayOfTheWeek);
+              console.log(day, j, "start");
               if (item.activeDays.includes(dayOfTheWeek)) {
-                console.log(day, j, "added 0");
+                console.log(
+                  day,
+                  j,
+                  "alldays",
+                  allDays,
+                  "doneDays",
+                  doneDays,
+                  "dayOfTheWeek",
+                  dayOfTheWeek
+                );
                 allDays++;
                 if (day === 1) {
-                  console.log(day, j, "added 1");
+                  console.log(
+                    day,
+                    j,
+                    "alldays",
+                    allDays,
+                    "doneDays",
+                    doneDays,
+                    "dayOfTheWeek",
+                    dayOfTheWeek
+                  );
                   doneDays++;
                 }
               }
+              console.log(day, j, "end");
               if (dayOfTheWeek === 7) dayOfTheWeek = 0;
               else dayOfTheWeek++;
-              console.log(day, j, "end");
             });
         }
       });
@@ -118,8 +153,8 @@ function DasboardLeftWeek() {
       ];
     } else {
       itemDateStartDay = new Date(listOfHabits[0].startDay);
-      console.log(imputDateStart);
-      console.log(itemDateStartDay);
+      // console.log(imputDateStart);
+      // console.log(itemDateStartDay);
       Difference_In_Time =
         imputDateStart.getTime() - itemDateStartDay.getTime();
       Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -151,12 +186,17 @@ function DasboardLeftWeek() {
     // const sas2 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
     // console.log(sas1, "this");
     console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
+    // console.log(startOfWeek);
+    // console.log(endOfWeek);
+    // console.log(startOfTheLastWeek);
+    // console.log(endOfTheLastWeek);
     setThisWeekpercentage(test(listOfHabits, [startOfWeek, endOfWeek, ""])[2]);
     setLastWeekpercentage(
       test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""])[2]
     );
   });
-  console.log(listOfHabits);
+  // console.log(listOfHabits);
+  // console.log(thisWeekpercentage);
 
   return (
     <div className={styles.container}>
