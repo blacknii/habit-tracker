@@ -5,7 +5,6 @@ import {
   newHabit,
   removeHabit,
   fillingUpEmptyDays,
-  test,
 } from "../../../redux/habits";
 import DashboardRightHabit from "./DashboardRightHabit";
 
@@ -26,9 +25,7 @@ function DashboardRight() {
           <button>▶</button>
         </div>
       </div>
-      <button onClick={() => dispatch(test(["2023-02-27", "2023-03-10", 0]))}>
-        Add Your Bedtime
-      </button>
+      <button>Add Your Bedtime</button>
       <div>
         <div>
           <button onClick={() => dispatch(newHabit())}>add</button>

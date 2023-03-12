@@ -60,7 +60,7 @@ export const counterSlice = createSlice({
       );
     },
     completionsSwitch: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.listOfHabits.map((habbit) => {
         // console.log(habbit.lastWeek.length);
         if (
@@ -102,76 +102,10 @@ export const counterSlice = createSlice({
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
-    test: (state, action) => {
-      let imputDateStart = new Date(action.payload[0]);
-      let imputDateEnd = new Date(action.payload[1]);
-
-      let Difference_In_Time_input =
-        imputDateEnd.getTime() - imputDateStart.getTime();
-      let Difference_In_Days_input =
-        Difference_In_Time_input / (1000 * 3600 * 24) + 1;
-      console.log("start", Difference_In_Days_input);
-
-      let Difference_In_Days = 0;
-      let Difference_In_Time = 0;
-      let itemDateStartDay = 0;
-
-      let allDays = 0;
-      let doneDays = 0;
-
-      if (action.payload[2] === "") {
-        state.listOfHabits.forEach((item, i) => {
-          itemDateStartDay = new Date(item.startDay);
-          console.log(imputDateStart);
-          console.log(itemDateStartDay);
-          Difference_In_Time =
-            imputDateStart.getTime() - itemDateStartDay.getTime();
-          Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-          item.lastWeek
-            .slice(
-              Difference_In_Days,
-              Difference_In_Days + Difference_In_Days_input
-            )
-            .map((day, j) => {
-              console.log(day);
-              allDays++;
-              if (day === 1) {
-                doneDays++;
-              }
-            });
-        });
-        console.log([allDays, doneDays, (doneDays / allDays) * 100]);
-      } else {
-        itemDateStartDay = new Date(state.listOfHabits[0].startDay);
-        console.log(imputDateStart);
-        console.log(itemDateStartDay);
-        Difference_In_Time =
-          imputDateStart.getTime() - itemDateStartDay.getTime();
-        Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-        state.listOfHabits[0].lastWeek
-          .slice(
-            Difference_In_Days,
-            Difference_In_Days + Difference_In_Days_input
-          )
-          .map((day, j) => {
-            console.log(day);
-            allDays++;
-            if (day === 1) {
-              doneDays++;
-            }
-          });
-        console.log([allDays, doneDays, (doneDays / allDays) * 100]);
-      }
-    },
   },
 });
 
-export const {
-  newHabit,
-  removeHabit,
-  completionsSwitch,
-  fillingUpEmptyDays,
-  test,
-} = counterSlice.actions;
+export const { newHabit, removeHabit, completionsSwitch, fillingUpEmptyDays } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;

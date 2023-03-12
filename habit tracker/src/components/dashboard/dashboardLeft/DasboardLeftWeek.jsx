@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DasboardLeftWeek.module.css";
 import DashboardLeftHabit from "./DashboardLeftHabit";
 import { useDispatch, useSelector } from "react-redux";
+import ProgressBar from "../../UI/ProgressBar";
 
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
@@ -12,15 +13,25 @@ function DasboardLeftWeek() {
 
   const [whichWeek, setWhichWeek] = useState(0);
   const [showProgressBar, setShowProgressBar] = useState(false);
+  const [thisWeekpercentage, setThisWeekpercentage] = useState(0);
+  const [lastWeekpercentage, setLastWeekpercentage] = useState(0);
 
   const options = { weekday: "short", month: "short", day: "numeric" };
   const today = new Date();
+  const today2 = new Date();
   const startOfWeek = new Date(
     today.setDate(today.getDate() - today.getDay() + 1 - 7 * whichWeek)
   );
   const endOfWeek = new Date(
     today.setDate(today.getDate() - today.getDay() + 7)
   );
+  const startOfTheLastWeek = new Date(
+    today2.setDate(today2.getDate() - today2.getDay() + 1 - 7 - 7 * whichWeek)
+  );
+  const endOfTheLastWeek = new Date(
+    today2.setDate(today2.getDate() - today2.getDay() + 7)
+  );
+
   const startOfWeekFormatted = startOfWeek.toLocaleString("en-US", options);
   const endOfWeekFormatted = endOfWeek.toLocaleString("en-US", options);
   const weekRange = `${startOfWeekFormatted} - ${endOfWeekFormatted}`;
@@ -37,6 +48,116 @@ function DasboardLeftWeek() {
     </div>
   );
 
+  const test = (listOfHabits, payload) => {
+    let imputDateStart = new Date(payload[0]);
+    let imputDateEnd = new Date(payload[1]);
+
+    let Difference_In_Time_input =
+      imputDateEnd.getTime() - imputDateStart.getTime();
+    let Difference_In_Days_input =
+      Difference_In_Time_input / (1000 * 3600 * 24) + 1;
+
+    let Difference_In_Days = 0;
+    let Difference_In_Time = 0;
+    let itemDateStartDay = 0;
+
+    let allDays = 0;
+    let doneDays = 0;
+
+    let dayOfTheWeek = 1;
+
+    let IsdifferencePositive = true;
+
+    let x;
+
+    if (payload[2] === "") {
+      listOfHabits.forEach((item, i) => {
+        x = new Date();
+        itemDateStartDay = new Date(item.startDay);
+        dayOfTheWeek = itemDateStartDay.getDay()
+          ? itemDateStartDay.getDay()
+          : 7;
+        console.log("########################################");
+        console.log(item.startDay);
+        console.log(itemDateStartDay);
+        console.log(itemDateStartDay.getTime());
+        console.log("########################################");
+        Difference_In_Time =
+          imputDateStart.getTime() - itemDateStartDay.getTime();
+        Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        IsdifferencePositive = Difference_In_Days > 0;
+        if (Difference_In_Days + Difference_In_Days_input < 0) {
+        } else {
+          item.lastWeek
+            .slice(
+              Difference_In_Days < 0 ? 0 : Difference_In_Days,
+              Difference_In_Days + Difference_In_Days_input
+            )
+            .map((day, j) => {
+              console.log(day, j, "start", dayOfTheWeek);
+              if (item.activeDays.includes(dayOfTheWeek)) {
+                console.log(day, j, "added 0");
+                allDays++;
+                if (day === 1) {
+                  console.log(day, j, "added 1");
+                  doneDays++;
+                }
+              }
+              if (dayOfTheWeek === 7) dayOfTheWeek = 0;
+              else dayOfTheWeek++;
+              console.log(day, j, "end");
+            });
+        }
+      });
+      return [
+        allDays,
+        doneDays,
+        allDays === 0 && doneDays === 0
+          ? 0
+          : Math.round((doneDays / allDays) * 100),
+      ];
+    } else {
+      itemDateStartDay = new Date(listOfHabits[0].startDay);
+      console.log(imputDateStart);
+      console.log(itemDateStartDay);
+      Difference_In_Time =
+        imputDateStart.getTime() - itemDateStartDay.getTime();
+      Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+      listOfHabits[0].lastWeek
+        .slice(
+          Difference_In_Days,
+          Difference_In_Days + Difference_In_Days_input
+        )
+        .map((day, j) => {
+          console.log(day, "test");
+          console.log(dayOfTheWeek);
+          if (true) {
+            allDays++;
+            if (day === 1) {
+              doneDays++;
+            }
+          }
+          dayOfTheWeek++;
+        });
+      // console.log([allDays, doneDays, (doneDays / allDays) * 100]);
+    }
+  };
+
+  useEffect(() => {
+    // console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
+    // console.log(test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""]));
+    // let sas1 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
+    // sas1 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
+    // const sas2 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
+    // console.log(sas1, "this");
+    console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
+    setThisWeekpercentage(test(listOfHabits, [startOfWeek, endOfWeek, ""])[2]);
+    setLastWeekpercentage(
+      test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""])[2]
+    );
+  });
+  console.log(listOfHabits);
+
   return (
     <div className={styles.container}>
       <div className={styles["main-top"]}>
@@ -51,10 +172,15 @@ function DasboardLeftWeek() {
         </div>
       </div>
       <div className={styles["overall-progress"]}>
-        <p>progress bar</p>
+        <ProgressBar value={thisWeekpercentage} key={"key"} />
         <div className={styles["overall-progress-percentage-comparison"]}>
-          <p>🔽 Down 25% from the week before</p>
-          <p>75% achieved</p>
+          <p>
+            {thisWeekpercentage - lastWeekpercentage < 0
+              ? `Down ${lastWeekpercentage - thisWeekpercentage}`
+              : `Up ${thisWeekpercentage - lastWeekpercentage}`}
+            % from the week before
+          </p>
+          <p>{thisWeekpercentage}% achieved</p>
         </div>
       </div>
       <div>
