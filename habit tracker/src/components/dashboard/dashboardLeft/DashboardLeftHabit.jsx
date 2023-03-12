@@ -86,23 +86,69 @@ function DashboardLeftHabit(props) {
   let weekProgress = (allCurrentDoneDays / allCurrentDays) * 100;
   if (allCurrentDays == 0 && allCurrentDoneDays == 0) weekProgress = 0;
 
-  return (
-    <div className={styles.week}>
-      <div className={styles.days}>
-        <p>{props.name}</p>
+  console.log(props.completionPercentage);
+
+  if (props.type === "Week") {
+    return (
+      <div className={styles.week}>
+        <div className={styles.days}>
+          <p>{props.name}</p>
+        </div>
+        {props.showProgressBar ? (
+          <ProgressBar value={weekProgress} key={props.day} />
+        ) : (
+          checkBoxes
+        )}
+        <div className={styles["row-end"]}>
+          <p>
+            {allCurrentDoneDays}/{allCurrentDays}
+          </p>
+        </div>
       </div>
-      {props.showProgressBar ? (
-        <ProgressBar value={weekProgress} key={props.day} />
-      ) : (
-        checkBoxes
-      )}
-      <div className={styles["row-end"]}>
-        <p>
-          {allCurrentDoneDays}/{allCurrentDays}
-        </p>
+    );
+  } else if (props.type === "Month") {
+    return (
+      <div className={styles.week}>
+        <div className={styles.days}>
+          <p>{props.name}</p>
+        </div>
+        <ProgressBar value={props.completionPercentage[2]} key={props.day} />
+        <div className={styles["row-end"]}>
+          <p>
+            {props.completionPercentage[0]}/{props.completionPercentage[1]}
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (props.type === "Year") {
+    return (
+      <div className={styles.week}>
+        <div className={styles.days}>
+          <p>{props.name}</p>
+        </div>
+        <ProgressBar value={props.completionPercentage[2]} key={props.day} />
+        <div className={styles["row-end"]}>
+          <p>
+            {props.completionPercentage[0]}/{props.completionPercentage[1]}
+          </p>
+        </div>
+      </div>
+    );
+  } else if (props.type === "AllTime") {
+    return (
+      <div className={styles.week}>
+        <div className={styles.days}>
+          <p>{props.name}</p>
+        </div>
+        <ProgressBar value={props.completionPercentage[2]} key={props.day} />
+        <div className={styles["row-end"]}>
+          <p>
+            {props.completionPercentage[0]}/{props.completionPercentage[1]}
+          </p>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default DashboardLeftHabit;
