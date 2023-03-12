@@ -11,10 +11,14 @@ function DasboardLeftWeek() {
   let curr = new Date();
   let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
 
+  const types = ["Week", "Month", "Year", "AllTime"];
+
   const [whichWeek, setWhichWeek] = useState(0);
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [thisWeekpercentage, setThisWeekpercentage] = useState(0);
   const [lastWeekpercentage, setLastWeekpercentage] = useState(0);
+  const [type, setType] = useState(types[1]);
+  const [timeRange, setTimeRange] = useState(["2023-03-01", "2023-03-12"]);
 
   const options = { weekday: "short", month: "short", day: "numeric" };
   const today = new Date();
@@ -24,7 +28,6 @@ function DasboardLeftWeek() {
       today.getDate() - (today.getDay() ? today.getDay() : 6) - 7 * whichWeek
     )
   );
-  // let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
   const endOfWeek = new Date(
     today.setDate(today.getDate() - today.getDay() + 7)
   );
@@ -56,7 +59,7 @@ function DasboardLeftWeek() {
     </div>
   );
 
-  const test = (listOfHabits, payload) => {
+  const completionPercentage = (listOfHabits, payload) => {
     let imputDateStart = new Date(payload[0]);
     let imputDateEnd = new Date(payload[1]);
 
@@ -123,21 +126,15 @@ function DasboardLeftWeek() {
   };
 
   useEffect(() => {
-    // console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
-    // console.log(test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""]));
-    // let sas1 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
-    // sas1 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
-    // const sas2 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
-    // console.log(sas1, "this");
-    // console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
-    // console.log(startOfWeek);
-    // console.log(endOfWeek);
-    // console.log(startOfTheLastWeek);
-    // console.log(endOfTheLastWeek);
-    console.log(test(listOfHabits, [startOfWeek, endOfWeek, "English Gramma"]));
-    setThisWeekpercentage(test(listOfHabits, [startOfWeek, endOfWeek, ""])[2]);
+    setThisWeekpercentage(
+      completionPercentage(listOfHabits, [startOfWeek, endOfWeek, ""])[2]
+    );
     setLastWeekpercentage(
-      test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""])[2]
+      completionPercentage(listOfHabits, [
+        startOfTheLastWeek,
+        endOfTheLastWeek,
+        "",
+      ])[2]
     );
   });
   // console.log(listOfHabits);
@@ -171,7 +168,7 @@ function DasboardLeftWeek() {
       <div>
         <div className={styles.week}>
           <div></div>
-          {!showProgressBar ? daysOfTheWeek : <></>}
+          {!showProgressBar && type === "Week" ? daysOfTheWeek : <></>}
           <div></div>
         </div>
         {listOfHabits.map((habbit) => {
@@ -185,6 +182,12 @@ function DasboardLeftWeek() {
               dayOfTheWeek={dayOfTheWeek}
               whichWeek={whichWeek}
               showProgressBar={showProgressBar}
+              type={type}
+              completionPercentage={completionPercentage(listOfHabits, [
+                timeRange[0],
+                timeRange[1],
+                habbit.name,
+              ])}
             />
           );
         })}
