@@ -78,8 +78,8 @@ function DasboardLeftWeek() {
 
     let x;
 
-    if (payload[2] === "") {
-      listOfHabits.forEach((item, i) => {
+    listOfHabits.forEach((item, i) => {
+      if (payload[2] === "" || payload[2] === item.name) {
         x = new Date();
         itemDateStartDay = new Date(item.startDay);
         Difference_In_Time =
@@ -111,39 +111,15 @@ function DasboardLeftWeek() {
               else dayOfTheWeek++;
             });
         }
-      });
-      return [
-        allDays,
-        doneDays,
-        allDays === 0 && doneDays === 0
-          ? 0
-          : Math.round((doneDays / allDays) * 100),
-      ];
-    } else {
-      itemDateStartDay = new Date(listOfHabits[0].startDay);
-      // console.log(imputDateStart);
-      // console.log(itemDateStartDay);
-      Difference_In_Time =
-        imputDateStart.getTime() - itemDateStartDay.getTime();
-      Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-      listOfHabits[0].lastWeek
-        .slice(
-          Difference_In_Days,
-          Difference_In_Days + Difference_In_Days_input
-        )
-        .map((day, j) => {
-          console.log(day, "test");
-          console.log(dayOfTheWeek);
-          if (true) {
-            allDays++;
-            if (day === 1) {
-              doneDays++;
-            }
-          }
-          dayOfTheWeek++;
-        });
-      // console.log([allDays, doneDays, (doneDays / allDays) * 100]);
-    }
+      }
+    });
+    return [
+      allDays,
+      doneDays,
+      allDays === 0 && doneDays === 0
+        ? 0
+        : Math.round((doneDays / allDays) * 100),
+    ];
   };
 
   useEffect(() => {
@@ -158,7 +134,7 @@ function DasboardLeftWeek() {
     // console.log(endOfWeek);
     // console.log(startOfTheLastWeek);
     // console.log(endOfTheLastWeek);
-    console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
+    console.log(test(listOfHabits, [startOfWeek, endOfWeek, "English Gramma"]));
     setThisWeekpercentage(test(listOfHabits, [startOfWeek, endOfWeek, ""])[2]);
     setLastWeekpercentage(
       test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""])[2]
