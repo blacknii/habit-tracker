@@ -82,16 +82,6 @@ function DasboardLeftWeek() {
       listOfHabits.forEach((item, i) => {
         x = new Date();
         itemDateStartDay = new Date(item.startDay);
-
-        // console.log(
-        //   "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-        // );
-        // console.log(itemDateStartDay);
-        // console.log(itemDateStartDay.getDay());
-        // console.log(dayOfTheWeek);
-        // console.log(
-        //   "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-        // );
         Difference_In_Time =
           imputDateStart.getTime() - itemDateStartDay.getTime();
         Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -111,34 +101,12 @@ function DasboardLeftWeek() {
               Difference_In_Days + Difference_In_Days_input
             )
             .map((day, j) => {
-              console.log(day, j, "start");
               if (item.activeDays.includes(dayOfTheWeek)) {
-                console.log(
-                  day,
-                  j,
-                  "alldays",
-                  allDays,
-                  "doneDays",
-                  doneDays,
-                  "dayOfTheWeek",
-                  dayOfTheWeek
-                );
                 allDays++;
                 if (day === 1) {
-                  console.log(
-                    day,
-                    j,
-                    "alldays",
-                    allDays,
-                    "doneDays",
-                    doneDays,
-                    "dayOfTheWeek",
-                    dayOfTheWeek
-                  );
                   doneDays++;
                 }
               }
-              console.log(day, j, "end");
               if (dayOfTheWeek === 7) dayOfTheWeek = 0;
               else dayOfTheWeek++;
             });
@@ -185,11 +153,12 @@ function DasboardLeftWeek() {
     // sas1 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
     // const sas2 = test(listOfHabits, [startOfWeek, endOfWeek, ""]);
     // console.log(sas1, "this");
-    console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
+    // console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
     // console.log(startOfWeek);
     // console.log(endOfWeek);
     // console.log(startOfTheLastWeek);
     // console.log(endOfTheLastWeek);
+    console.log(test(listOfHabits, [startOfWeek, endOfWeek, ""]));
     setThisWeekpercentage(test(listOfHabits, [startOfWeek, endOfWeek, ""])[2]);
     setLastWeekpercentage(
       test(listOfHabits, [startOfTheLastWeek, endOfTheLastWeek, ""])[2]

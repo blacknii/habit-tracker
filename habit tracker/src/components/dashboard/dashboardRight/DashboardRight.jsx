@@ -38,6 +38,7 @@ function DashboardRight() {
               name={habbit.name}
               startDay={habbit.startDay}
               lastWeek={habbit.lastWeek}
+              activeDays={habbit.activeDays}
             />
           );
         })}
