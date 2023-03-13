@@ -92,6 +92,43 @@ export const counterSlice = createSlice({
     },
     dateCompletion: (state) => {
       console.log(state.timePeriod.timeIndex);
+      const whichWeek = state.timePeriod.timeIndex;
+      const monthDate1 = new Date();
+      const monthIndex1 = monthDate1.getMonth();
+      const year1 = monthDate1.getFullYear();
+      const types = ["Week", "Month", "Year", "AllTime"];
+      const year = year1;
+      const type = types[0];
+      const timeRange = ["2023-03-01", "2023-03-12"];
+
+      const options = { weekday: "short", month: "short", day: "numeric" };
+      const today = new Date();
+      const today2 = new Date();
+      const startOfWeek = new Date(
+        today.setDate(
+          today.getDate() -
+            (today.getDay() ? today.getDay() : 6) -
+            7 * whichWeek
+        )
+      );
+      const endOfWeek = new Date(
+        today.setDate(today.getDate() - today.getDay() + 7)
+      );
+      const startOfTheLastWeek = new Date(
+        today2.setDate(
+          today2.getDate() -
+            (today.getDay() ? today.getDay() : 6) -
+            7 -
+            7 * whichWeek
+        )
+      );
+      const endOfTheLastWeek = new Date(
+        today2.setDate(today2.getDate() - today2.getDay() + 7)
+      );
+      console.log(startOfWeek);
+      console.log(endOfWeek);
+      console.log(startOfTheLastWeek);
+      console.log(endOfTheLastWeek);
     },
     dateIndexChanger: (state, action) => {
       state.timePeriod.timeIndex += action.payload;
