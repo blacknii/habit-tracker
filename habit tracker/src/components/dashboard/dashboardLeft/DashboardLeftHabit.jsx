@@ -86,7 +86,7 @@ function DashboardLeftHabit(props) {
   let weekProgress = (allCurrentDoneDays / allCurrentDays) * 100;
   if (allCurrentDays == 0 && allCurrentDoneDays == 0) weekProgress = 0;
 
-  console.log(props.completionPercentage);
+  // console.log(props.completionPercentage);
 
   if (props.type === "Week") {
     return (

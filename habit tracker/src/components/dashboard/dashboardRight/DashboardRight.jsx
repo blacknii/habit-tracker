@@ -5,6 +5,8 @@ import {
   newHabit,
   removeHabit,
   fillingUpEmptyDays,
+  dateCompletion,
+  dateIndexChanger,
 } from "../../../redux/habits";
 import DashboardRightHabit from "./DashboardRightHabit";
 
@@ -14,6 +16,7 @@ function DashboardRight() {
 
   useEffect(() => {
     dispatch(fillingUpEmptyDays());
+    dispatch(dateCompletion());
   });
 
   return (
@@ -25,7 +28,9 @@ function DashboardRight() {
           <button>▶</button>
         </div>
       </div>
-      <button>Add Your Bedtime</button>
+      <button onClick={() => dispatch(dateIndexChanger(1))}>
+        Add Your Bedtime
+      </button>
       <div>
         <div>
           <button onClick={() => dispatch(newHabit())}>add</button>

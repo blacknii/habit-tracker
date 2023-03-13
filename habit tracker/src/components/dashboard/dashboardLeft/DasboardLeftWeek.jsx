@@ -11,13 +11,18 @@ function DasboardLeftWeek() {
   let curr = new Date();
   let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
 
+  const monthDate1 = new Date();
+  const monthIndex1 = monthDate1.getMonth();
+  const year1 = monthDate1.getFullYear();
   const types = ["Week", "Month", "Year", "AllTime"];
 
   const [whichWeek, setWhichWeek] = useState(0);
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [thisWeekpercentage, setThisWeekpercentage] = useState(0);
   const [lastWeekpercentage, setLastWeekpercentage] = useState(0);
-  const [type, setType] = useState(types[1]);
+  const [monthIndex, setMonthIndex] = useState(monthIndex1);
+  const [year, setYear] = useState(year1);
+  const [type, setType] = useState(types[0]);
   const [timeRange, setTimeRange] = useState(["2023-03-01", "2023-03-12"]);
 
   const options = { weekday: "short", month: "short", day: "numeric" };
@@ -42,6 +47,15 @@ function DasboardLeftWeek() {
   const endOfTheLastWeek = new Date(
     today2.setDate(today2.getDate() - today2.getDay() + 7)
   );
+
+  const startOfMonth = new Date(today.getFullYear(), monthIndex, 1);
+  const endOfMonth = new Date(today.getFullYear(), monthIndex + 1, 0);
+
+  const startOfYear = new Date(year, 0, 1);
+  const endOfYear = new Date(year, 12, 0);
+  // console.log(startOfYear);
+  // console.log(endOfYear);
+  // console.log(year);
 
   const startOfWeekFormatted = startOfWeek.toLocaleString("en-US", options);
   const endOfWeekFormatted = endOfWeek.toLocaleString("en-US", options);

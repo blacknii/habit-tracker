@@ -1,34 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const items =
+const habbits =
   localStorage.getItem("listOfHabits") != null
     ? JSON.parse(localStorage.getItem("listOfHabits"))
-    : [
-        {
-          name: "English Gramma",
-          startDay: "2023-02-18",
-          activeDays: [1, 2, 3, 4, 5, 6, 7],
-          lastWeek: [1, 1, 1, 1, 1, 1, 0],
-        },
-        {
-          name: "English Practice",
-          startDay: "2023-02-20",
-          activeDays: [1, 2, 3, 4, 5],
-          lastWeek: [1, 1, 1, 1, 1],
-        },
-        {
-          name: "Todays Work",
-          startDay: "2023-02-15",
-          activeDays: [1, 4, 5, 6, 7],
-          lastWeek: [1, 1, 1, 1, 1, 1, 0, 1],
-        },
-        {
-          name: "Reading",
-          startDay: "2023-02-18",
-          activeDays: [1, 2, 3, 4, 5, 6, 7],
-          lastWeek: [0, 0, 1, 0, 1, 1, 0],
-        },
-      ];
+    : [];
 
 const dD = {
   name: "Dummy",
@@ -37,8 +12,21 @@ const dD = {
   lastWeek: [0, 0, 1, 0, 1, 1, 1],
 };
 
+const time = {
+  timeIndex: 0,
+  today: 0,
+  chosenWeek: [],
+  chosenWeekBefore: [],
+  chosenMonth: [],
+  chosenMonthBefore: [],
+  chosenYear: [],
+  chosenYearBefore: [],
+  allTime: [],
+};
+
 const initialState = {
-  listOfHabits: items,
+  listOfHabits: habbits,
+  timePeriod: time,
 };
 
 export const counterSlice = createSlice({
@@ -102,10 +90,23 @@ export const counterSlice = createSlice({
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
+    dateCompletion: (state) => {
+      console.log(state.timePeriod.timeIndex);
+    },
+    dateIndexChanger: (state, action) => {
+      state.timePeriod.timeIndex += action.payload;
+      console.log(state.timePeriod.timeIndex);
+    },
   },
 });
 
-export const { newHabit, removeHabit, completionsSwitch, fillingUpEmptyDays } =
-  counterSlice.actions;
+export const {
+  newHabit,
+  removeHabit,
+  completionsSwitch,
+  fillingUpEmptyDays,
+  dateCompletion,
+  dateIndexChanger,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;
