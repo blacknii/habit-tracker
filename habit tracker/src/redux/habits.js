@@ -48,9 +48,7 @@ export const counterSlice = createSlice({
       );
     },
     completionsSwitch: (state, action) => {
-      // console.log(action.payload);
       state.listOfHabits.map((habbit) => {
-        // console.log(habbit.lastWeek.length);
         if (
           habbit.name === action.payload[0] &&
           habbit.lastWeek.length - 1 >= action.payload[1]
@@ -91,44 +89,52 @@ export const counterSlice = createSlice({
       );
     },
     dateCompletion: (state) => {
-      console.log(state.timePeriod.timeIndex);
-      const whichWeek = state.timePeriod.timeIndex;
-      const monthDate1 = new Date();
-      const monthIndex1 = monthDate1.getMonth();
-      const year1 = monthDate1.getFullYear();
-      const types = ["Week", "Month", "Year", "AllTime"];
-      const year = year1;
-      const type = types[0];
-      const timeRange = ["2023-03-01", "2023-03-12"];
+      const timeIndex = state.timePeriod.timeIndex;
 
-      const options = { weekday: "short", month: "short", day: "numeric" };
       const today = new Date();
-      const today2 = new Date();
-      const startOfWeek = new Date(
-        today.setDate(
-          today.getDate() -
-            (today.getDay() ? today.getDay() : 6) -
-            7 * whichWeek
+
+      const tempDate = new Date();
+
+      const startOfTheWeek = new Date(
+        tempDate.setDate(
+          tempDate.getDate() -
+            (tempDate.getDay() ? tempDate.getDay() - 1 : 6) -
+            7 * timeIndex
         )
       );
-      const endOfWeek = new Date(
-        today.setDate(today.getDate() - today.getDay() + 7)
+
+      const endOfTheWeek = new Date(tempDate.setDate(tempDate.getDate() + 6));
+
+      const startOfTheLastTheWeek = new Date(
+        tempDate.setDate(tempDate.getDate() - 13)
       );
-      const startOfTheLastWeek = new Date(
-        today2.setDate(
-          today2.getDate() -
-            (today.getDay() ? today.getDay() : 6) -
-            7 -
-            7 * whichWeek
-        )
+
+      const endOfTheLastTheWeek = new Date(
+        tempDate.setDate(tempDate.getDate() + 6)
       );
-      const endOfTheLastWeek = new Date(
-        today2.setDate(today2.getDate() - today2.getDay() + 7)
-      );
-      console.log(startOfWeek);
-      console.log(endOfWeek);
-      console.log(startOfTheLastWeek);
-      console.log(endOfTheLastWeek);
+
+      const monthDate = new Date();
+      const month = monthDate.getMonth() - timeIndex;
+
+      const startOfMonth = new Date(monthDate.getFullYear(), month, 1);
+      const endOfMonth = new Date(monthDate.getFullYear(), month + 1, 0);
+
+      const yearDate = new Date();
+      const year = yearDate.getFullYear() - timeIndex;
+
+      const startOfYear = new Date(year, 0, 1);
+      const endOfYear = new Date(year, 12, 0);
+
+      // console.log(state.timePeriod.timeIndex);
+      // console.log(today);
+      // console.log(startOfTheWeek);
+      // console.log(endOfTheWeek);
+      // console.log(startOfTheLastTheWeek);
+      // console.log(endOfTheLastTheWeek);
+      // console.log(startOfMonth);
+      // console.log(endOfMonth);
+      // console.log(startOfYear);
+      // console.log(endOfYear);
     },
     dateIndexChanger: (state, action) => {
       state.timePeriod.timeIndex += action.payload;
