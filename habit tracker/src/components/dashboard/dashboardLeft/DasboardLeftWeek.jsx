@@ -6,6 +6,8 @@ import ProgressBar from "../../UI/ProgressBar";
 
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
+  const time = useSelector((state) => state.habits);
+  console.log(time);
   const dispatch = useDispatch();
 
   let curr = new Date();

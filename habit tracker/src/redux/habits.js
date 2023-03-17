@@ -14,7 +14,7 @@ const dD = {
 
 const time = {
   timeIndex: 0,
-  today: 0,
+  today: null,
   chosenWeek: [],
   chosenWeekBefore: [],
   chosenMonth: [],
@@ -63,11 +63,17 @@ export const counterSlice = createSlice({
       );
     },
     fillingUpEmptyDays: (state) => {
-      state.listOfHabits.map((item) => {
-        let date1 = new Date(item.startDay);
-        let date2 = new Date();
+      let oldestDate = new Date(state.listOfHabits[0].startDay);
+      state.listOfHabits.forEach((item) => {
+        let itemDate = new Date(item.startDay);
+        let today = new Date();
+
+        if (itemDate - oldestDate < 0) {
+          oldestDate = itemDate;
+        }
+
         // To calculate the time difference of two dates
-        let Difference_In_Time = date2.getTime() - date1.getTime();
+        let Difference_In_Time = today.getTime() - itemDate.getTime();
 
         // To calculate the no. of days between two dates
         let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -80,8 +86,9 @@ export const counterSlice = createSlice({
           ) {
             item.lastWeek.push(0);
           }
-        return item;
       });
+
+      state.timePeriod.allTime[0] = oldestDate.toISOString().substring(0, 10);
 
       localStorage.setItem(
         "listOfHabits",
@@ -116,14 +123,23 @@ export const counterSlice = createSlice({
       const monthDate = new Date();
       const month = monthDate.getMonth() - timeIndex;
 
-      const startOfMonth = new Date(monthDate.getFullYear(), month, 1);
-      const endOfMonth = new Date(monthDate.getFullYear(), month + 1, 0);
+      const startOfTheMonth = new Date(monthDate.getFullYear(), month, 1);
+      const endOfTheMonth = new Date(monthDate.getFullYear(), month + 1, 0);
+
+      const startOfTheLastMonth = new Date(
+        monthDate.getFullYear(),
+        month - 1,
+        1
+      );
+      const endOfTheLastMonth = new Date(monthDate.getFullYear(), month, 0);
 
       const yearDate = new Date();
       const year = yearDate.getFullYear() - timeIndex;
 
-      const startOfYear = new Date(year, 0, 1);
-      const endOfYear = new Date(year, 12, 0);
+      const startOfTheYear = new Date(year, 0, 1);
+      const endOfTheYear = new Date(year, 12, 0);
+      const startOfTheLastYear = new Date(year - 1, 0, 1);
+      const endOfTheLastYear = new Date(year - 1, 12, 0);
 
       // console.log(state.timePeriod.timeIndex);
       // console.log(today);
@@ -131,10 +147,50 @@ export const counterSlice = createSlice({
       // console.log(endOfTheWeek);
       // console.log(startOfTheLastTheWeek);
       // console.log(endOfTheLastTheWeek);
-      // console.log(startOfMonth);
-      // console.log(endOfMonth);
-      // console.log(startOfYear);
-      // console.log(endOfYear);
+      console.log(startOfTheMonth);
+      console.log(endOfTheMonth);
+      // console.log(startOfTheLastMonth);
+      // console.log(endOfTheLastMonth);
+      console.log(startOfTheYear);
+      console.log(endOfTheYear);
+      // console.log(startOfTheLastYear);
+      // console.log(endOfTheLastYear);
+      state.timePeriod.today = today.toISOString().substring(0, 10);
+      state.timePeriod.chosenWeek[0] = startOfTheWeek
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenWeek[1] = endOfTheWeek
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenWeekBefore[0] = startOfTheLastTheWeek
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenWeekBefore[1] = endOfTheLastTheWeek
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenMonth[0] = startOfTheMonth
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenMonth[1] = endOfTheMonth
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenMonthBefore[0] = startOfTheLastMonth
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenMonthBefore[1] = endOfTheLastMonth
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenYear[0] = startOfTheYear.toISOString();
+      state.timePeriod.chosenYear[1] = endOfTheYear
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenYearBefore[0] = startOfTheLastYear
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.chosenYearBefore[1] = endOfTheLastYear
+        .toISOString()
+        .substring(0, 10);
+      state.timePeriod.allTime[1] = today.toISOString().substring(0, 10);
     },
     dateIndexChanger: (state, action) => {
       state.timePeriod.timeIndex += action.payload;
