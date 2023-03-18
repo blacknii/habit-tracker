@@ -13,6 +13,7 @@ const dD = {
 };
 
 const time = {
+  type: "Week",
   timeIndex: 0,
   today: null,
   chosenWeek: ["2023-02-18", "2023-02-18"],
@@ -186,6 +187,10 @@ export const counterSlice = createSlice({
       state.timePeriod.timeIndex += action.payload;
       console.log(state.timePeriod.timeIndex);
     },
+    datetypeChanger: (state, action) => {
+      state.timePeriod.type = action.payload;
+      console.log(state.timePeriod.timeIndex);
+    },
   },
 });
 
@@ -196,6 +201,7 @@ export const {
   fillingUpEmptyDays,
   dateCompletion,
   dateIndexChanger,
+  datetypeChanger,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

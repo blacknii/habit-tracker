@@ -13,7 +13,6 @@ function DasboardLeftWeek() {
 
   const [thisPeriodpercentage, setThisPeriodpercentage] = useState(0);
   const [lastPeriodpercentage, setLastPeriodpercentage] = useState(0);
-  const [type, setType] = useState("Week");
   let curr = new Date();
   let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
   const timeIndex = State.timePeriod.timeIndex;
@@ -25,6 +24,7 @@ function DasboardLeftWeek() {
   const endOfWeek = new Date(State.timePeriod.chosenWeek[1]);
   const startOfTheLastWeek = new Date(State.timePeriod.chosenWeekBefore[0]);
   const endOfTheLastWeek = new Date(State.timePeriod.chosenWeekBefore[1]);
+  const type = State.timePeriod.type;
 
   const startOfWeekFormatted = startOfWeek.toLocaleString("en-US", options);
   const endOfWeekFormatted = endOfWeek.toLocaleString("en-US", options);
