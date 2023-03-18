@@ -3,61 +3,28 @@ import styles from "./DasboardLeftWeek.module.css";
 import DashboardLeftHabit from "./DashboardLeftHabit";
 import { useDispatch, useSelector } from "react-redux";
 import ProgressBar from "../../UI/ProgressBar";
+import { dateIndexChanger } from "../../../redux/habits";
 
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
-  const time = useSelector((state) => state.habits);
-  console.log(time);
+  const State = useSelector((state) => state.habits);
+  // console.log(State.timePeriod);
   const dispatch = useDispatch();
 
+  const [thisPeriodpercentage, setThisPeriodpercentage] = useState(0);
+  const [lastPeriodpercentage, setLastPeriodpercentage] = useState(0);
+  const [type, setType] = useState("Week");
   let curr = new Date();
   let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
-
-  const monthDate1 = new Date();
-  const monthIndex1 = monthDate1.getMonth();
-  const year1 = monthDate1.getFullYear();
-  const types = ["Week", "Month", "Year", "AllTime"];
-
-  const [whichWeek, setWhichWeek] = useState(0);
-  const [showProgressBar, setShowProgressBar] = useState(false);
-  const [thisWeekpercentage, setThisWeekpercentage] = useState(0);
-  const [lastWeekpercentage, setLastWeekpercentage] = useState(0);
-  const [monthIndex, setMonthIndex] = useState(monthIndex1);
-  const [year, setYear] = useState(year1);
-  const [type, setType] = useState(types[0]);
+  const timeIndex = State.timePeriod.timeIndex;
   const [timeRange, setTimeRange] = useState(["2023-03-01", "2023-03-12"]);
 
   const options = { weekday: "short", month: "short", day: "numeric" };
-  const today = new Date();
-  const today2 = new Date();
-  const startOfWeek = new Date(
-    today.setDate(
-      today.getDate() - (today.getDay() ? today.getDay() : 6) - 7 * whichWeek
-    )
-  );
-  const endOfWeek = new Date(
-    today.setDate(today.getDate() - today.getDay() + 7)
-  );
-  const startOfTheLastWeek = new Date(
-    today2.setDate(
-      today2.getDate() -
-        (today.getDay() ? today.getDay() : 6) -
-        7 -
-        7 * whichWeek
-    )
-  );
-  const endOfTheLastWeek = new Date(
-    today2.setDate(today2.getDate() - today2.getDay() + 7)
-  );
-
-  const startOfMonth = new Date(today.getFullYear(), monthIndex, 1);
-  const endOfMonth = new Date(today.getFullYear(), monthIndex + 1, 0);
-
-  const startOfYear = new Date(year, 0, 1);
-  const endOfYear = new Date(year, 12, 0);
-  // console.log(startOfYear);
-  // console.log(endOfYear);
-  // console.log(year);
+  const [showProgressBar, setShowProgressBar] = useState(false);
+  const startOfWeek = new Date(State.timePeriod.chosenWeek[0]);
+  const endOfWeek = new Date(State.timePeriod.chosenWeek[1]);
+  const startOfTheLastWeek = new Date(State.timePeriod.chosenWeekBefore[0]);
+  const endOfTheLastWeek = new Date(State.timePeriod.chosenWeekBefore[1]);
 
   const startOfWeekFormatted = startOfWeek.toLocaleString("en-US", options);
   const endOfWeekFormatted = endOfWeek.toLocaleString("en-US", options);
@@ -142,10 +109,10 @@ function DasboardLeftWeek() {
   };
 
   useEffect(() => {
-    setThisWeekpercentage(
+    setThisPeriodpercentage(
       completionPercentage(listOfHabits, [startOfWeek, endOfWeek, ""])[2]
     );
-    setLastWeekpercentage(
+    setLastPeriodpercentage(
       completionPercentage(listOfHabits, [
         startOfTheLastWeek,
         endOfTheLastWeek,
@@ -154,14 +121,15 @@ function DasboardLeftWeek() {
     );
   });
   // console.log(listOfHabits);
+
   // console.log(thisWeekpercentage);
 
   return (
     <div className={styles.container}>
       <div className={styles["main-top"]}>
         <div>
-          <button onClick={() => setWhichWeek(whichWeek + 1)}>◀</button>
-          <button onClick={() => setWhichWeek(whichWeek - 1)}>▶</button>
+          <button onClick={() => dispatch(dateIndexChanger(1))}>◀</button>
+          <button onClick={() => dispatch(dateIndexChanger(-1))}>▶</button>
         </div>
         <h2>{weekRange}</h2>
         <div>
@@ -170,15 +138,15 @@ function DasboardLeftWeek() {
         </div>
       </div>
       <div className={styles["overall-progress"]}>
-        <ProgressBar value={thisWeekpercentage} key={"key"} />
+        <ProgressBar value={thisPeriodpercentage} key={"key"} />
         <div className={styles["overall-progress-percentage-comparison"]}>
           <p>
-            {thisWeekpercentage - lastWeekpercentage < 0
-              ? `Down ${lastWeekpercentage - thisWeekpercentage}`
-              : `Up ${thisWeekpercentage - lastWeekpercentage}`}
+            {thisPeriodpercentage - lastPeriodpercentage < 0
+              ? `Down ${lastPeriodpercentage - thisPeriodpercentage}`
+              : `Up ${thisPeriodpercentage - lastPeriodpercentage}`}
             % from the week before
           </p>
-          <p>{thisWeekpercentage}% achieved</p>
+          <p>{thisPeriodpercentage}% achieved</p>
         </div>
       </div>
       <div>
@@ -196,7 +164,7 @@ function DasboardLeftWeek() {
               activeDays={habbit.activeDays}
               lastWeek={habbit.lastWeek}
               dayOfTheWeek={dayOfTheWeek}
-              whichWeek={whichWeek}
+              whichWeek={timeIndex}
               showProgressBar={showProgressBar}
               type={type}
               completionPercentage={completionPercentage(listOfHabits, [

@@ -15,13 +15,13 @@ const dD = {
 const time = {
   timeIndex: 0,
   today: null,
-  chosenWeek: [],
-  chosenWeekBefore: [],
-  chosenMonth: [],
-  chosenMonthBefore: [],
-  chosenYear: [],
-  chosenYearBefore: [],
-  allTime: [],
+  chosenWeek: ["2023-02-18", "2023-02-18"],
+  chosenWeekBefore: ["2023-02-18", "2023-02-18"],
+  chosenMonth: ["2023-02-18", "2023-02-18"],
+  chosenMonthBefore: ["2023-02-18", "2023-02-18"],
+  chosenYear: ["2023-02-18", "2023-02-18"],
+  chosenYearBefore: ["2023-02-18", "2023-02-18"],
+  allTime: ["2023-02-18", "2023-02-18"],
 };
 
 const initialState = {
@@ -137,24 +137,12 @@ export const counterSlice = createSlice({
       const year = yearDate.getFullYear() - timeIndex;
 
       const startOfTheYear = new Date(year, 0, 1);
+      startOfTheYear.setDate(startOfTheYear.getDate() + 1);
       const endOfTheYear = new Date(year, 12, 0);
       const startOfTheLastYear = new Date(year - 1, 0, 1);
+      startOfTheLastYear.setDate(startOfTheLastYear.getDate() + 1);
       const endOfTheLastYear = new Date(year - 1, 12, 0);
 
-      // console.log(state.timePeriod.timeIndex);
-      // console.log(today);
-      // console.log(startOfTheWeek);
-      // console.log(endOfTheWeek);
-      // console.log(startOfTheLastTheWeek);
-      // console.log(endOfTheLastTheWeek);
-      console.log(startOfTheMonth);
-      console.log(endOfTheMonth);
-      // console.log(startOfTheLastMonth);
-      // console.log(endOfTheLastMonth);
-      console.log(startOfTheYear);
-      console.log(endOfTheYear);
-      // console.log(startOfTheLastYear);
-      // console.log(endOfTheLastYear);
       state.timePeriod.today = today.toISOString().substring(0, 10);
       state.timePeriod.chosenWeek[0] = startOfTheWeek
         .toISOString()
@@ -180,7 +168,9 @@ export const counterSlice = createSlice({
       state.timePeriod.chosenMonthBefore[1] = endOfTheLastMonth
         .toISOString()
         .substring(0, 10);
-      state.timePeriod.chosenYear[0] = startOfTheYear.toISOString();
+      state.timePeriod.chosenYear[0] = startOfTheYear
+        .toISOString()
+        .substring(0, 10);
       state.timePeriod.chosenYear[1] = endOfTheYear
         .toISOString()
         .substring(0, 10);
