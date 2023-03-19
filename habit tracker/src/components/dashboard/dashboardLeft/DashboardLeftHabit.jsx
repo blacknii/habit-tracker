@@ -115,7 +115,7 @@ function DashboardLeftHabit(props) {
         <ProgressBar value={props.completionPercentage[2]} key={props.day} />
         <div className={styles["row-end"]}>
           <p>
-            {props.completionPercentage[0]}/{props.completionPercentage[1]}
+            {props.completionPercentage[1]}/{props.completionPercentage[0]}
           </p>
         </div>
       </div>
@@ -129,7 +129,7 @@ function DashboardLeftHabit(props) {
         <ProgressBar value={props.completionPercentage[2]} key={props.day} />
         <div className={styles["row-end"]}>
           <p>
-            {props.completionPercentage[0]}/{props.completionPercentage[1]}
+            {props.completionPercentage[1]}/{props.completionPercentage[0]}
           </p>
         </div>
       </div>
@@ -143,7 +143,7 @@ function DashboardLeftHabit(props) {
         <ProgressBar value={props.completionPercentage[2]} key={props.day} />
         <div className={styles["row-end"]}>
           <p>
-            {props.completionPercentage[0]}/{props.completionPercentage[1]}
+            {props.completionPercentage[1]}/{props.completionPercentage[0]}
           </p>
         </div>
       </div>

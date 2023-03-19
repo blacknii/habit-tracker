@@ -8,7 +8,6 @@ import { dateIndexChanger } from "../../../redux/habits";
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
   const State = useSelector((state) => state.habits);
-  // console.log(State.timePeriod);
   const dispatch = useDispatch();
 
   const [thisPeriodpercentage, setThisPeriodpercentage] = useState(0);
@@ -18,6 +17,35 @@ function DasboardLeftWeek() {
   const timeIndex = State.timePeriod.timeIndex;
 
   const options = { weekday: "short", month: "short", day: "numeric" };
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const monthsShort = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   const [showProgressBar, setShowProgressBar] = useState(false);
   const chosenWeek = State.timePeriod.chosenWeek;
   const chosenMonth = State.timePeriod.chosenMonth;
@@ -32,22 +60,18 @@ function DasboardLeftWeek() {
 
   switch (type) {
     case "Week":
-      console.log("Week");
       timeRange = chosenWeek;
       timeRangeBefore = chosenWeekBefore;
       break;
     case "Month":
-      console.log("Month");
       timeRange = chosenMonth;
       timeRangeBefore = chosenMonthBefore;
       break;
     case "Year":
-      console.log("Year");
       timeRange = chosenYear;
       timeRangeBefore = chosenYearBefore;
       break;
     case "AllTime":
-      console.log("AllTime");
       timeRange = allTime;
       break;
   }
@@ -56,6 +80,9 @@ function DasboardLeftWeek() {
   const endOfcurrentPeriod = new Date(timeRange[1]);
   const startOfTheLastcurrentPeriod = new Date(timeRangeBefore[0]);
   const endOfTheLastcurrentPeriod = new Date(timeRangeBefore[1]);
+  const startOfcurrentPeriodYear = startOfcurrentPeriod.getFullYear();
+  const startOfcurrentPeriodMonth = startOfcurrentPeriod.getMonth();
+  const startOfcurrentPeriodDay = startOfcurrentPeriod.getDate();
 
   const startOfcurrentPeriodFormatted = startOfcurrentPeriod.toLocaleString(
     "en-US",
@@ -65,7 +92,23 @@ function DasboardLeftWeek() {
     "en-US",
     options
   );
-  const currentPeriodRange = `${startOfcurrentPeriodFormatted} - ${endOfcurrentPeriodFormatted}`;
+
+  let currentPeriodRange = `${startOfcurrentPeriodFormatted} - ${endOfcurrentPeriodFormatted}`;
+
+  switch (type) {
+    case "Week":
+      currentPeriodRange = `${startOfcurrentPeriodFormatted} - ${endOfcurrentPeriodFormatted}`;
+      break;
+    case "Month":
+      currentPeriodRange = `${months[startOfcurrentPeriodMonth]} ${startOfcurrentPeriodYear}`;
+      break;
+    case "Year":
+      currentPeriodRange = `${startOfcurrentPeriodYear}`;
+      break;
+    case "AllTime":
+      currentPeriodRange = `${monthsShort[startOfcurrentPeriodMonth]} ${startOfcurrentPeriodDay}, ${startOfcurrentPeriodYear} - Today`;
+      break;
+  }
 
   const daysOfTheWeek = (
     <div className={styles.days}>
@@ -112,7 +155,7 @@ function DasboardLeftWeek() {
         } else {
           dayOfTheWeek = imputDateStart.getDay() ? imputDateStart.getDay() : 7;
         }
-        console.log("---------------------");
+
         if (Difference_In_Days + Difference_In_Days_input < 0) {
         } else {
           item.lastWeek
@@ -120,14 +163,14 @@ function DasboardLeftWeek() {
               Difference_In_Days < 0 ? 0 : Difference_In_Days,
               Difference_In_Days + Difference_In_Days_input
             )
-            .map((day, j) => {
+            .forEach((day, j) => {
               if (item.activeDays.includes(dayOfTheWeek)) {
                 allDays++;
                 if (day === 1) {
                   doneDays++;
                 }
               }
-              if (dayOfTheWeek === 7) dayOfTheWeek = 0;
+              if (dayOfTheWeek === 7) dayOfTheWeek = 1;
               else dayOfTheWeek++;
             });
         }
@@ -166,8 +209,20 @@ function DasboardLeftWeek() {
     <div className={styles.container}>
       <div className={styles["main-top"]}>
         <div>
-          <button onClick={() => dispatch(dateIndexChanger(1))}>◀</button>
-          <button onClick={() => dispatch(dateIndexChanger(-1))}>▶</button>
+          <button
+            onClick={() => {
+              lastPeriodpercentage ? dispatch(dateIndexChanger(1)) : null;
+            }}
+          >
+            ◀
+          </button>
+          <button
+            onClick={() => {
+              timeIndex ? dispatch(dateIndexChanger(-1)) : null;
+            }}
+          >
+            ▶
+          </button>
         </div>
         <h2>{currentPeriodRange}</h2>
         <div>
