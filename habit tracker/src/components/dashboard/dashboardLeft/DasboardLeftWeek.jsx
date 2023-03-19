@@ -16,19 +16,56 @@ function DasboardLeftWeek() {
   let curr = new Date();
   let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
   const timeIndex = State.timePeriod.timeIndex;
-  const [timeRange, setTimeRange] = useState(["2023-03-01", "2023-03-12"]);
 
   const options = { weekday: "short", month: "short", day: "numeric" };
   const [showProgressBar, setShowProgressBar] = useState(false);
-  const startOfWeek = new Date(State.timePeriod.chosenWeek[0]);
-  const endOfWeek = new Date(State.timePeriod.chosenWeek[1]);
-  const startOfTheLastWeek = new Date(State.timePeriod.chosenWeekBefore[0]);
-  const endOfTheLastWeek = new Date(State.timePeriod.chosenWeekBefore[1]);
+  const chosenWeek = State.timePeriod.chosenWeek;
+  const chosenMonth = State.timePeriod.chosenMonth;
+  const chosenYear = State.timePeriod.chosenYear;
+  const chosenWeekBefore = State.timePeriod.chosenWeekBefore;
+  const chosenMonthBefore = State.timePeriod.chosenMonthBefore;
+  const chosenYearBefore = State.timePeriod.chosenYearBefore;
+  const allTime = State.timePeriod.allTime;
   const type = State.timePeriod.type;
+  let timeRange = ["2023-03-01", "2023-03-12"];
+  let timeRangeBefore = ["2023-03-01", "2023-03-12"];
 
-  const startOfWeekFormatted = startOfWeek.toLocaleString("en-US", options);
-  const endOfWeekFormatted = endOfWeek.toLocaleString("en-US", options);
-  const weekRange = `${startOfWeekFormatted} - ${endOfWeekFormatted}`;
+  switch (type) {
+    case "Week":
+      console.log("Week");
+      timeRange = chosenWeek;
+      timeRangeBefore = chosenWeekBefore;
+      break;
+    case "Month":
+      console.log("Month");
+      timeRange = chosenMonth;
+      timeRangeBefore = chosenMonthBefore;
+      break;
+    case "Year":
+      console.log("Year");
+      timeRange = chosenYear;
+      timeRangeBefore = chosenYearBefore;
+      break;
+    case "AllTime":
+      console.log("AllTime");
+      timeRange = allTime;
+      break;
+  }
+
+  const startOfcurrentPeriod = new Date(timeRange[0]);
+  const endOfcurrentPeriod = new Date(timeRange[1]);
+  const startOfTheLastcurrentPeriod = new Date(timeRangeBefore[0]);
+  const endOfTheLastcurrentPeriod = new Date(timeRangeBefore[1]);
+
+  const startOfcurrentPeriodFormatted = startOfcurrentPeriod.toLocaleString(
+    "en-US",
+    options
+  );
+  const endOfcurrentPeriodFormatted = endOfcurrentPeriod.toLocaleString(
+    "en-US",
+    options
+  );
+  const currentPeriodRange = `${startOfcurrentPeriodFormatted} - ${endOfcurrentPeriodFormatted}`;
 
   const daysOfTheWeek = (
     <div className={styles.days}>
@@ -45,7 +82,6 @@ function DasboardLeftWeek() {
   const completionPercentage = (listOfHabits, payload) => {
     let imputDateStart = new Date(payload[0]);
     let imputDateEnd = new Date(payload[1]);
-
     let Difference_In_Time_input =
       imputDateEnd.getTime() - imputDateStart.getTime();
     let Difference_In_Days_input =
@@ -62,11 +98,8 @@ function DasboardLeftWeek() {
 
     let IsdifferencePositive = true;
 
-    let x;
-
-    listOfHabits.forEach((item, i) => {
+    listOfHabits.forEach((item) => {
       if (payload[2] === "" || payload[2] === item.name) {
-        x = new Date();
         itemDateStartDay = new Date(item.startDay);
         Difference_In_Time =
           imputDateStart.getTime() - itemDateStartDay.getTime();
@@ -79,6 +112,7 @@ function DasboardLeftWeek() {
         } else {
           dayOfTheWeek = imputDateStart.getDay() ? imputDateStart.getDay() : 7;
         }
+        console.log("---------------------");
         if (Difference_In_Days + Difference_In_Days_input < 0) {
         } else {
           item.lastWeek
@@ -110,12 +144,16 @@ function DasboardLeftWeek() {
 
   useEffect(() => {
     setThisPeriodpercentage(
-      completionPercentage(listOfHabits, [startOfWeek, endOfWeek, ""])[2]
+      completionPercentage(listOfHabits, [
+        startOfcurrentPeriod,
+        endOfcurrentPeriod,
+        "",
+      ])[2]
     );
     setLastPeriodpercentage(
       completionPercentage(listOfHabits, [
-        startOfTheLastWeek,
-        endOfTheLastWeek,
+        startOfTheLastcurrentPeriod,
+        endOfTheLastcurrentPeriod,
         "",
       ])[2]
     );
@@ -131,7 +169,7 @@ function DasboardLeftWeek() {
           <button onClick={() => dispatch(dateIndexChanger(1))}>◀</button>
           <button onClick={() => dispatch(dateIndexChanger(-1))}>▶</button>
         </div>
-        <h2>{weekRange}</h2>
+        <h2>{currentPeriodRange}</h2>
         <div>
           <button onClick={() => setShowProgressBar(false)}>1️⃣</button>
           <button onClick={() => setShowProgressBar(true)}>2️⃣</button>
