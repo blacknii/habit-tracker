@@ -13,7 +13,7 @@ const dD = {
 };
 
 const time = {
-  type: "Week",
+  type: "Month",
   timeIndex: 0,
   today: null,
   chosenWeek: ["2023-02-18", "2023-02-18"],
@@ -125,14 +125,18 @@ export const counterSlice = createSlice({
       const month = monthDate.getMonth() - timeIndex;
 
       const startOfTheMonth = new Date(monthDate.getFullYear(), month, 1);
+      startOfTheMonth.setDate(startOfTheMonth.getDate() + 1);
       const endOfTheMonth = new Date(monthDate.getFullYear(), month + 1, 0);
+      endOfTheMonth.setDate(endOfTheMonth.getDate() + 1);
 
       const startOfTheLastMonth = new Date(
         monthDate.getFullYear(),
         month - 1,
         1
       );
+      startOfTheLastMonth.setDate(startOfTheLastMonth.getDate() + 1);
       const endOfTheLastMonth = new Date(monthDate.getFullYear(), month, 0);
+      endOfTheLastMonth.setDate(endOfTheLastMonth.getDate() + 1);
 
       const yearDate = new Date();
       const year = yearDate.getFullYear() - timeIndex;
@@ -140,9 +144,11 @@ export const counterSlice = createSlice({
       const startOfTheYear = new Date(year, 0, 1);
       startOfTheYear.setDate(startOfTheYear.getDate() + 1);
       const endOfTheYear = new Date(year, 12, 0);
+      endOfTheYear.setDate(endOfTheYear.getDate() + 1);
       const startOfTheLastYear = new Date(year - 1, 0, 1);
       startOfTheLastYear.setDate(startOfTheLastYear.getDate() + 1);
       const endOfTheLastYear = new Date(year - 1, 12, 0);
+      endOfTheLastYear.setDate(endOfTheLastYear.getDate() + 1);
 
       state.timePeriod.today = today.toISOString().substring(0, 10);
       state.timePeriod.chosenWeek[0] = startOfTheWeek
@@ -188,6 +194,7 @@ export const counterSlice = createSlice({
       console.log(state.timePeriod.timeIndex);
     },
     datetypeChanger: (state, action) => {
+      state.timePeriod.timeIndex = 0;
       state.timePeriod.type = action.payload;
       console.log(state.timePeriod.timeIndex);
     },
