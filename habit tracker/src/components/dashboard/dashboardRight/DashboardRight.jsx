@@ -28,9 +28,7 @@ function DashboardRight() {
           <button>▶</button>
         </div>
       </div>
-      <button onClick={() => dispatch(dateIndexChanger(1))}>
-        Add Your Bedtime
-      </button>
+      <button>Add Your Bedtime</button>
       <div>
         <div>
           <button onClick={() => dispatch(newHabit())}>add</button>
