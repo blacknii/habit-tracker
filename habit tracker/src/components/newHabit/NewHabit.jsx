@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./NewHabit.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementByAmount } from "../../redux/newHabit";
 
 function NewHabit() {
+  const { habitType } = useSelector((state) => state.newHabit);
+  const dispatch = useDispatch();
+  console.log(habitType);
   return (
     <>
       <div className={styles.overlay}></div>
