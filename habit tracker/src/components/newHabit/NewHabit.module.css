@@ -8,11 +8,11 @@
 }
 
 .container {
-  padding: 3rem;
+  padding: 3.125rem;
   position: fixed;
   display: flex;
-  align-items: center;
   font-size: 20px;
+
   flex-direction: column;
   top: 0;
   right: 0;
@@ -24,9 +24,17 @@
   gap: 1rem;
 }
 
-.test {
+.display-flex {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.habit-type {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 .button {
@@ -38,4 +46,88 @@
   gap: 1rem;
   display: flex;
   flex-direction: column;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.label-big {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.display-label-checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.label-checkbox {
+  width: 3.75rem;
+  height: 2.8rem;
+  border: thin solid black;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.display-weekly-frequency-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+
+.weekly-frequency-button {
+  font-size: 21px;
+  width: 20rem;
+  height: 2.8rem;
+  border: thin solid black;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.display-form-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.form-button {
+  font-size: 22px;
+  font-weight: 550;
+  width: 12rem;
+  height: 4rem;
+  border-radius: 30px;
+  border: thin solid black;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.input-text {
+  width: 100%;
+  font-size: 24px;
+}
+
+.x-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: black;
+  color: aliceblue;
+  font-size: 22px;
+  border-radius: 20px;
+}
+
+input[type="checkbox"] {
+  display: none;
 }
