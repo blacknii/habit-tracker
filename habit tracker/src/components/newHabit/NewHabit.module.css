@@ -129,5 +129,5 @@ h2 {
 }
 
 input[type="checkbox"] {
-  display: none;
+  /* display: none; */
 }

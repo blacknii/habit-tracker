@@ -2,9 +2,11 @@ import React from "react";
 import styles from "./DasboardLeftSelector.module.css";
 import { useDispatch } from "react-redux";
 import { datetypeChanger } from "../../../redux/habits";
+import { modalSwitch } from "../../../redux/newHabit";
 
 function DasboardLeftSelector() {
   const dispatch = useDispatch();
+
   return (
     <div className={styles.container}>
       <ul className={styles["date-range-selector"]}>
@@ -17,7 +19,7 @@ function DasboardLeftSelector() {
           All Time
         </button>
       </ul>
-      <button>+ Add Habbit</button>
+      <button onClick={() => dispatch(modalSwitch(true))}>+ Add Habbit</button>
     </div>
   );
 }

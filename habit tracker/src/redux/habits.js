@@ -34,8 +34,9 @@ export const counterSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    newHabit: (state) => {
-      state.listOfHabits.push(dD);
+    newHabit: (state, action) => {
+      console.log(action.payload);
+      state.listOfHabits.push(action.payload);
       localStorage.setItem(
         "listOfHabits",
         JSON.stringify(state.listOfHabits.map((item) => item))
