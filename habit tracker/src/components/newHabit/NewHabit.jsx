@@ -29,16 +29,22 @@ function NewHabit() {
   };
 
   const addHabit = () => {
-    dispatch(modalSwitch(false));
-    dispatch(
-      newHabit({
-        name: habitName,
-        startDay: today,
-        activeDays: activeDays,
-        lastWeek: [0],
-        habitType: habitType,
-      })
-    );
+    if (
+      habitName != "" &&
+      JSON.stringify(weeklyFrequency) !=
+        JSON.stringify([false, false, false, false, false, false, false])
+    ) {
+      dispatch(modalSwitch(false));
+      dispatch(
+        newHabit({
+          name: habitName,
+          startDay: today,
+          activeDays: activeDays,
+          lastWeek: [0],
+          habitType: habitType,
+        })
+      );
+    }
   };
 
   const addAnother = () => {
