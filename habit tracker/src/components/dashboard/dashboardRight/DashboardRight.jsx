@@ -31,7 +31,7 @@ function DashboardRight() {
       <button>Add Your Bedtime</button>
       <div>
         <div>
-          <button onClick={() => dispatch(newHabit())}>add</button>
+          <button>add</button>
           <button onClick={() => dispatch(removeHabit())}>remove</button>
         </div>
         {listOfHabits.map((habbit) => {

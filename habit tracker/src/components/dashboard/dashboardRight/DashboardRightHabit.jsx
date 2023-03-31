@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./DashboardRightHabit.module.css";
 import { useDispatch } from "react-redux";
-import { completionsSwitch } from "../../../redux/habits";
+import { completionsSwitch, removeHabit } from "../../../redux/habits";
 
 function DashboardRightHabit(props) {
   const dispatch = useDispatch();
@@ -44,7 +44,10 @@ function DashboardRightHabit(props) {
 
   return (
     <div className={styles.container}>
-      <p>{props.name}</p>
+      <div className={styles["delete-button"]}>
+        <p>{props.name}</p>
+        <button onClick={() => dispatch(removeHabit(props.name))}>x</button>
+      </div>
       {/* {todaysTask ? completedTask : uncompletedTask} */}
       {todaysTask === 0 && uncompletedTask}
       {todaysTask === 1 && completedTask}

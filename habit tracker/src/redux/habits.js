@@ -42,8 +42,10 @@ export const counterSlice = createSlice({
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
-    removeHabit: (state) => {
-      state.listOfHabits.pop();
+    removeHabit: (state, action) => {
+      state.listOfHabits = state.listOfHabits.filter((habbit) => {
+        return habbit.name !== action.payload;
+      });
       localStorage.setItem(
         "listOfHabits",
         JSON.stringify(state.listOfHabits.map((item) => item))
