@@ -5,8 +5,8 @@ function Header() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <p>✅ Habit Tracker</p>
-        <button>Menu🔽</button>
+        <p className={styles.logo}>GoalGetter</p>
+        <button className={styles.button}>Menu</button>
       </div>
     </div>
   );

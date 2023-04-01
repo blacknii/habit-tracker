@@ -1,11 +1,12 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;1,300&display=swap");
 
+:root {
+  font-family: "Rubik", sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #242424;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 }
 
 * {
@@ -15,6 +16,7 @@
 }
 
 button {
+  font-family: "Rubik", sans-serif;
   background-color: aliceblue;
   color: #242424;
   border: none;
