@@ -210,6 +210,7 @@ function DasboardLeftWeek() {
       <div className={styles["main-top"]}>
         <div>
           <button
+            className={styles["button"]}
             onClick={() => {
               lastPeriodpercentage ? dispatch(dateIndexChanger(1)) : null;
             }}
@@ -217,6 +218,7 @@ function DasboardLeftWeek() {
             ◀
           </button>
           <button
+            className={styles["button"]}
             onClick={() => {
               timeIndex ? dispatch(dateIndexChanger(-1)) : null;
             }}
