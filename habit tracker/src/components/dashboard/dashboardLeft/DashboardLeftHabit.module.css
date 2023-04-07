@@ -24,27 +24,29 @@
   align-items: center;
 }
 
-.day-done {
+.day-done,
+.day-not-done,
+.day-waining,
+.day-inactive {
   height: 1.75rem;
   width: 1.75rem;
-  background-color: rgb(64, 160, 216);
+}
+
+.day-done {
+  background-color: rgb(55, 152, 250);
+  cursor: pointer;
 }
 
 .day-not-done {
-  height: 1.75rem;
-  width: 1.75rem;
-  background-color: rgb(149, 172, 185);
+  background-color: #e0e7f4;
+  cursor: pointer;
 }
 
 .day-waining {
-  height: 1.75rem;
-  width: 1.75rem;
-  background-color: rgb(85, 95, 102);
+  background-color: #eef3fb;
 }
 
 .day-inactive {
   visibility: hidden;
-  height: 1.75rem;
-  width: 1.75rem;
   background-color: rgb(255, 255, 255);
 }

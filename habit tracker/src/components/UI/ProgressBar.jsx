@@ -4,12 +4,13 @@ import styles from "./ProgressBar.module.css";
 function ProgressBar(props) {
   const filled = props.value;
   return (
-    <div className={styles.progressBar}>
+    <div className={props.size ? styles.progressBarSmall : styles.progressBar}>
       <div
         style={{
-          backgroundColor: "green",
+          backgroundColor: "#007bff",
           height: "100%",
           width: `${filled}%`,
+          borderRadius: "10px",
         }}
       ></div>
     </div>

@@ -208,25 +208,33 @@ function DasboardLeftWeek() {
   return (
     <div className={styles.container}>
       <div className={styles["main-top"]}>
-        <div>
-          <button
-            className={styles["button"]}
-            onClick={() => {
-              lastPeriodpercentage ? dispatch(dateIndexChanger(1)) : null;
-            }}
-          >
-            ◀
-          </button>
-          <button
-            className={styles["button"]}
-            onClick={() => {
-              timeIndex ? dispatch(dateIndexChanger(-1)) : null;
-            }}
-          >
-            ▶
-          </button>
+        <div className={styles["left"]}>
+          <div>
+            <button
+              className={
+                lastPeriodpercentage
+                  ? styles["button"]
+                  : styles["button-unactive"]
+              }
+              onClick={() => {
+                lastPeriodpercentage ? dispatch(dateIndexChanger(1)) : null;
+              }}
+            >
+              ◀
+            </button>
+            <button
+              className={
+                timeIndex ? styles["button"] : styles["button-unactive"]
+              }
+              onClick={() => {
+                timeIndex ? dispatch(dateIndexChanger(-1)) : null;
+              }}
+            >
+              ▶
+            </button>
+          </div>
+          <h2 className={styles["font-size-2rem"]}>{currentPeriodRange}</h2>
         </div>
-        <h2 className={styles["font-size-2rem"]}>{currentPeriodRange}</h2>
         <li className={styles["view-selector"]}>
           <ul
             className={
@@ -251,7 +259,9 @@ function DasboardLeftWeek() {
         </li>
       </div>
       <div className={styles["overall-progress"]}>
-        <ProgressBar value={thisPeriodpercentage} key={"key"} />
+        <div className={styles["progress-bar2"]}>
+          <ProgressBar size={true} value={thisPeriodpercentage} key={"key"} />
+        </div>
         <div className={styles["overall-progress-percentage-comparison"]}>
           <p>
             {thisPeriodpercentage - lastPeriodpercentage < 0

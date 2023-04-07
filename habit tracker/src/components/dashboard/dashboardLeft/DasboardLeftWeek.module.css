@@ -6,12 +6,25 @@
   gap: 1rem;
 }
 
-.button {
+.button,
+.button-unactive {
   height: 2.5rem;
   width: 2.5rem;
   background-color: white;
   border: 0.05rem solid #aebace;
   border-radius: 20rem;
+  margin-right: 0.6rem;
+}
+
+.button-unactive {
+  background-color: white;
+  border: 0.05rem solid #aebace;
+  color: rgb(187, 184, 184);
+}
+
+.button:hover {
+  cursor: pointer;
+  border: 0.05rem solid #007bff;
 }
 
 .main-top {
@@ -92,4 +105,13 @@
 .view-button-picked {
   background-color: white;
   color: #292f36;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  height: 20rem;
 }

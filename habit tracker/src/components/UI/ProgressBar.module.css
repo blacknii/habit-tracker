@@ -1,12 +1,17 @@
-.progressBar {
+.progressBar,
+.progressBarSmall {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 1.5rem;
-  background-color: rgb(99, 99, 99);
+  background-color: #eef3fb;
   border-radius: 10px;
   margin-top: 1rem;
   margin-bottom: 1rem;
   overflow: hidden;
+}
+
+.progressBarSmall {
+  height: 0.625rem;
 }

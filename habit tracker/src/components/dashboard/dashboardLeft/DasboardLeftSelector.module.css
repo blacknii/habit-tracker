@@ -57,3 +57,9 @@ ul {
 .button-add-habbit:hover {
   border: 0.05rem solid #007bff;
 }
+
+.progress-bar2 {
+  display: flex;
+  height: 1rem;
+  background-color: #007bff;
+}
