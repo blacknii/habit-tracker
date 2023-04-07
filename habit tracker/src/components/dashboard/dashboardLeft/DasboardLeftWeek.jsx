@@ -226,11 +226,29 @@ function DasboardLeftWeek() {
             ▶
           </button>
         </div>
-        <h2>{currentPeriodRange}</h2>
-        <div>
-          <button onClick={() => setShowProgressBar(false)}>1️⃣</button>
-          <button onClick={() => setShowProgressBar(true)}>2️⃣</button>
-        </div>
+        <h2 className={styles["font-size-2rem"]}>{currentPeriodRange}</h2>
+        <li className={styles["view-selector"]}>
+          <ul
+            className={
+              showProgressBar
+                ? styles["view-button"]
+                : styles["view-button-picked"]
+            }
+            onClick={() => setShowProgressBar(false)}
+          >
+            1️⃣
+          </ul>
+          <ul
+            className={
+              showProgressBar
+                ? styles["view-button-picked"]
+                : styles["view-button"]
+            }
+            onClick={() => setShowProgressBar(true)}
+          >
+            2️⃣
+          </ul>
+        </li>
       </div>
       <div className={styles["overall-progress"]}>
         <ProgressBar value={thisPeriodpercentage} key={"key"} />
