@@ -1,6 +1,8 @@
 .container {
-  background-color: rgb(80, 80, 80);
-  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #dcdfe2;
   padding: 0.5rem;
 }
 
@@ -12,4 +14,13 @@
 .submit {
   display: flex;
   justify-content: space-evenly;
+}
+
+.symbol {
+  padding: 1rem;
+}
+
+.right {
+  display: flex;
+  justify-content: space-around;
 }

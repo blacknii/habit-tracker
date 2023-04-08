@@ -44,14 +44,17 @@ function DashboardRightHabit(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles["delete-button"]}>
-        <p>{props.name}</p>
-        <button onClick={() => dispatch(removeHabit(props.name))}>x</button>
+      <div className={styles.symbol}>🔵</div>
+      <div className={styles.right}>
+        <div className={styles["delete-button"]}>
+          <p>{props.name}</p>
+          <button onClick={() => dispatch(removeHabit(props.name))}>x</button>
+        </div>
+        {/* {todaysTask ? completedTask : uncompletedTask} */}
+        {todaysTask === 0 && uncompletedTask}
+        {todaysTask === 1 && completedTask}
+        {todaysTask === 2 && InactiveTask}
       </div>
-      {/* {todaysTask ? completedTask : uncompletedTask} */}
-      {todaysTask === 0 && uncompletedTask}
-      {todaysTask === 1 && completedTask}
-      {todaysTask === 2 && InactiveTask}
     </div>
   );
 }

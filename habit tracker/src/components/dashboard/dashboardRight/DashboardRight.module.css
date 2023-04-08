@@ -1,11 +1,56 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 20rem;
-  gap: 1rem;
+  width: 28rem;
+  gap: 1.5rem;
 }
 
 .day {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.today {
+  font-size: 23px;
+}
+
+.button,
+.button-unactive {
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: white;
+  border: 0.05rem solid #aebace;
+  border-radius: 20rem;
+  margin-right: 0.6rem;
+}
+
+.button-unactive {
+  background-color: white;
+  border: 0.05rem solid #aebace;
+  color: rgb(187, 184, 184);
+}
+
+.button:hover {
+  cursor: pointer;
+  border: 0.05rem solid #007bff;
+}
+
+.bedtime {
+  height: 4.375rem;
+  background-color: #3b43d8;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.habbits {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #bed1ed;
+  border-radius: 5px;
+  padding: 25px;
+  gap: 1rem;
 }

@@ -22,18 +22,14 @@ function DashboardRight() {
   return (
     <div className={styles.container}>
       <div className={styles.day}>
-        <p>Thu, Feb 23</p>
+        <h2 className={styles.today}>Thu, Feb 23</h2>
         <div>
-          <button>◀</button>
-          <button>▶</button>
+          <button className={styles.button}>◀</button>
+          <button className={styles["button-unactive"]}>▶</button>
         </div>
       </div>
-      <button>Add Your Bedtime</button>
-      <div>
-        <div>
-          <button>add</button>
-          <button onClick={() => dispatch(removeHabit())}>remove</button>
-        </div>
+      <button className={styles.bedtime}>🌜 Add Your Bedtime</button>
+      <div className={styles.habbits}>
         {listOfHabits.map((habbit) => {
           return (
             <DashboardRightHabit
