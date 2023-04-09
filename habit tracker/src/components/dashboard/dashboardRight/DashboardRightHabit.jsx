@@ -45,6 +45,11 @@ function DashboardRightHabit(props) {
   return (
     <div className={styles.container}>
       <div className={styles.symbol}>🔵</div>
+      <div
+        className={
+          todaysTask === 1 ? styles["highlight-active"] : styles.highlight
+        }
+      ></div>
       <div className={styles.right}>
         <div className={styles["delete-button"]}>
           <p>{props.name}</p>

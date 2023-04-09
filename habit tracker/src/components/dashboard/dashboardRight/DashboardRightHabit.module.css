@@ -2,8 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #dcdfe2;
-  padding: 0.5rem;
+  /* background-color: #dcdfe2; */
+  position: relative;
+  z-index: -2;
 }
 
 .delete-button {
@@ -17,10 +18,32 @@
 }
 
 .symbol {
-  padding: 1rem;
+  padding-right: 0.7rem;
+}
+
+.highlight,
+.highlight-active {
+  position: absolute;
+  border-left: #3798fa solid 5px;
+  padding: 2rem 0.1rem;
+  border-radius: 10px;
+  background-color: #3798fa;
+  z-index: -1;
+  left: 1.8rem;
+}
+
+.highlight-active {
+  padding: 2rem 7.3rem;
 }
 
 .right {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 0.5rem;
 }
+
+/* button {
+
+} */
