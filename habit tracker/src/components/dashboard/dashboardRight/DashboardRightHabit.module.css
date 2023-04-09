@@ -2,8 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
   position: relative;
+  height: 5.5rem;
+  /* background-color: rgba(128, 128, 128, 0.363); */
 }
 
 .delete-button {
@@ -13,11 +14,16 @@
 
 .submit {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 2.25rem;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .symbol {
-  padding-right: 1.8rem;
+  padding-right: 0.6rem;
 }
 
 .right,
@@ -26,8 +32,8 @@
   flex-direction: column;
   width: 100%;
   justify-content: flex-end;
-  padding: 0.5rem;
   transition: 60ms;
+  padding: 0 1rem;
 }
 
 .right-active {
@@ -38,18 +44,56 @@
 .highlight-active {
   position: absolute;
   border-left: #3798fa solid 5px;
-  padding: 2rem 0.1rem;
+  padding: 2.75rem 0.1rem;
   border-radius: 10px;
   background-color: #3798fa;
   z-index: -1;
-  left: 2.8rem;
+  left: 1.7rem;
   transition: 60ms;
 }
 
 .highlight-active {
-  padding: 2rem 6.6rem;
+  padding: 2.75rem 7.7rem;
 }
 
 .habbit-name {
   font-size: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.mark-complete {
+  background-color: white;
+  border: 1px solid #bed1ed;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #007bff;
+  border-radius: 5px;
+}
+
+.completed-button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: inherit;
+  font-weight: 600;
+  height: 2rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.delete {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
 }

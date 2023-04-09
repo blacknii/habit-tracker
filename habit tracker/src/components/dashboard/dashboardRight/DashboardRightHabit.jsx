@@ -11,6 +11,7 @@ function DashboardRightHabit(props) {
   const uncompletedTask = (
     <div className={styles.submit}>
       <button
+        className={styles["mark-complete"]}
         onClick={() => dispatch(completionsSwitch([props.name, lastIndex]))}
       >
         Mark Complete
@@ -21,6 +22,7 @@ function DashboardRightHabit(props) {
     <div className={styles.submit}>
       <p>✅Completed</p>
       <button
+        className={styles["completed-button"]}
         onClick={() => dispatch(completionsSwitch([props.name, lastIndex]))}
       >
         Undo
@@ -29,7 +31,7 @@ function DashboardRightHabit(props) {
   );
   const InactiveTask = (
     <div className={styles.submit}>
-      <p>Inactive</p>
+      <p>Inactive on Sunday</p>
     </div>
   );
 
@@ -53,7 +55,12 @@ function DashboardRightHabit(props) {
       <div className={todaysTask === 1 ? styles["right-active"] : styles.right}>
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
-          <button onClick={() => dispatch(removeHabit(props.name))}>x</button>
+          <button
+            className={styles["delete"]}
+            onClick={() => dispatch(removeHabit(props.name))}
+          >
+            x
+          </button>
         </div>
         {/* {todaysTask ? completedTask : uncompletedTask} */}
         {todaysTask === 0 && uncompletedTask}
