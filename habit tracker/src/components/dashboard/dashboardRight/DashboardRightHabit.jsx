@@ -50,9 +50,9 @@ function DashboardRightHabit(props) {
           todaysTask === 1 ? styles["highlight-active"] : styles.highlight
         }
       ></div>
-      <div className={styles.right}>
+      <div className={todaysTask === 1 ? styles["right-active"] : styles.right}>
         <div className={styles["delete-button"]}>
-          <p>{props.name}</p>
+          <h2 className={styles["habbit-name"]}>{props.name}</h2>
           <button onClick={() => dispatch(removeHabit(props.name))}>x</button>
         </div>
         {/* {todaysTask ? completedTask : uncompletedTask} */}

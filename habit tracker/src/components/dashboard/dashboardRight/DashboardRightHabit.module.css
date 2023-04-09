@@ -17,15 +17,21 @@
 }
 
 .symbol {
-  padding-right: 1.9rem;
+  padding-right: 1.8rem;
 }
 
-.right {
+.right,
+.right-active {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: flex-end;
   padding: 0.5rem;
+  transition: 60ms;
+}
+
+.right-active {
+  color: white;
 }
 
 .highlight,
@@ -42,4 +48,8 @@
 
 .highlight-active {
   padding: 2rem 6.6rem;
+}
+
+.habbit-name {
+  font-size: 20px;
 }
