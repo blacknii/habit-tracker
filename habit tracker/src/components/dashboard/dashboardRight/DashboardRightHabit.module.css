@@ -24,10 +24,12 @@
 
 .symbol {
   padding-right: 0.6rem;
+  cursor: default;
 }
 
 .right,
-.right-active {
+.right-active,
+.right-inactive {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -36,15 +38,20 @@
   padding: 0 1rem;
 }
 
+.right-inactive {
+  color: #bed1ed;
+}
+
 .right-active {
   color: white;
 }
 
 .highlight,
-.highlight-active {
+.highlight-active,
+.highlight-inactive {
   position: absolute;
   border-left: #3798fa solid 5px;
-  padding: 2.75rem 0.1rem;
+  padding: 2.75rem 0.06rem;
   border-radius: 10px;
   background-color: #3798fa;
   z-index: -1;
@@ -54,6 +61,11 @@
 
 .highlight-active {
   padding: 2.75rem 7.7rem;
+}
+
+.highlight-inactive {
+  border-left: #bed1ed solid 5px;
+  background-color: #bed1ed;
 }
 
 .habbit-name {
@@ -96,4 +108,8 @@
   padding: 0;
   cursor: pointer;
   margin-bottom: 0.5rem;
+}
+
+.color-white {
+  color: white;
 }

@@ -20,7 +20,7 @@ function DashboardRightHabit(props) {
   );
   const completedTask = (
     <div className={styles.submit}>
-      <p>✅Completed</p>
+      <p className={styles["color-white"]}>✅Completed</p>
       <button
         className={styles["completed-button"]}
         onClick={() => dispatch(completionsSwitch([props.name, lastIndex]))}
@@ -46,13 +46,25 @@ function DashboardRightHabit(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.symbol}>🔵</div>
+      <div className={styles.symbol}>{todaysTask === 2 ? "⚪" : "🔵"}</div>
       <div
         className={
-          todaysTask === 1 ? styles["highlight-active"] : styles.highlight
+          todaysTask === 1
+            ? styles["highlight-active"]
+            : todaysTask === 2
+            ? styles["highlight-inactive"]
+            : styles.highlight
         }
       ></div>
-      <div className={todaysTask === 1 ? styles["right-active"] : styles.right}>
+      <div
+        className={
+          todaysTask === 1
+            ? styles["right-active"]
+            : todaysTask === 2
+            ? styles["right-inactive"]
+            : styles.right
+        }
+      >
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
           <button

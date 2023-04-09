@@ -35,6 +35,7 @@ ul {
   user-select: none;
   border: none;
   color: #666666;
+  transition: 100ms;
 }
 
 .button:hover {
