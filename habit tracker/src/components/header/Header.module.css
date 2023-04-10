@@ -13,6 +13,10 @@
   font-size: 1.7rem;
   font-weight: 600;
   color: aliceblue;
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .header {
@@ -26,4 +30,5 @@
   font-weight: 500;
   width: 4.5rem;
   height: 2.5rem;
+  cursor: pointer;
 }

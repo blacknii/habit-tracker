@@ -49,7 +49,7 @@ function DasboardLeftSelector() {
         className={styles["button-add-habbit"]}
         onClick={() => dispatch(modalSwitch(true))}
       >
-        + Add Habbit
+        + Add Habit
       </button>
     </div>
   );

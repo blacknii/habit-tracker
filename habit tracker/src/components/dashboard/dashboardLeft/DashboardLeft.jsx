@@ -7,7 +7,7 @@ function DashboardLeft() {
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        <h1>Good afternoon, Karl</h1>
+        <h1>Good afternoon</h1>
         <p className={styles.bedtime}>Add Your Bedtime</p>
       </div>
       <DasboardLeftSelector />
