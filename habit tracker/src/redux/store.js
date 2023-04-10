@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter";
+import bedtimeReducer from "./bedtime";
 import habitsReducer from "./habits";
 import newHabitReducer from "./newHabit";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    bedtime: bedtimeReducer,
     habits: habitsReducer,
     newHabit: newHabitReducer,
   },

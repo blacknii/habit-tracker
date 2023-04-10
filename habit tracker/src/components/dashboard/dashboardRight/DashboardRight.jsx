@@ -8,6 +8,7 @@ import {
   dateCompletion,
   dateIndexChanger,
 } from "../../../redux/habits";
+import { setBedtimeMessage } from "../../../redux/bedtime";
 import DashboardRightHabit from "./DashboardRightHabit";
 
 function DashboardRight() {
@@ -17,6 +18,7 @@ function DashboardRight() {
   useEffect(() => {
     dispatch(fillingUpEmptyDays());
     dispatch(dateCompletion());
+    dispatch(setBedtimeMessage());
   });
 
   return (
