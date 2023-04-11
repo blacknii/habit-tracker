@@ -2,16 +2,23 @@ import React from "react";
 import DasboardLeftSelector from "./DasboardLeftSelector";
 import DasboardLeftWeek from "./DasboardLeftWeek";
 import styles from "./DashboardLeft.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setBedtimeModal } from "../../../redux/bedtime";
 
 function DashboardLeft() {
+  const dispatch = useDispatch();
   const { bedtimeMessage } = useSelector((state) => state.bedtime);
-  console.log(bedtimeMessage);
+
   return (
     <div className={styles.container}>
       <div className={styles.main}>
         <h1>Good afternoon</h1>
-        <p className={styles.bedtime}>{bedtimeMessage}</p>
+        <p
+          className={styles.bedtime}
+          onClick={() => dispatch(setBedtimeModal(true))}
+        >
+          {bedtimeMessage}
+        </p>
       </div>
       <DasboardLeftSelector />
       <DasboardLeftWeek />

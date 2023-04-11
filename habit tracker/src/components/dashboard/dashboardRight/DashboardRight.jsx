@@ -8,11 +8,13 @@ import {
   dateCompletion,
   dateIndexChanger,
 } from "../../../redux/habits";
+import { setBedtimeModal } from "../../../redux/bedtime";
 import { setBedtimeMessage } from "../../../redux/bedtime";
 import DashboardRightHabit from "./DashboardRightHabit";
 
 function DashboardRight() {
   const { listOfHabits } = useSelector((state) => state.habits);
+  const { bedtimeMessage } = useSelector((state) => state.bedtime);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +32,15 @@ function DashboardRight() {
           <button className={styles["button-unactive"]}>▶</button>
         </div>
       </div>
-      <button className={styles.bedtime}>🌜 Add Your Bedtime</button>
+      {bedtimeMessage === "Add Your Bedtime" && (
+        <button
+          className={styles.bedtime}
+          onClick={() => dispatch(setBedtimeModal(true))}
+        >
+          🌜 Add Your Bedtime
+        </button>
+      )}
+
       <div className={styles.habbits}>
         {listOfHabits.map((habbit) => {
           return (

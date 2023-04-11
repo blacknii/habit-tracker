@@ -8,7 +8,6 @@ function DasboardLeftSelector() {
   const dispatch = useDispatch();
   const State = useSelector((state) => state.habits);
   const type = State.timePeriod.type;
-  console.log(type);
   return (
     <div className={styles.container}>
       <ul className={styles["date-range-selector"]}>

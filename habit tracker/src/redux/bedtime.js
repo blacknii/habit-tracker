@@ -8,14 +8,22 @@ const bedtime =
 const initialState = {
   bedtime: bedtime,
   bedtimeMessage: "Add Your Bedtime",
+  isModalVisible: true,
 };
-
-console.log(initialState);
 
 export const counterSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
+    setBedtime: (state, action) => {
+      if (action.payload === 0) {
+        localStorage.removeItem("bedtime");
+        state.bedtime = null;
+      } else {
+        state.bedtime = action.payload;
+        localStorage.setItem("bedtime", state.bedtime);
+      }
+    },
     setBedtimeMessage: (state) => {
       if (state.bedtime === null) {
         state.bedtimeMessage = "Add Your Bedtime";
@@ -50,19 +58,13 @@ export const counterSlice = createSlice({
         }
       }
     },
-    incrementByAmount: (state, action) => {
-      if (action.payload === 0) {
-        localStorage.removeItem()("bedtime");
-      } else {
-        state.bedtime = action.payload;
-        localStorage.setItem("bedtime", state.bedtime);
-      }
+    setBedtimeModal: (state, action) => {
+      state.isModalVisible = action.payload;
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { setBedtimeMessage, decrement, incrementByAmount } =
+export const { setBedtime, setBedtimeMessage, setBedtimeModal } =
   counterSlice.actions;
 
 export default counterSlice.reducer;
