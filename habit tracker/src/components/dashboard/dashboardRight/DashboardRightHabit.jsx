@@ -5,9 +5,27 @@ import { completionsSwitch, removeHabit } from "../../../redux/habits";
 
 function DashboardRightHabit(props) {
   const dispatch = useDispatch();
-  const lastIndex = props.lastWeek.length - 1;
+  const lastIndex = props.lastWeek.length - 1 - props.timeIndex;
   let todaysTask = props.lastWeek[lastIndex];
   const activeDays = props.activeDays;
+  const dayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  let today = new Date();
+  let dayOfTheWeek = today.getDay() ? today.getDay() : 7;
+  dayOfTheWeek = ((dayOfTheWeek - 1 - props.timeIndex) % 7) + 1;
+  while (dayOfTheWeek < 1) {
+    dayOfTheWeek += 7;
+  }
+  todaysTask = !activeDays.includes(dayOfTheWeek) ? 2 : todaysTask;
+
   const uncompletedTask = (
     <div className={styles.submit}>
       <button
@@ -18,6 +36,7 @@ function DashboardRightHabit(props) {
       </button>
     </div>
   );
+
   const completedTask = (
     <div className={styles.submit}>
       <p className={styles["color-white"]}>✅Completed</p>
@@ -29,20 +48,12 @@ function DashboardRightHabit(props) {
       </button>
     </div>
   );
+
   const InactiveTask = (
     <div className={styles.submit}>
-      <p>Inactive on Sunday</p>
+      <p>Inactive on {dayNames[dayOfTheWeek - 1]}</p>
     </div>
   );
-
-  let today = new Date();
-  let dayOfTheWeek = today.getDay() ? today.getDay() : 7;
-
-  // console.log(dayOfTheWeek);
-  // console.log(activeDays);
-  // console.log(!activeDays.includes(dayOfTheWeek));
-
-  todaysTask = !activeDays.includes(dayOfTheWeek) ? 2 : todaysTask;
 
   return (
     <div className={styles.container}>
@@ -67,6 +78,7 @@ function DashboardRightHabit(props) {
       >
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
+
           <button
             className={styles["delete"]}
             onClick={() => dispatch(removeHabit(props.name))}
@@ -74,6 +86,7 @@ function DashboardRightHabit(props) {
             x
           </button>
         </div>
+
         {/* {todaysTask ? completedTask : uncompletedTask} */}
         {todaysTask === 0 && uncompletedTask}
         {todaysTask === 1 && completedTask}

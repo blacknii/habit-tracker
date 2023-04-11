@@ -76,6 +76,10 @@ function DasboardLeftWeek() {
       break;
   }
 
+  // useEffect(() => {
+  //   setShowProgressBar(true);
+  // }, [showProgressBar]);
+
   const startOfcurrentPeriod = new Date(timeRange[0]);
   const endOfcurrentPeriod = new Date(timeRange[1]);
   const startOfTheLastcurrentPeriod = new Date(timeRangeBefore[0]);
@@ -235,17 +239,34 @@ function DasboardLeftWeek() {
           </div>
           <h2 className={styles["font-size-2rem"]}>{currentPeriodRange}</h2>
         </div>
-        <li className={styles["view-selector"]}>
-          <ul
-            className={
-              showProgressBar
-                ? styles["view-button"]
-                : styles["view-button-picked"]
-            }
-            onClick={() => setShowProgressBar(false)}
+        {timeIndex > 0 && (
+          <p
+            onClick={() => {
+              timeIndex ? dispatch(dateIndexChanger(-timeIndex)) : null;
+            }}
           >
-            1️⃣
-          </ul>
+            Current
+          </p>
+        )}
+        <li
+          className={
+            type === "Week"
+              ? styles["view-selector"]
+              : styles["view-selector-week"]
+          }
+        >
+          {type === "Week" && (
+            <ul
+              className={
+                showProgressBar
+                  ? styles["view-button"]
+                  : styles["view-button-picked"]
+              }
+              onClick={() => setShowProgressBar(false)}
+            >
+              1️⃣
+            </ul>
+          )}
           <ul
             className={
               showProgressBar

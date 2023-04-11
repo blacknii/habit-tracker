@@ -7,10 +7,7 @@ import { setBedtimeModal, setBedtime } from "../../redux/bedtime";
 function BedtimeModal() {
   const dispatch = useDispatch();
   const { bedtime } = useSelector((state) => state.bedtime);
-  console.log(bedtime);
-  console.log(bedtime.substr(0, 2));
-  console.log(bedtime.substr(3, 2));
-  console.log(bedtime.substr(6, 2));
+
   const [hour, setHour] = useState(
     bedtime ? Number(bedtime.substr(0, 2)) : "0"
   );

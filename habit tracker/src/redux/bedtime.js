@@ -8,7 +8,7 @@ const bedtime =
 const initialState = {
   bedtime: bedtime,
   bedtimeMessage: "Add Your Bedtime",
-  isModalVisible: true,
+  isModalVisible: false,
 };
 
 export const counterSlice = createSlice({
