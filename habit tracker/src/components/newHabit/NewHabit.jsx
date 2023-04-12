@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./NewHabit.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -28,6 +28,10 @@ function NewHabit() {
     dispatch(modalSwitch(false));
   };
 
+  const [isNameCorrect, setIsNameCorrect] = useState(true);
+  const [isFrequencyCorrect, setIsFrequencyCorrect] = useState(true);
+  const [firstLoad, setFirstLoad] = useState(true);
+
   const addHabit = () => {
     if (
       habitName != "" &&
@@ -44,8 +48,29 @@ function NewHabit() {
           habitType: habitType,
         })
       );
+    } else {
+      if (habitName == "") setIsNameCorrect(false);
+      if (
+        JSON.stringify(weeklyFrequency) ==
+        JSON.stringify([false, false, false, false, false, false, false])
+      )
+        setIsFrequencyCorrect(false);
     }
   };
+
+  useEffect(() => {
+    if (firstLoad) setFirstLoad(false);
+
+    if (
+      JSON.stringify(weeklyFrequency) ==
+        JSON.stringify([false, false, false, false, false, false, false]) &&
+      !firstLoad
+    ) {
+      setIsFrequencyCorrect(false);
+    } else {
+      setIsFrequencyCorrect(true);
+    }
+  }, [weeklyFrequency]);
 
   const addAnother = () => {
     dispatch(
@@ -79,6 +104,12 @@ function NewHabit() {
     dispatch(typeChanger(false));
   };
 
+  const habitNameHandler = (event) => {
+    dispatch(nameChanger(event.target.value));
+    if (event.target.value == "") setIsNameCorrect(false);
+    else if (event.target.value != "" && !isNameCorrect) setIsNameCorrect(true);
+  };
+
   return (
     <>
       <div className={styles.overlay}></div>
@@ -94,28 +125,33 @@ function NewHabit() {
         </div>
         <form className={styles.form}>
           <div>
-            <label className={styles["label-big"]} for="name">
+            <label className={styles["label-big"]} htmlFor="name">
               1. Name this habit
             </label>
+            {!isNameCorrect && <p>This is a required field.</p>}
             <br />
             <input
-              className={styles["input-text"]}
+              className={
+                isNameCorrect
+                  ? styles["input-text"]
+                  : styles["input-text-error"]
+              }
               type="text"
               id="name"
               name="name"
               value={habitName}
-              onChange={(event) => dispatch(nameChanger(event.target.value))}
+              onChange={habitNameHandler}
             />
           </div>
           <div>
-            <label className={styles["label-big"]} for="type">
+            <label className={styles["label-big"]} htmlFor="type">
               2. Habit Type
             </label>
             <br />
             <div className={styles["habit-type"]}>
               <div className={styles["display-flex"]} onClick={toDo}>
                 <input type="radio" id="type" name="type" checked={habitType} />
-                <label for="type">To-Do</label>
+                <label htmlFor="type">To-Do</label>
               </div>
               <br />
               <div className={styles["display-flex"]} onClick={notToDo}>
@@ -125,18 +161,26 @@ function NewHabit() {
                   name="type"
                   checked={!habitType}
                 />
-                <label for="type">Not-To-Do</label>
+                <label htmlFor="type">Not-To-Do</label>
                 <br />
               </div>
             </div>
           </div>
           <div>
-            <label className={styles["label-big"]} for="frequency">
+            <label className={styles["label-big"]} htmlFor="frequency">
               3. Weekly frequency
             </label>
+            {!isFrequencyCorrect && <p>This is a required field.</p>}
             <div className={styles["display-label-checkbox"]}>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Mon
                 <input
                   type="checkbox"
@@ -145,7 +189,14 @@ function NewHabit() {
                 />
               </label>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Tue
                 <input
                   type="checkbox"
@@ -154,7 +205,14 @@ function NewHabit() {
                 />
               </label>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Wed
                 <input
                   type="checkbox"
@@ -163,7 +221,14 @@ function NewHabit() {
                 />
               </label>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Thu
                 <input
                   type="checkbox"
@@ -172,7 +237,14 @@ function NewHabit() {
                 />
               </label>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Fri
                 <input
                   type="checkbox"
@@ -181,7 +253,14 @@ function NewHabit() {
                 />
               </label>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Sat
                 <input
                   type="checkbox"
@@ -190,7 +269,14 @@ function NewHabit() {
                 />
               </label>
               <br />
-              <label className={styles["label-checkbox"]} for="frequency">
+              <label
+                className={
+                  isFrequencyCorrect
+                    ? styles["label-checkbox"]
+                    : styles["label-checkbox-error"]
+                }
+                htmlFor="frequency"
+              >
                 Sun
                 <input
                   type="checkbox"
@@ -202,13 +288,21 @@ function NewHabit() {
             </div>
             <div className={styles["display-weekly-frequency-button"]}>
               <button
-                className={styles["weekly-frequency-button"]}
+                className={
+                  isFrequencyCorrect
+                    ? styles["weekly-frequency-button"]
+                    : styles["weekly-frequency-button-error"]
+                }
                 onClick={weekDays}
               >
                 Week days
               </button>
               <button
-                className={styles["weekly-frequency-button"]}
+                className={
+                  isFrequencyCorrect
+                    ? styles["weekly-frequency-button"]
+                    : styles["weekly-frequency-button-error"]
+                }
                 onClick={everyDay}
               >
                 Every day
