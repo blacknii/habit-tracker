@@ -73,6 +73,7 @@ function DasboardLeftWeek() {
       break;
     case "AllTime":
       timeRange = allTime;
+      timeRangeBefore = [];
       break;
   }
 

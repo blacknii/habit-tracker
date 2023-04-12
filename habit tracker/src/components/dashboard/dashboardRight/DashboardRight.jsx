@@ -31,10 +31,17 @@ function DashboardRight() {
     dispatch(setBedtimeMessage());
   });
 
+  const currentDate = new Date();
+  const options = { weekday: "short", month: "short", day: "numeric" };
+  const targetDate = new Date(
+    currentDate.setDate(currentDate.getDate() - timeIndex)
+  );
+  const formattedDate = targetDate.toLocaleDateString("en-US", options);
+
   return (
     <div className={styles.container}>
       <div className={styles.day}>
-        <h2 className={styles.today}>Thu, Feb 23</h2>
+        <h2 className={styles.today}>{formattedDate}</h2>
         <div>
           {timeIndex > 0 && <p onClick={() => setTimeIndex(0)}>Today</p>}
           <button
@@ -76,6 +83,7 @@ function DashboardRight() {
                 startDay={habbit.startDay}
                 lastWeek={habbit.lastWeek}
                 activeDays={habbit.activeDays}
+                habitType={habbit.habitType}
                 timeIndex={timeIndex}
               />
             );

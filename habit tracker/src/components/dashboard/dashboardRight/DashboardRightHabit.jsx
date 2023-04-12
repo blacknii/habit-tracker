@@ -54,10 +54,41 @@ function DashboardRightHabit(props) {
       <p>Inactive on {dayNames[dayOfTheWeek - 1]}</p>
     </div>
   );
+  let streak = 0;
+
+  const reversedArray = props.lastWeek
+    .slice(0, props.lastWeek.length - 1)
+    .reverse();
+  function countOnes(array) {
+    let currentDay = dayOfTheWeek - 1;
+    let count = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (activeDays.includes(currentDay)) {
+        if (array[i] === 0) {
+          break;
+        }
+        if (array[i] === 1) {
+          count++;
+        }
+      }
+      currentDay--;
+      if (currentDay === 0) currentDay = 7;
+    }
+    return count + todaysTask;
+  }
+  const strike = countOnes(reversedArray);
 
   return (
     <div className={styles.container}>
-      <div className={styles.symbol}>{todaysTask === 2 ? "⚪" : "🔵"}</div>
+      <div className={styles.symbol}>
+        {props.habitType
+          ? todaysTask === 2
+            ? "⚪"
+            : "🔵"
+          : todaysTask === 2
+          ? "✖"
+          : "❎"}
+      </div>
       <div
         className={
           todaysTask === 1
@@ -78,13 +109,18 @@ function DashboardRightHabit(props) {
       >
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
-
-          <button
-            className={styles["delete"]}
-            onClick={() => dispatch(removeHabit(props.name))}
-          >
-            x
-          </button>
+          <div className={styles.flex}>
+            <p>
+              {strike}
+              🔥
+            </p>
+            <button
+              className={styles["delete"]}
+              onClick={() => dispatch(removeHabit(props.name))}
+            >
+              x
+            </button>
+          </div>
         </div>
 
         {/* {todaysTask ? completedTask : uncompletedTask} */}

@@ -101,7 +101,7 @@
 .delete {
   border: none;
   background-color: transparent;
-  color: white;
+  color: inherit;
   font-size: 16px;
   font-weight: 600;
   background: none;
@@ -114,4 +114,10 @@
 
 .color-white {
   color: white;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
