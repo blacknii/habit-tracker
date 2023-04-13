@@ -314,6 +314,7 @@ function DasboardLeftWeek() {
           {!showProgressBar && type === "Week" ? daysOfTheWeek : <></>}
           <div></div>
         </div>
+        {console.log(listOfHabits)}
         {listOfHabits.map((habbit) => {
           return (
             <DashboardLeftHabit

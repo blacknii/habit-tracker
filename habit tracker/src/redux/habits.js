@@ -87,7 +87,7 @@ export const counterSlice = createSlice({
     addRandomHabits: (state) => {
       console.log("Test addRandomHabits");
       state.listOfHabits = DUMMYHABITS;
-      state.listOfHabits = localStorage.setItem(
+      localStorage.setItem(
         "listOfHabits",
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
@@ -126,6 +126,7 @@ export const counterSlice = createSlice({
       );
     },
     fillingUpEmptyDays: (state) => {
+      if (state.listOfHabits.length == 0) return;
       let oldestDate = new Date(state.listOfHabits[0].startDay);
       state.listOfHabits.forEach((item) => {
         let itemDate = new Date(item.startDay);
