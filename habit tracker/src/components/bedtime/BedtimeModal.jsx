@@ -49,61 +49,67 @@ function BedtimeModal() {
   };
 
   return (
-    <Modal>
-      <div>🌜</div>
-      <div>
-        <h2>What time do you typically go to bed?</h2>
-        <p>A rough estimate is fine</p>
-      </div>
-      <form className={styles["form"]}>
-        <label htmlFor="name">Hr</label>
-        <input
-          type="number"
-          name="hour"
-          id="hour"
-          min="0"
-          max="12"
-          value={hour}
-          onChange={hourInput}
-        />
-        <label htmlFor="name">Min</label>
-        <input
-          type="number"
-          name="minute"
-          id="minute"
-          min="0"
-          max="60"
-          value={minute}
-          step="5"
-          onChange={minuteInput}
-        />
+    <>
+      <div className={styles["overlay"]} onClick={cancel}></div>
+      <div className={styles["comtainer"]}>
+        {" "}
         <div>
-          <input
-            type="radio"
-            name="drone"
-            value="AM"
-            checked={period === "AM"}
-            onChange={periodInput}
-          />
-          <label htmlFor="AM">AM</label>
-        </div>
+          <div>🌜</div>
+          <div>
+            <h2>What time do you typically go to bed?</h2>
+            <p>A rough estimate is fine</p>
+          </div>
+          <form className={styles["form"]}>
+            <label htmlFor="name">Hr</label>
+            <input
+              type="number"
+              name="hour"
+              id="hour"
+              min="0"
+              max="12"
+              value={hour}
+              onChange={hourInput}
+            />
+            <label htmlFor="name">Min</label>
+            <input
+              type="number"
+              name="minute"
+              id="minute"
+              min="0"
+              max="60"
+              value={minute}
+              step="5"
+              onChange={minuteInput}
+            />
+            <div>
+              <input
+                type="radio"
+                name="drone"
+                value="AM"
+                checked={period === "AM"}
+                onChange={periodInput}
+              />
+              <label htmlFor="AM">AM</label>
+            </div>
 
-        <div>
-          <input
-            type="radio"
-            name="drone"
-            value="PM"
-            checked={period === "PM"}
-            onChange={periodInput}
-          />
-          <label htmlFor="PM">PM</label>
+            <div>
+              <input
+                type="radio"
+                name="drone"
+                value="PM"
+                checked={period === "PM"}
+                onChange={periodInput}
+              />
+              <label htmlFor="PM">PM</label>
+            </div>
+            <div>
+              <button onClick={cancel}>Cancel</button>
+              <button onClick={AddBedtime}>Add Bedtime</button>
+            </div>
+          </form>
         </div>
-        <div>
-          <button onClick={cancel}>Cancel</button>
-          <button onClick={AddBedtime}>Add Bedtime</button>
-        </div>
-      </form>
-    </Modal>
+      </div>
+    </>
   );
 }
 
