@@ -167,7 +167,7 @@ function NewHabit() {
 
   return (
     <>
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay} onClick={close}></div>
       <div className={styles.container}>
         <div>
           <div className={styles["display-flex"]}>
