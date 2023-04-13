@@ -8,6 +8,7 @@ import {
   weekDaysChanger,
   everyDayChanger,
   modalSwitch,
+  clear,
 } from "../../redux/newHabit";
 import { newHabit } from "../../redux/habits";
 
@@ -17,6 +18,7 @@ function NewHabit() {
   const { habitName, habitType, weeklyFrequency } = useSelector(
     (state) => state.newHabit
   );
+  const { listOfHabits } = useSelector((state) => state.habits);
   const dispatch = useDispatch();
   const activeDays = weeklyFrequency
     .map((day, i) => {
@@ -31,6 +33,9 @@ function NewHabit() {
   const [isNameCorrect, setIsNameCorrect] = useState(true);
   const [isFrequencyCorrect, setIsFrequencyCorrect] = useState(true);
   const [firstLoad, setFirstLoad] = useState(true);
+  const [nameErrorMessage, setNameErrorMessage] = useState(
+    "This is a required field."
+  );
 
   const addHabit = () => {
     if (
@@ -38,23 +43,40 @@ function NewHabit() {
       JSON.stringify(weeklyFrequency) !=
         JSON.stringify([false, false, false, false, false, false, false])
     ) {
-      dispatch(modalSwitch(false));
-      dispatch(
-        newHabit({
-          name: habitName,
-          startDay: today,
-          activeDays: activeDays,
-          lastWeek: [0],
-          habitType: habitType,
+      let isDuplicate = false;
+      console.log(
+        listOfHabits.forEach((element) => {
+          if (element.name === habitName) isDuplicate = true;
         })
       );
+      if (!isDuplicate) {
+        dispatch(modalSwitch(false));
+        dispatch(
+          newHabit({
+            name: habitName,
+            startDay: today,
+            activeDays: activeDays,
+            lastWeek: [0],
+            habitType: habitType,
+          })
+        );
+        setFirstLoad(true);
+        dispatch(clear());
+      } else {
+        setNameErrorMessage("A habit with that name already exists");
+        setIsNameCorrect(false);
+      }
     } else {
-      if (habitName == "") setIsNameCorrect(false);
+      if (habitName == "") {
+        setNameErrorMessage("This is a required field.");
+        setIsNameCorrect(false);
+      }
       if (
         JSON.stringify(weeklyFrequency) ==
         JSON.stringify([false, false, false, false, false, false, false])
-      )
+      ) {
         setIsFrequencyCorrect(false);
+      }
     }
   };
 
@@ -73,15 +95,45 @@ function NewHabit() {
   }, [weeklyFrequency]);
 
   const addAnother = () => {
-    dispatch(
-      newHabit({
-        name: habitName,
-        startDay: today,
-        activeDays: activeDays,
-        lastWeek: [0],
-        habitType: habitType,
-      })
-    );
+    if (
+      habitName != "" &&
+      JSON.stringify(weeklyFrequency) !=
+        JSON.stringify([false, false, false, false, false, false, false])
+    ) {
+      let isDuplicate = false;
+      console.log(
+        listOfHabits.forEach((element) => {
+          if (element.name === habitName) isDuplicate = true;
+        })
+      );
+      if (!isDuplicate) {
+        dispatch(
+          newHabit({
+            name: habitName,
+            startDay: today,
+            activeDays: activeDays,
+            lastWeek: [0],
+            habitType: habitType,
+          })
+        );
+        setFirstLoad(true);
+        dispatch(clear());
+      } else {
+        setNameErrorMessage("a habit with that name already exists");
+        setIsNameCorrect(false);
+      }
+    } else {
+      if (habitName == "") {
+        setNameErrorMessage("This is a required field.");
+        setIsNameCorrect(false);
+      }
+      if (
+        JSON.stringify(weeklyFrequency) ==
+        JSON.stringify([false, false, false, false, false, false, false])
+      ) {
+        setIsFrequencyCorrect(false);
+      }
+    }
   };
 
   const weekDays = (event) => {
@@ -106,8 +158,11 @@ function NewHabit() {
 
   const habitNameHandler = (event) => {
     dispatch(nameChanger(event.target.value));
-    if (event.target.value == "") setIsNameCorrect(false);
-    else if (event.target.value != "" && !isNameCorrect) setIsNameCorrect(true);
+    if (event.target.value == "") {
+      setNameErrorMessage("This is a required field.");
+      setIsNameCorrect(false);
+    } else if (event.target.value != "" && !isNameCorrect)
+      setIsNameCorrect(true);
   };
 
   return (
@@ -128,7 +183,7 @@ function NewHabit() {
             <label className={styles["label-big"]} htmlFor="name">
               1. Name this habit
             </label>
-            {!isNameCorrect && <p>This is a required field.</p>}
+            {!isNameCorrect && <p>{nameErrorMessage}</p>}
             <br />
             <input
               className={

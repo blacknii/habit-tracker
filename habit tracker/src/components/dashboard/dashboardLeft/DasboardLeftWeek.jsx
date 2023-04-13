@@ -77,9 +77,23 @@ function DasboardLeftWeek() {
       break;
   }
 
+  useEffect(() => {
+    if (type != "Week") setShowProgressBar(true);
+  }, [type]);
+
   // useEffect(() => {
-  //   setShowProgressBar(true);
-  // }, [showProgressBar]);
+  //   if (firstLoad) setFirstLoad(false);
+
+  //   if (
+  //     JSON.stringify(weeklyFrequency) ==
+  //       JSON.stringify([false, false, false, false, false, false, false]) &&
+  //     !firstLoad
+  //   ) {
+  //     setIsFrequencyCorrect(false);
+  //   } else {
+  //     setIsFrequencyCorrect(true);
+  //   }
+  // }, [weeklyFrequency]);
 
   const startOfcurrentPeriod = new Date(timeRange[0]);
   const endOfcurrentPeriod = new Date(timeRange[1]);

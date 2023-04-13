@@ -42,6 +42,7 @@ export const counterSlice = createSlice({
       );
     },
     removeHabit: (state, action) => {
+      console.log("Test remove");
       state.listOfHabits = state.listOfHabits.filter((habbit) => {
         return habbit.name !== action.payload;
       });

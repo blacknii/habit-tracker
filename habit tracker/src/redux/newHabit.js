@@ -28,6 +28,11 @@ export const counterSlice = createSlice({
         !state.weeklyFrequency[action.payload];
       console.log(action.payload);
     },
+    clear: (state) => {
+      state.weeklyFrequency = [false, false, false, false, false, false, false];
+      state.habitName = "";
+      state.habitType = true;
+    },
     weekDaysChanger: (state) => {
       const weekDays = [true, true, true, true, true, false, false];
       const empty = [false, false, false, false, false, false, false];
@@ -57,5 +62,6 @@ export const {
   weekDaysChanger,
   everyDayChanger,
   modalSwitch,
+  clear,
 } = counterSlice.actions;
 export default counterSlice.reducer;
