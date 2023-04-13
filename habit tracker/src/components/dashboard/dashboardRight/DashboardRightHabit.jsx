@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./DashboardRightHabit.module.css";
 import { useDispatch } from "react-redux";
 import { completionsSwitch, removeHabit } from "../../../redux/habits";
@@ -78,6 +78,27 @@ function DashboardRightHabit(props) {
   }
   const strike = countOnes(reversedArray);
 
+  const [isModalActive, setIsModalActive] = useState(false);
+  const close = () => {
+    setIsModalActive(!isModalActive);
+  };
+  const delateHandler = () => {
+    dispatch(removeHabit(props.name));
+    setIsModalActive(!isModalActive);
+  };
+
+  const modal = (
+    <>
+      <div className={styles["overlay"]} onClick={close}></div>
+      <div className={styles["comtainer-modal"]}>
+        {" "}
+        <p>are you sure you want to delete</p>
+        <button onClick={close}>Cantel</button>
+        <button onClick={delateHandler}>Yes, delete it.</button>
+      </div>
+    </>
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.symbol}>
@@ -114,10 +135,7 @@ function DashboardRightHabit(props) {
               {strike}
               🔥
             </p>
-            <button
-              className={styles["delete"]}
-              onClick={() => dispatch(removeHabit(props.name))}
-            >
+            <button className={styles["delete"]} onClick={close}>
               x
             </button>
           </div>
@@ -128,6 +146,7 @@ function DashboardRightHabit(props) {
         {todaysTask === 1 && completedTask}
         {todaysTask === 2 && InactiveTask}
       </div>
+      {isModalActive && modal}
     </div>
   );
 }

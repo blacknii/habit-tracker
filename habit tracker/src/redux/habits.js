@@ -12,6 +12,49 @@ const dD = {
   lastWeek: [0, 0, 1, 0, 1, 1, 1],
 };
 
+const DUMMYHABITS = [
+  {
+    name: "English Gramma",
+    startDay: "2023-02-18",
+    activeDays: [1, 2, 3, 4, 5, 6, 7],
+    lastWeek: [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1,
+      1, 1, 1, 1, 0,
+    ],
+    habitType: true,
+  },
+  {
+    name: "English Practice",
+    startDay: "2023-02-20",
+    activeDays: [1, 2, 3, 4, 5],
+    lastWeek: [
+      1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0,
+      0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0,
+      1, 1, 1,
+    ],
+    habitType: false,
+  },
+  {
+    name: "Todays Work",
+    startDay: "2023-02-15",
+    activeDays: [1, 4, 5, 6, 7],
+    lastWeek: [
+      1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
+      1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0,
+      1, 1, 0, 1, 1, 0, 0, 0,
+    ],
+    habitType: true,
+  },
+  {
+    name: "abc",
+    startDay: "2023-04-13",
+    activeDays: [1, 2, 3, 4, 5],
+    lastWeek: [1],
+    habitType: true,
+  },
+];
+
 const time = {
   type: "Week",
   timeIndex: 0,
@@ -36,6 +79,22 @@ export const counterSlice = createSlice({
   reducers: {
     newHabit: (state, action) => {
       state.listOfHabits.push(action.payload);
+      localStorage.setItem(
+        "listOfHabits",
+        JSON.stringify(state.listOfHabits.map((item) => item))
+      );
+    },
+    addRandomHabits: (state) => {
+      console.log("Test addRandomHabits");
+      state.listOfHabits = DUMMYHABITS;
+      state.listOfHabits = localStorage.setItem(
+        "listOfHabits",
+        JSON.stringify(state.listOfHabits.map((item) => item))
+      );
+    },
+    removeAllHabits: (state) => {
+      console.log("Test removeAllHabits");
+      state.listOfHabits = [];
       localStorage.setItem(
         "listOfHabits",
         JSON.stringify(state.listOfHabits.map((item) => item))
@@ -210,6 +269,8 @@ export const {
   dateCompletion,
   dateIndexChanger,
   datetypeChanger,
+  addRandomHabits,
+  removeAllHabits,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

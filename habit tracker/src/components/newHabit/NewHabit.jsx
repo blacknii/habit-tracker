@@ -28,6 +28,7 @@ function NewHabit() {
 
   const close = () => {
     dispatch(modalSwitch(false));
+    dispatch(clear());
   };
 
   const [isNameCorrect, setIsNameCorrect] = useState(true);
