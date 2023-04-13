@@ -85,15 +85,19 @@ function DashboardLeftHabit(props) {
 
   let weekProgress = (allCurrentDoneDays / allCurrentDays) * 100;
   if (allCurrentDays == 0 && allCurrentDoneDays == 0) weekProgress = 0;
+  const habitNameEdited = (
+    <div className={styles.flex}>
+      {props.habitType ? "🔵" : "❎"}
+      <p>{props.name}</p>
+    </div>
+  );
 
   // console.log(props.completionPercentage);
 
   if (props.type === "Week") {
     return (
       <div className={styles.week}>
-        <div className={styles.days}>
-          <p>{props.name}</p>
-        </div>
+        <div className={styles.days}>{habitNameEdited}</div>
         {props.showProgressBar ? (
           <ProgressBar value={weekProgress} key={props.day} />
         ) : (
@@ -109,9 +113,7 @@ function DashboardLeftHabit(props) {
   } else if (props.type === "Month") {
     return (
       <div className={styles.week}>
-        <div className={styles.days}>
-          <p>{props.name}</p>
-        </div>
+        <div className={styles.days}>{habitNameEdited}</div>
         <ProgressBar value={props.completionPercentage[2]} key={props.day} />
         <div className={styles["row-end"]}>
           <p>
@@ -123,9 +125,7 @@ function DashboardLeftHabit(props) {
   } else if (props.type === "Year") {
     return (
       <div className={styles.week}>
-        <div className={styles.days}>
-          <p>{props.name}</p>
-        </div>
+        <div className={styles.days}>{habitNameEdited}</div>
         <ProgressBar value={props.completionPercentage[2]} key={props.day} />
         <div className={styles["row-end"]}>
           <p>
@@ -137,9 +137,7 @@ function DashboardLeftHabit(props) {
   } else if (props.type === "AllTime") {
     return (
       <div className={styles.week}>
-        <div className={styles.days}>
-          <p>{props.name}</p>
-        </div>
+        <div className={styles.days}>{habitNameEdited}</div>
         <ProgressBar value={props.completionPercentage[2]} key={props.day} />
         <div className={styles["row-end"]}>
           <p>

@@ -323,6 +323,7 @@ function DasboardLeftWeek() {
               activeDays={habbit.activeDays}
               lastWeek={habbit.lastWeek}
               dayOfTheWeek={dayOfTheWeek}
+              habitType={habbit.habitType}
               whichWeek={timeIndex}
               showProgressBar={showProgressBar}
               type={type}
