@@ -55,6 +55,37 @@ const DUMMYHABITS = [
   },
 ];
 
+const goodHabits = [
+  "🏋️‍♀️ Exercise",
+  "📚 Read",
+  "🧘‍♀️ Meditate",
+  "📝 Journal",
+  "🥦 Eat Healthy",
+  "🌅 eBook",
+  "🧘‍♂️ Practice Yoga",
+  "🌳 Go outside",
+  "🎧 Music",
+  "✈️ Travel",
+  "🤝 Volunteer",
+  "❤️ Smile",
+  "✏️ Draw",
+];
+
+const badHabits = [
+  "🙅‍♂️ Procrastination",
+  "🚬 Smoking",
+  "🍺 Alcohol",
+  "🥤 Soda",
+  "🍔 Overeating",
+  "😴 Oversleeping",
+  "🤬 Complaining",
+  "🕰️ Wasting time",
+  "😔 Negative self-talk",
+  "🗣️ Gossiping",
+  "📺 TV",
+  "🗃️ Hoarding",
+];
+
 const time = {
   type: "Week",
   timeIndex: 0,
@@ -85,15 +116,78 @@ export const counterSlice = createSlice({
       );
     },
     addRandomHabits: (state) => {
-      console.log("Test addRandomHabits");
-      state.listOfHabits = DUMMYHABITS;
+      function generateDummyData() {
+        const numHabits = Math.floor(Math.random() * 7) + 3;
+        const habitSet = new Set();
+        const habits = [];
+
+        const habitTypes = [true, false];
+        for (let i = 0; i < numHabits; i++) {
+          const habitType =
+            habitTypes[Math.floor(Math.random() * habitTypes.length)];
+          let habit = habitType ? goodHabits : badHabits;
+          habit = habit[Math.floor(Math.random() * habit.length)];
+          while (habitSet.has(habit)) {
+            habit = habitType ? goodHabits : badHabits;
+            habit = habit[Math.floor(Math.random() * habit.length)];
+          }
+          habitSet.add(habit);
+          const activeDays = generateActiveDays();
+          const numDays = Math.floor(Math.random() * 20) + 15;
+          const startDate = new Date();
+          startDate.setDate(startDate.getDate() - numDays);
+          const year = startDate.getFullYear();
+          const month = ("0" + (startDate.getMonth() + 1)).slice(-2);
+          const day = ("0" + startDate.getDate()).slice(-2);
+          const formattedDate = `${year}-${month}-${day}`;
+
+          habits.push({
+            name: habit,
+            startDay: formattedDate,
+            activeDays: activeDays,
+            lastWeek: generateLastWeek(numDays, activeDays, startDate),
+            habitType: habitType,
+          });
+        }
+
+        for (let i = habits.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [habits[i], habits[j]] = [habits[j], habits[i]];
+        }
+
+        return habits;
+      }
+
+      function generateActiveDays() {
+        const activeDaysSet = new Set();
+        const numberOfActiveDays = Math.floor(Math.random() * 5) + 3;
+        while (activeDaysSet.size != numberOfActiveDays) {
+          activeDaysSet.add(Math.floor(Math.random() * 7) + 1);
+        }
+        return Array.from(activeDaysSet).sort();
+      }
+
+      function generateLastWeek(numDays, activeDays, startDate) {
+        const lastWeek = [];
+        for (let i = 0; i <= numDays; i++) {
+          const completion = Math.random() >= 0.1 ? 1 : 0;
+          if (activeDays.includes(((startDate.getDay() + i) % 7) + 1)) {
+            lastWeek.push(completion);
+          } else {
+            lastWeek.push(0);
+          }
+        }
+        return lastWeek;
+      }
+
+      const habits = generateDummyData();
+      state.listOfHabits = habits;
       localStorage.setItem(
         "listOfHabits",
         JSON.stringify(state.listOfHabits.map((item) => item))
       );
     },
     removeAllHabits: (state) => {
-      console.log("Test removeAllHabits");
       state.listOfHabits = [];
       localStorage.setItem(
         "listOfHabits",
@@ -101,7 +195,6 @@ export const counterSlice = createSlice({
       );
     },
     removeHabit: (state, action) => {
-      console.log("Test remove");
       state.listOfHabits = state.listOfHabits.filter((habbit) => {
         return habbit.name !== action.payload;
       });
