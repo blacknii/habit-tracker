@@ -88,7 +88,7 @@ function DashboardLeftHabit(props) {
   const habitNameEdited = (
     <div className={styles.flex}>
       {props.habitType ? "🔵" : "❎"}
-      <p>{props.name}</p>
+      <p className={styles.overflow}>{props.name}</p>
     </div>
   );
 

@@ -71,6 +71,10 @@
 .habbit-name {
   font-size: 20px;
   margin-bottom: 0.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 8rem;
 }
 
 .mark-complete {
@@ -147,4 +151,11 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
   z-index: 1;
+}
+
+.overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 8rem;
 }

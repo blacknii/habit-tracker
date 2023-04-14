@@ -74,7 +74,8 @@ function DashboardRightHabit(props) {
       currentDay--;
       if (currentDay === 0) currentDay = 7;
     }
-    return count + todaysTask;
+    if (todaysTask == 1) count++;
+    return count;
   }
   const strike = countOnes(reversedArray);
 
