@@ -314,27 +314,33 @@ function DasboardLeftWeek() {
           {!showProgressBar && type === "Week" ? daysOfTheWeek : <></>}
           <div></div>
         </div>
-        {console.log(listOfHabits)}
         {listOfHabits.map((habbit) => {
-          return (
-            <DashboardLeftHabit
-              key={habbit.name}
-              name={habbit.name}
-              startDay={habbit.startDay}
-              activeDays={habbit.activeDays}
-              lastWeek={habbit.lastWeek}
-              dayOfTheWeek={dayOfTheWeek}
-              habitType={habbit.habitType}
-              whichWeek={timeIndex}
-              showProgressBar={showProgressBar}
-              type={type}
-              completionPercentage={completionPercentage(listOfHabits, [
-                timeRange[0],
-                timeRange[1],
-                habbit.name,
-              ])}
-            />
-          );
+          let isEmpty = completionPercentage(listOfHabits, [
+            timeRange[0],
+            timeRange[1],
+            habbit.name,
+          ])[0];
+          if (isEmpty) {
+            return (
+              <DashboardLeftHabit
+                key={habbit.name}
+                name={habbit.name}
+                startDay={habbit.startDay}
+                activeDays={habbit.activeDays}
+                lastWeek={habbit.lastWeek}
+                dayOfTheWeek={dayOfTheWeek}
+                habitType={habbit.habitType}
+                whichWeek={timeIndex}
+                showProgressBar={showProgressBar}
+                type={type}
+                completionPercentage={completionPercentage(listOfHabits, [
+                  timeRange[0],
+                  timeRange[1],
+                  habbit.name,
+                ])}
+              />
+            );
+          }
         })}
       </div>
     </div>
