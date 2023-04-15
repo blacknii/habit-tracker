@@ -160,13 +160,8 @@
   max-width: 8rem;
 }
 
-.strike {
+.icon {
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.icon {
-  width: 1rem;
-  height: 1rem;
 }

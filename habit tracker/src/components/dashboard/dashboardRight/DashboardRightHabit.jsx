@@ -3,6 +3,9 @@ import styles from "./DashboardRightHabit.module.css";
 import { useDispatch } from "react-redux";
 import { completionsSwitch, removeHabit } from "../../../redux/habits";
 import Checkmark from "../../UI/icons/Checkmark";
+import Close from "../../UI/icons/Close";
+import FireIcon from "../../UI/icons/FireIcon";
+import Circle from "../../UI/icons/Circle";
 
 function DashboardRightHabit(props) {
   const dispatch = useDispatch();
@@ -40,9 +43,17 @@ function DashboardRightHabit(props) {
 
   const completedTask = (
     <div className={styles.submit}>
-      <p className={styles["color-white"]}>
-        {props.habitType ? "✅Completed" : "✅Avoided"}
-      </p>
+      <div className={styles["color-white"]}>
+        {props.habitType ? (
+          <span className={styles.icon}>
+            <Checkmark /> <p>Completed</p>
+          </span>
+        ) : (
+          <span className={styles.icon}>
+            <Checkmark /> <p>Avoided</p>
+          </span>
+        )}
+      </div>
       <button
         className={styles["completed-button"]}
         onClick={() => dispatch(completionsSwitch([props.name, lastIndex]))}
@@ -106,13 +117,17 @@ function DashboardRightHabit(props) {
   return (
     <div className={styles.container}>
       <div className={styles.symbol}>
-        {props.habitType
-          ? todaysTask === 2
-            ? "⚪"
-            : "🔵"
-          : todaysTask === 2
-          ? "✖"
-          : "❎"}
+        {props.habitType ? (
+          todaysTask === 2 ? (
+            <Circle color="#bed1ed" />
+          ) : (
+            <Circle color="#3798fa" />
+          )
+        ) : todaysTask === 2 ? (
+          <Close color="#bed1ed" />
+        ) : (
+          <Close color="#3798fa" />
+        )}
       </div>
       <div
         className={
@@ -135,12 +150,12 @@ function DashboardRightHabit(props) {
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
           <div className={styles.flex}>
-            <span className={styles.strike}>
+            <span className={styles.icon}>
               {strike}
-              <Checkmark />
+              <FireIcon />
             </span>
             <button className={styles["delete"]} onClick={close}>
-              x
+              <Close />
             </button>
           </div>
         </div>

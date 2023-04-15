@@ -4,6 +4,10 @@ import DashboardLeftHabit from "./DashboardLeftHabit";
 import { useDispatch, useSelector } from "react-redux";
 import ProgressBar from "../../UI/ProgressBar";
 import { dateIndexChanger } from "../../../redux/habits";
+import ChevronLeft from "../../UI/icons/ChevronLeft";
+import ChevronRight from "../../UI/icons/ChevronRight";
+import Menu from "../../UI/icons/Menu";
+import List from "../../UI/icons/List";
 
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
@@ -239,7 +243,7 @@ function DasboardLeftWeek() {
                 lastPeriodpercentage ? dispatch(dateIndexChanger(1)) : null;
               }}
             >
-              ◀
+              <ChevronLeft />
             </button>
             <button
               className={
@@ -249,7 +253,7 @@ function DasboardLeftWeek() {
                 timeIndex ? dispatch(dateIndexChanger(-1)) : null;
               }}
             >
-              ▶
+              <ChevronRight />
             </button>
           </div>
           <h2 className={styles["font-size-2rem"]}>{currentPeriodRange}</h2>
@@ -279,7 +283,7 @@ function DasboardLeftWeek() {
               }
               onClick={() => setShowProgressBar(false)}
             >
-              1️⃣
+              <Menu />
             </ul>
           )}
           <ul
@@ -290,7 +294,7 @@ function DasboardLeftWeek() {
             }
             onClick={() => setShowProgressBar(true)}
           >
-            2️⃣
+            <List />
           </ul>
         </li>
       </div>

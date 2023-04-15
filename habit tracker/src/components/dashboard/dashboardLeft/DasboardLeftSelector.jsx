@@ -3,6 +3,7 @@ import styles from "./DasboardLeftSelector.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { datetypeChanger } from "../../../redux/habits";
 import { modalSwitch } from "../../../redux/newHabit";
+import Plus from "../../../components/UI/icons/Plus";
 
 function DasboardLeftSelector() {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ function DasboardLeftSelector() {
         className={styles["button-add-habbit"]}
         onClick={() => dispatch(modalSwitch(true))}
       >
-        + Add Habit
+        <Plus /> Add Habit
       </button>
     </div>
   );

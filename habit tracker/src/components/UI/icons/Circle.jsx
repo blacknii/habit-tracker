@@ -1,6 +1,6 @@
 import React from "react";
 
-function Circle() {
+function Circle(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ function Circle() {
         cy="256"
         r="192"
         fill="none"
-        stroke="currentColor"
+        stroke={props.color}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="32"

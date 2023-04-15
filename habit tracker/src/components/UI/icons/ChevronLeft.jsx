@@ -21,4 +21,4 @@ function ChevronLeft() {
   );
 }
 
-export default FireIcon;
+export default ChevronLeft;

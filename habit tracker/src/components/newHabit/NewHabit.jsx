@@ -11,6 +11,8 @@ import {
   clear,
 } from "../../redux/newHabit";
 import { newHabit } from "../../redux/habits";
+import Plus from "../UI/icons/Plus";
+import Close from "../UI/icons/Close";
 
 const today = new Date().toISOString().slice(0, 10);
 
@@ -174,7 +176,7 @@ function NewHabit() {
           <div className={styles["display-flex"]}>
             <h2>Add Habit</h2>
             <button className={styles["x-button"]} onClick={close}>
-              x
+              <Close color="white" />
             </button>
           </div>
           <p>Tackle your goals in daily doses</p>
@@ -371,7 +373,8 @@ function NewHabit() {
             Add Habit
           </button>
           <button className={styles["form-button"]} onClick={addAnother}>
-            +Add Another
+            <Plus />
+            Add Another
           </button>
         </div>
       </div>

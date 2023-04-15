@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addRandomHabits, removeAllHabits } from "../../redux/habits";
 import Grid from "../../components/UI/icons/Grid";
+import Logo from "../../components/UI/icons/Logo";
 
 function Header() {
   const [isModalActive, setIsModalActive] = useState(false);
@@ -38,7 +39,10 @@ function Header() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <p className={styles.logo}>GoalGetter</p>
+        <span className={styles.icon}>
+          <Logo />
+          <p className={styles.logo}>GoalGetter</p>
+        </span>
         <button className={styles.button} onClick={close}>
           <Grid />
         </button>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Close() {
+function Close(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ function Close() {
     >
       <path
         fill="none"
-        stroke="currentColor"
+        stroke={props.color}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="32"

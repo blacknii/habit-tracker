@@ -11,6 +11,9 @@ import {
 import { setBedtimeModal } from "../../../redux/bedtime";
 import { setBedtimeMessage } from "../../../redux/bedtime";
 import DashboardRightHabit from "./DashboardRightHabit";
+import ChevronLeft from "../../UI/icons/ChevronLeft";
+import ChevronRight from "../../UI/icons/ChevronLeft";
+import Moon from "../../UI/icons/Moon";
 
 function DashboardRight() {
   const { listOfHabits } = useSelector((state) => state.habits);
@@ -54,13 +57,13 @@ function DashboardRight() {
                 : styles["button-unactive"]
             }
           >
-            ◀
+            <ChevronLeft />
           </button>
           <button
             onClick={() => (timeIndex ? setTimeIndex(timeIndex - 1) : null)}
             className={timeIndex ? styles.button : styles["button-unactive"]}
           >
-            ▶
+            <ChevronRight />
           </button>
         </div>
       </div>
@@ -69,7 +72,7 @@ function DashboardRight() {
           className={styles.bedtime}
           onClick={() => dispatch(setBedtimeModal(true))}
         >
-          🌜 Add Your Bedtime
+          {<Moon />} Add Your Bedtime
         </button>
       )}
 
