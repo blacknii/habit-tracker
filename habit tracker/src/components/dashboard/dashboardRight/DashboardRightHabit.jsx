@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./DashboardRightHabit.module.css";
 import { useDispatch } from "react-redux";
 import { completionsSwitch, removeHabit } from "../../../redux/habits";
+import Checkmark from "../../UI/icons/Checkmark";
 
 function DashboardRightHabit(props) {
   const dispatch = useDispatch();
@@ -39,7 +40,9 @@ function DashboardRightHabit(props) {
 
   const completedTask = (
     <div className={styles.submit}>
-      <p className={styles["color-white"]}>✅Completed</p>
+      <p className={styles["color-white"]}>
+        {props.habitType ? "✅Completed" : "✅Avoided"}
+      </p>
       <button
         className={styles["completed-button"]}
         onClick={() => dispatch(completionsSwitch([props.name, lastIndex]))}
@@ -132,10 +135,10 @@ function DashboardRightHabit(props) {
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
           <div className={styles.flex}>
-            <p>
+            <span className={styles.strike}>
               {strike}
-              🔥
-            </p>
+              <Checkmark />
+            </span>
             <button className={styles["delete"]} onClick={close}>
               x
             </button>

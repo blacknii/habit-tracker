@@ -74,21 +74,25 @@ function DashboardRight() {
       )}
 
       <div className={styles.habbits}>
-        {listOfHabits.map((habbit) => {
-          if (habbit.lastWeek.length >= timeIndex) {
-            return (
-              <DashboardRightHabit
-                key={habbit.name}
-                name={habbit.name}
-                startDay={habbit.startDay}
-                lastWeek={habbit.lastWeek}
-                activeDays={habbit.activeDays}
-                habitType={habbit.habitType}
-                timeIndex={timeIndex}
-              />
-            );
-          }
-        })}
+        {listOfHabits.length === 0 ? (
+          <p>You haven't added any habits yet</p>
+        ) : (
+          listOfHabits.map((habbit) => {
+            if (habbit.lastWeek.length >= timeIndex) {
+              return (
+                <DashboardRightHabit
+                  key={habbit.name}
+                  name={habbit.name}
+                  startDay={habbit.startDay}
+                  lastWeek={habbit.lastWeek}
+                  activeDays={habbit.activeDays}
+                  habitType={habbit.habitType}
+                  timeIndex={timeIndex}
+                />
+              );
+            }
+          })
+        )}
       </div>
     </div>
   );
