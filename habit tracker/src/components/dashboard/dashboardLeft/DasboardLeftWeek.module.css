@@ -119,3 +119,17 @@
 .progress-bar {
   height: 20rem;
 }
+
+.skip {
+  color: #007bff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.current-and-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}

@@ -54,3 +54,22 @@
   padding: 25px;
   gap: 1rem;
 }
+
+.skip {
+  color: #007bff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.day-and-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.empty-habits-message {
+  color: #8f99a7;
+  text-align: center;
+}

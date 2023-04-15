@@ -258,45 +258,48 @@ function DasboardLeftWeek() {
           </div>
           <h2 className={styles["font-size-2rem"]}>{currentPeriodRange}</h2>
         </div>
-        {timeIndex > 0 && (
-          <p
-            onClick={() => {
-              timeIndex ? dispatch(dateIndexChanger(-timeIndex)) : null;
-            }}
+        <div className={styles["current-and-buttons"]}>
+          {timeIndex > 0 && (
+            <p
+              className={styles.skip}
+              onClick={() => {
+                timeIndex ? dispatch(dateIndexChanger(-timeIndex)) : null;
+              }}
+            >
+              Current
+            </p>
+          )}
+          <li
+            className={
+              type === "Week"
+                ? styles["view-selector"]
+                : styles["view-selector-week"]
+            }
           >
-            Current
-          </p>
-        )}
-        <li
-          className={
-            type === "Week"
-              ? styles["view-selector"]
-              : styles["view-selector-week"]
-          }
-        >
-          {type === "Week" && (
+            {type === "Week" && (
+              <ul
+                className={
+                  showProgressBar
+                    ? styles["view-button"]
+                    : styles["view-button-picked"]
+                }
+                onClick={() => setShowProgressBar(false)}
+              >
+                <Menu />
+              </ul>
+            )}
             <ul
               className={
                 showProgressBar
-                  ? styles["view-button"]
-                  : styles["view-button-picked"]
+                  ? styles["view-button-picked"]
+                  : styles["view-button"]
               }
-              onClick={() => setShowProgressBar(false)}
+              onClick={() => setShowProgressBar(true)}
             >
-              <Menu />
+              <List />
             </ul>
-          )}
-          <ul
-            className={
-              showProgressBar
-                ? styles["view-button-picked"]
-                : styles["view-button"]
-            }
-            onClick={() => setShowProgressBar(true)}
-          >
-            <List />
-          </ul>
-        </li>
+          </li>
+        </div>
       </div>
       <div className={styles["overall-progress"]}>
         <div className={styles["progress-bar2"]}>

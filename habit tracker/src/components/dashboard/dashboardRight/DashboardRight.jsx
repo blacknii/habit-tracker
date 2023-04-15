@@ -12,7 +12,7 @@ import { setBedtimeModal } from "../../../redux/bedtime";
 import { setBedtimeMessage } from "../../../redux/bedtime";
 import DashboardRightHabit from "./DashboardRightHabit";
 import ChevronLeft from "../../UI/icons/ChevronLeft";
-import ChevronRight from "../../UI/icons/ChevronLeft";
+import ChevronRight from "../../UI/icons/ChevronRight";
 import Moon from "../../UI/icons/Moon";
 
 function DashboardRight() {
@@ -45,26 +45,32 @@ function DashboardRight() {
     <div className={styles.container}>
       <div className={styles.day}>
         <h2 className={styles.today}>{formattedDate}</h2>
-        <div>
-          {timeIndex > 0 && <p onClick={() => setTimeIndex(0)}>Today</p>}
-          <button
-            onClick={() =>
-              timeIndex < maxTimeIndex ? setTimeIndex(timeIndex + 1) : null
-            }
-            className={
-              timeIndex < maxTimeIndex
-                ? styles.button
-                : styles["button-unactive"]
-            }
-          >
-            <ChevronLeft />
-          </button>
-          <button
-            onClick={() => (timeIndex ? setTimeIndex(timeIndex - 1) : null)}
-            className={timeIndex ? styles.button : styles["button-unactive"]}
-          >
-            <ChevronRight />
-          </button>
+        <div className={styles["day-and-buttons"]}>
+          {timeIndex > 0 && (
+            <p className={styles.skip} onClick={() => setTimeIndex(0)}>
+              Today
+            </p>
+          )}
+          <div>
+            <button
+              onClick={() =>
+                timeIndex < maxTimeIndex ? setTimeIndex(timeIndex + 1) : null
+              }
+              className={
+                timeIndex < maxTimeIndex
+                  ? styles.button
+                  : styles["button-unactive"]
+              }
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              onClick={() => (timeIndex ? setTimeIndex(timeIndex - 1) : null)}
+              className={timeIndex ? styles.button : styles["button-unactive"]}
+            >
+              <ChevronRight />
+            </button>
+          </div>
         </div>
       </div>
       {bedtimeMessage === "Add Your Bedtime" && (
@@ -78,7 +84,9 @@ function DashboardRight() {
 
       <div className={styles.habbits}>
         {listOfHabits.length === 0 ? (
-          <p>You haven't added any habits yet</p>
+          <p className={styles["empty-habits-message"]}>
+            You haven't added any habits yet
+          </p>
         ) : (
           listOfHabits.map((habbit) => {
             if (habbit.lastWeek.length >= timeIndex) {
