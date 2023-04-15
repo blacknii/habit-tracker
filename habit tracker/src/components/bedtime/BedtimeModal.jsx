@@ -14,7 +14,7 @@ function BedtimeModal() {
   const [minute, setMinute] = useState(
     bedtime ? Number(bedtime.substr(3, 2)) : "0"
   );
-  const [period, setPeriod] = useState(bedtime ? bedtime.substr(6, 2) : "AM");
+  const [period, setPeriod] = useState(bedtime ? bedtime.substr(5, 2) : "AM");
 
   const cancel = (event) => {
     event.preventDefault();
