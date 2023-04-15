@@ -103,6 +103,9 @@
 }
 
 .delete {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   border: none;
   background-color: transparent;
   color: inherit;
@@ -112,15 +115,13 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  margin-bottom: 0.5rem;
-  margin-left: 0.6rem;
 }
 
 .color-white {
   color: white;
 }
 
-.flex {
+.strike-and-delete {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -160,7 +161,14 @@
   max-width: 8rem;
 }
 
-.icon {
+.completed-message {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.fire-icon {
   display: flex;
   justify-content: space-around;
   align-items: center;

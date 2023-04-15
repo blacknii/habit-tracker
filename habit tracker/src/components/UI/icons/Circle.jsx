@@ -6,14 +6,14 @@ function Circle(props) {
       xmlns="http://www.w3.org/2000/svg"
       class="ionicon"
       viewBox="0 0 512 512"
-      height="1em"
-      width="1em"
+      height="1.2em"
+      width="1.2em"
     >
       <circle
         cx="256"
         cy="256"
         r="192"
-        fill="none"
+        fill={props.color}
         stroke={props.color}
         strokeLinecap="round"
         strokeLinejoin="round"

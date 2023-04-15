@@ -14,7 +14,7 @@ function ChevronLeft() {
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="48"
+        strokeWidth="62"
         d="M328 112L184 256l144 144"
       />
     </svg>

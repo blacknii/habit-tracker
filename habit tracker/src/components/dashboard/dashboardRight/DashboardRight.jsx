@@ -51,7 +51,7 @@ function DashboardRight() {
               Today
             </p>
           )}
-          <div>
+          <div className={styles.buttons}>
             <button
               onClick={() =>
                 timeIndex < maxTimeIndex ? setTimeIndex(timeIndex + 1) : null

@@ -51,9 +51,11 @@
   background-color: rgb(255, 255, 255);
 }
 
-.flex {
+.icon {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .overflow {

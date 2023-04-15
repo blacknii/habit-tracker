@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { completionsSwitch } from "../../../redux/habits";
 import ProgressBar from "../../UI/ProgressBar";
 import Circle from "../../UI/icons/Circle";
-import Close from "../../UI/icons/Close";
+import Cross from "../../UI/icons/Cross";
 
 function DashboardLeftHabit(props) {
   let reversedArr = props.lastWeek
@@ -88,8 +88,8 @@ function DashboardLeftHabit(props) {
   let weekProgress = (allCurrentDoneDays / allCurrentDays) * 100;
   if (allCurrentDays == 0 && allCurrentDoneDays == 0) weekProgress = 0;
   const habitNameEdited = (
-    <div className={styles.flex}>
-      {props.habitType ? <Circle color="#007bff" /> : <Close color="#007bff" />}
+    <div className={styles.icon}>
+      {props.habitType ? <Circle color="#007bff" /> : <Cross color="#007bff" />}
       <p className={styles.overflow}>{props.name}</p>
     </div>
   );

@@ -48,6 +48,9 @@ ul {
 }
 
 .button-add-habbit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0.05rem solid #aebace;
   background-color: white;
   color: #007bff;

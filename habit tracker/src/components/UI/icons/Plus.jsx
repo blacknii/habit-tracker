@@ -14,7 +14,7 @@ function Plus() {
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="32"
+        strokeWidth="75"
         d="M256 112v288M400 256H112"
       />
     </svg>

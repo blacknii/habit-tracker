@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addRandomHabits, removeAllHabits } from "../../redux/habits";
-import Grid from "../../components/UI/icons/Grid";
+import Menu from "../../components/UI/icons/Menu";
 import Logo from "../../components/UI/icons/Logo";
 
 function Header() {
@@ -44,7 +44,7 @@ function Header() {
           <p className={styles.logo}>GoalGetter</p>
         </span>
         <button className={styles.button} onClick={close}>
-          <Grid />
+          <Menu />
         </button>
       </div>
       {isModalActive && modal}

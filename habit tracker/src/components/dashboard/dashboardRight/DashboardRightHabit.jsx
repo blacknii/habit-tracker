@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { completionsSwitch, removeHabit } from "../../../redux/habits";
 import Checkmark from "../../UI/icons/Checkmark";
 import Close from "../../UI/icons/Close";
+import Cross from "../../UI/icons/Cross";
 import FireIcon from "../../UI/icons/FireIcon";
 import Circle from "../../UI/icons/Circle";
 
@@ -45,11 +46,11 @@ function DashboardRightHabit(props) {
     <div className={styles.submit}>
       <div className={styles["color-white"]}>
         {props.habitType ? (
-          <span className={styles.icon}>
+          <span className={styles["completed-message"]}>
             <Checkmark /> <p>Completed</p>
           </span>
         ) : (
-          <span className={styles.icon}>
+          <span className={styles["completed-message"]}>
             <Checkmark /> <p>Avoided</p>
           </span>
         )}
@@ -124,9 +125,9 @@ function DashboardRightHabit(props) {
             <Circle color="#3798fa" />
           )
         ) : todaysTask === 2 ? (
-          <Close color="#bed1ed" />
+          <Cross color="#bed1ed" />
         ) : (
-          <Close color="#3798fa" />
+          <Cross color="#3798fa" />
         )}
       </div>
       <div
@@ -149,10 +150,14 @@ function DashboardRightHabit(props) {
       >
         <div className={styles["delete-button"]}>
           <h2 className={styles["habbit-name"]}>{props.name}</h2>
-          <div className={styles.flex}>
-            <span className={styles.icon}>
+          <div className={styles["strike-and-delete"]}>
+            <span className={styles["fire-icon"]}>
               {strike}
-              <FireIcon />
+              {todaysTask === 1 ? (
+                <FireIcon hole="#3798fa" />
+              ) : (
+                <FireIcon hole="white" />
+              )}
             </span>
             <button className={styles["delete"]} onClick={close}>
               <Close />

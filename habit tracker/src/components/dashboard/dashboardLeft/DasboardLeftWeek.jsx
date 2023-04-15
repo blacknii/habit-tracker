@@ -6,7 +6,7 @@ import ProgressBar from "../../UI/ProgressBar";
 import { dateIndexChanger } from "../../../redux/habits";
 import ChevronLeft from "../../UI/icons/ChevronLeft";
 import ChevronRight from "../../UI/icons/ChevronRight";
-import Menu from "../../UI/icons/Menu";
+import Grid from "../../UI/icons/Grid";
 import List from "../../UI/icons/List";
 
 function DasboardLeftWeek() {
@@ -232,7 +232,7 @@ function DasboardLeftWeek() {
     <div className={styles.container}>
       <div className={styles["main-top"]}>
         <div className={styles["left"]}>
-          <div>
+          <div className={styles.buttons}>
             <button
               className={
                 lastPeriodpercentage
@@ -285,7 +285,7 @@ function DasboardLeftWeek() {
                 }
                 onClick={() => setShowProgressBar(false)}
               >
-                <Menu />
+                <Grid />
               </ul>
             )}
             <ul
