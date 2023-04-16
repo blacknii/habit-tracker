@@ -176,7 +176,13 @@ function DashboardRightHabit(props) {
         <div className={styles["delete-button"]}>
           <h2 className={styles["habit-name"]}>{props.name}</h2>
           <div className={styles["strike-and-delete"]}>
-            <span className={styles["fire-icon"]}>
+            <span
+              className={
+                todaysTask !== 1
+                  ? styles["fire-icon"]
+                  : styles["fire-icon-inherit"]
+              }
+            >
               {strike}
               {todaysTask === 1 ? (
                 <FireIcon hole="#3798fa" />
@@ -184,7 +190,12 @@ function DashboardRightHabit(props) {
                 <FireIcon hole="white" />
               )}
             </span>
-            <button className={styles["delete"]} onClick={close}>
+            <button
+              className={
+                todaysTask === 1 ? styles["delete-inherit"] : styles["delete"]
+              }
+              onClick={close}
+            >
               <Close />
             </button>
           </div>

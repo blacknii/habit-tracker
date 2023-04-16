@@ -6,13 +6,13 @@ function FireIcon(props) {
       xmlns="http://www.w3.org/2000/svg"
       className="ionicon"
       viewBox="0 0 512 512"
-      height="1.15em"
-      width="1.15em"
+      height="1.3em"
+      width="1.3em"
     >
       <path
         d="M112 320c0-93 124-165 96-272 66 0 192 96 192 272a144 144 0 01-288 0z"
-        fill="currentColor"
-        stroke="currentColor"
+        fill={props.hole !== "white" ? "white" : "#f45959"}
+        stroke={props.hole !== "white" ? "white" : "#f45959"}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="40"

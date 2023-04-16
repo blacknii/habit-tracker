@@ -112,19 +112,24 @@
   cursor: pointer;
 }
 
-.delete {
+.delete,
+.delete-inherit {
   display: flex;
   align-items: center;
   justify-content: space-around;
   border: none;
   background-color: transparent;
-  color: inherit;
   font-size: 16px;
   font-weight: 600;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
+  color: #8f99a7;
+}
+
+.delete-inherit {
+  color: inherit;
 }
 
 .color-white {
@@ -179,10 +184,15 @@
   gap: 0.25rem;
 }
 
-.fire-icon {
+.fire-icon,
+.fire-icon-inherit {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  color: #242424;
+}
+.fire-icon-inherit {
+  color: inherit;
 }
 
 .modal-message {
