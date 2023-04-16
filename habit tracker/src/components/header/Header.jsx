@@ -32,6 +32,7 @@ function Header() {
         {" "}
         <button onClick={randomHandler}>random data</button>
         <button onClick={removeHandler}>remove all</button>
+        <button onClick={close}>cantel</button>
       </div>
     </>
   );

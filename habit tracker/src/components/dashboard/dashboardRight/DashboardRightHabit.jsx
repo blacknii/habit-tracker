@@ -7,6 +7,7 @@ import Close from "../../UI/icons/Close";
 import Cross from "../../UI/icons/Cross";
 import FireIcon from "../../UI/icons/FireIcon";
 import Circle from "../../UI/icons/Circle";
+import Trash from "../../UI/icons/Trash";
 
 function DashboardRightHabit(props) {
   const dispatch = useDispatch();
@@ -108,9 +109,33 @@ function DashboardRightHabit(props) {
       <div className={styles["overlay"]} onClick={close}></div>
       <div className={styles["comtainer-modal"]}>
         {" "}
-        <p>are you sure you want to delete</p>
-        <button onClick={close}>Cantel</button>
-        <button onClick={delateHandler}>Yes, delete it.</button>
+        <div className={styles["modal-message"]}>
+          <div className={styles["modal-trash-icon"]}>
+            <Trash />
+          </div>
+          <div>
+            <h2>Delete Habit</h2>
+            <p>
+              Are you sure you want to delete this habit? You won't be able to
+              see your history.
+            </p>
+          </div>
+        </div>
+        <div className={styles["modal-habit-name"]}>
+          <Circle color="#3798fa" />
+          <h3 className={styles["habit-name-long"]}>{props.name}</h3>
+        </div>
+        <div className={styles["modal-buttons"]}>
+          <button className={styles["modal-button-cantel"]} onClick={close}>
+            Cantel
+          </button>
+          <button
+            className={styles["modal-button-delete"]}
+            onClick={delateHandler}
+          >
+            Yes, delete it.
+          </button>
+        </div>
       </div>
     </>
   );
@@ -149,7 +174,7 @@ function DashboardRightHabit(props) {
         }
       >
         <div className={styles["delete-button"]}>
-          <h2 className={styles["habbit-name"]}>{props.name}</h2>
+          <h2 className={styles["habit-name"]}>{props.name}</h2>
           <div className={styles["strike-and-delete"]}>
             <span className={styles["fire-icon"]}>
               {strike}
