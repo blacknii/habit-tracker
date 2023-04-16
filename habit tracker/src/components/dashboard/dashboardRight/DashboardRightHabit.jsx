@@ -123,7 +123,7 @@ function DashboardRightHabit(props) {
         </div>
         <div className={styles["modal-habit-name"]}>
           <Circle color="#3798fa" />
-          <h3 className={styles["habit-name-long"]}>{props.name}</h3>
+          <h3 className={styles["habit-name"]}>{props.name}</h3>
         </div>
         <div className={styles["modal-buttons"]}>
           <button className={styles["modal-button-cantel"]} onClick={close}>

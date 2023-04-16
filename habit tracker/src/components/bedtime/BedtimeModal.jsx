@@ -3,6 +3,7 @@ import styles from "./BedtimeModal.module.css";
 import Modal from "../UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { setBedtimeModal, setBedtime } from "../../redux/bedtime";
+import Moon from "../UI/icons/Moon";
 
 function BedtimeModal() {
   const dispatch = useDispatch();
@@ -53,15 +54,22 @@ function BedtimeModal() {
       <div className={styles["overlay"]} onClick={cancel}></div>
       <div className={styles["comtainer"]}>
         {" "}
-        <div>
-          <div>🌜</div>
+        <div className={styles["modal-message"]}>
+          <div className={styles["modal-trash-icon"]}>
+            <Moon />
+          </div>
           <div>
             <h2>What time do you typically go to bed?</h2>
             <p>A rough estimate is fine</p>
           </div>
-          <form className={styles["form"]}>
-            <label htmlFor="name">Hr</label>
+        </div>
+        <form className={styles["form"]}>
+          <div className={styles["main-form"]}>
+            <label className={styles.label} htmlFor="name">
+              Hr
+            </label>
             <input
+              className={styles.input}
               type="number"
               name="hour"
               id="hour"
@@ -70,8 +78,11 @@ function BedtimeModal() {
               value={hour}
               onChange={hourInput}
             />
-            <label htmlFor="name">Min</label>
+            <label className={styles.label} htmlFor="name">
+              Min
+            </label>
             <input
+              className={styles.input}
               type="number"
               name="minute"
               id="minute"
@@ -81,33 +92,66 @@ function BedtimeModal() {
               step="5"
               onChange={minuteInput}
             />
-            <div>
-              <input
-                type="radio"
-                name="drone"
-                value="AM"
-                checked={period === "AM"}
-                onChange={periodInput}
-              />
-              <label htmlFor="AM">AM</label>
-            </div>
+            <div className={styles.switch}>
+              <div
+                onClick={() => {
+                  setPeriod("AM");
+                }}
+                className={
+                  period === "AM"
+                    ? styles["switch-option-on"]
+                    : styles["switch-option-off"]
+                }
+              >
+                <input
+                  type="radio"
+                  name="drone"
+                  value="AM"
+                  checked={period === "AM"}
+                  onChange={periodInput}
+                  className={styles["display-none"]}
+                />
+                <label htmlFor="AM" className={styles["switch-label"]}>
+                  AM
+                </label>
+              </div>
 
-            <div>
-              <input
-                type="radio"
-                name="drone"
-                value="PM"
-                checked={period === "PM"}
-                onChange={periodInput}
-              />
-              <label htmlFor="PM">PM</label>
+              <div
+                onClick={() => {
+                  setPeriod("PM");
+                }}
+                className={
+                  period === "PM"
+                    ? styles["switch-option-on"]
+                    : styles["switch-option-off"]
+                }
+              >
+                <input
+                  type="radio"
+                  name="drone"
+                  value="PM"
+                  checked={period === "PM"}
+                  onChange={periodInput}
+                  className={styles["display-none"]}
+                />
+                <label htmlFor="PM" className={styles["switch-label"]}>
+                  PM
+                </label>
+              </div>
             </div>
-            <div>
-              <button onClick={cancel}>Cancel</button>
-              <button onClick={AddBedtime}>Add Bedtime</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className={styles["modal-buttons"]}>
+            <button className={styles["modal-button-cantel"]} onClick={cancel}>
+              Cantel
+            </button>
+            <button
+              className={styles["modal-button-add-bedtime"]}
+              onClick={AddBedtime}
+            >
+              Add Bedtime
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );
