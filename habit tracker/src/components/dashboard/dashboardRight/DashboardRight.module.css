@@ -41,6 +41,9 @@
 }
 
 .bedtime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 4.375rem;
   background-color: #3b43d8;
   color: white;
@@ -48,6 +51,7 @@
   font-weight: 500;
   cursor: pointer;
   border-radius: 6px;
+  gap: 0.7rem;
 }
 
 .habbits {
