@@ -20,8 +20,7 @@
   width: 625px;
   height: 100vh;
   border-radius: 27px 0 0 27px;
-  background-color: aliceblue;
-  color: black;
+  background-color: white;
   gap: 1rem;
   z-index: 2;
 }
@@ -33,19 +32,46 @@
   gap: 0.3rem;
 }
 
+.heading {
+  background-color: none;
+}
+
+.subheading {
+  color: #8f99a7;
+}
+
 .habit-type {
   display: flex;
   justify-content: flex-start;
-  gap: 0.5rem;
+  gap: 0.6rem;
+}
+
+.habit-type-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.habit-type-option label {
+  cursor: pointer;
+}
+
+.habit-type-option input {
+  cursor: pointer;
 }
 
 .button {
   background-color: black;
   color: aliceblue;
+  cursor: pointer;
 }
 
 .form {
-  gap: 1rem;
+  gap: 2.8rem;
   display: flex;
   flex-direction: column;
 }
@@ -58,6 +84,7 @@ h2 {
 .label-big {
   font-weight: 500;
   font-size: 24px;
+  margin-bottom: 1rem;
 }
 
 .display-label-checkbox {
@@ -67,18 +94,29 @@ h2 {
 }
 
 .label-checkbox,
-.label-checkbox-error {
+.label-checkbox-error,
+.label-checkbox-checked {
   width: 3.75rem;
   height: 2.8rem;
-  border: thin solid black;
-  text-align: center;
+  border: 1px solid #007bff;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
+  transition: 0.1s;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .label-checkbox-error {
-  border: thin solid red;
+  border: thin solid #eb1f17;
+}
+
+.label-checkbox-checked {
+  background-color: #007bff;
+  color: white;
 }
 
 .display-weekly-frequency-button {
@@ -90,58 +128,143 @@ h2 {
 }
 
 .weekly-frequency-button,
-.weekly-frequency-button-error {
+.weekly-frequency-button-error,
+.weekly-frequency-button-checked {
   font-size: 21px;
   width: 20rem;
   height: 2.8rem;
-  border: thin solid black;
+  border: 1px solid #007bff;
   text-align: center;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
+  transition: 0.1s;
+  background-color: white;
 }
 
 .weekly-frequency-button-error {
-  border: thin solid red;
+  border: thin solid #eb1f17;
+}
+
+.weekly-frequency-button-checked {
+  background-color: #007bff;
+  color: white;
 }
 
 .display-form-button {
   display: flex;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: center;
   gap: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1.7rem;
 }
 
-.form-button {
-  font-size: 22px;
-  font-weight: 550;
-  width: 12rem;
-  height: 4rem;
-  border-radius: 30px;
-  border: thin solid black;
-  text-align: center;
+.form-button-another,
+.form-button-add {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  border: 0.05rem solid #aebace;
+  font-weight: 600;
+  border-radius: 40px;
+  padding: 1rem;
+  height: 4rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition-duration: 0.15s;
+  width: 16rem;
+}
+
+.form-button-add {
+  color: #007bff;
+  background-color: white;
+}
+
+.form-button-add:hover {
+  border: 0.05rem solid #007bff;
+}
+
+.form-button-another {
+  color: white;
+  background-color: #007bff;
+}
+
+.form-button-another:hover {
+  background-color: #0054af;
 }
 
 .input-text,
 .input-text-error {
   width: 100%;
-  font-size: 24px;
-  border: 0.3rem black solid;
+  font-size: 18px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bed1ed;
+  background-color: white;
+  color: #242424;
+}
+
+.input-text:focus {
+  outline: none;
+}
+
+.input-text-error:focus {
+  outline: none;
 }
 
 .input-text-error {
-  border: 0.3rem red solid;
+  border: 0.05rem solid #eb1f17;
 }
 
 .x-button {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: black;
-  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 3.125rem;
+  height: 3.125rem;
+  background-color: #eef0f2;
+  color: #515a67;
   font-size: 22px;
-  border-radius: 20px;
+  border-radius: 200px;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 0 1.6rem 0;
+  box-shadow: 0px 1px 0px 0px #bed1ed;
+}
+
+.highlight {
+  border-radius: 10px;
+  width: 0.65rem;
+  background-color: #007bff;
+  margin: 0.1rem 0rem 0.1rem 0rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  align-items: stretch;
+  width: 100%;
+}
+
+.display-none {
+  display: none;
+}
+
+.error-text {
+  font-size: 1rem;
+  color: #eb1f17;
 }

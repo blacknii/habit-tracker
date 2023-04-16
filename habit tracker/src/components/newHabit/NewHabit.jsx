@@ -172,22 +172,30 @@ function NewHabit() {
     <>
       <div className={styles.overlay} onClick={close}></div>
       <div className={styles.container}>
-        <div>
-          <div className={styles["display-flex"]}>
-            <h2>Add Habit</h2>
-            <button className={styles["x-button"]} onClick={close}>
-              <Close color="white" />
-            </button>
+        <div className={styles.header}>
+          <div className={styles.highlight}></div>
+          <div className={styles.title}>
+            <div className={styles["display-flex"]}>
+              <h2 className={styles.heading}>Add Habit</h2>
+              <button className={styles["x-button"]} onClick={close}>
+                <Close color="white" />
+              </button>
+            </div>
+            <p className={styles.subheading}>
+              Tackle your goals in daily doses
+            </p>
           </div>
-          <p>Tackle your goals in daily doses</p>
         </div>
         <form className={styles.form}>
           <div>
-            <label className={styles["label-big"]} htmlFor="name">
-              1. Name this habit
-            </label>
-            {!isNameCorrect && <p>{nameErrorMessage}</p>}
-            <br />
+            <div className={styles.flex}>
+              <label className={styles["label-big"]} htmlFor="name">
+                1. Name this habit
+              </label>
+              {!isNameCorrect && (
+                <p className={styles["error-text"]}>{nameErrorMessage}</p>
+              )}
+            </div>
             <input
               className={
                 isNameCorrect
@@ -207,40 +215,54 @@ function NewHabit() {
             </label>
             <br />
             <div className={styles["habit-type"]}>
-              <div className={styles["display-flex"]} onClick={toDo}>
+              <div className={styles["habit-type-option"]}>
                 <input type="radio" id="type" name="type" checked={habitType} />
-                <label htmlFor="type">To-Do</label>
+                <label htmlFor="type" onClick={toDo}>
+                  To-Do
+                </label>
               </div>
               <br />
-              <div className={styles["display-flex"]} onClick={notToDo}>
+              <div className={styles["habit-type-option"]}>
                 <input
                   type="radio"
                   id="type"
                   name="type"
                   checked={!habitType}
                 />
-                <label htmlFor="type">Not-To-Do</label>
+                <label htmlFor="type" onClick={notToDo}>
+                  Not-To-Do
+                </label>
                 <br />
               </div>
             </div>
           </div>
           <div>
-            <label className={styles["label-big"]} htmlFor="frequency">
-              3. Weekly frequency
-            </label>
-            {!isFrequencyCorrect && <p>This is a required field.</p>}
+            <div className={styles.flex}>
+              <label className={styles["label-big"]} htmlFor="frequency">
+                3. Weekly frequency
+              </label>
+              {!isFrequencyCorrect && (
+                <p className={styles["error-text"]}>
+                  This is a required field.
+                </p>
+              )}
+            </div>
             <div className={styles["display-label-checkbox"]}>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(0))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[0]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Mon
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[0]}
                   onClick={() => dispatch(frequencyChanger(0))}
@@ -248,15 +270,19 @@ function NewHabit() {
               </label>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(1))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[1]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Tue
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[1]}
                   onClick={() => dispatch(frequencyChanger(1))}
@@ -264,15 +290,19 @@ function NewHabit() {
               </label>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(2))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[2]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Wed
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[2]}
                   onClick={() => dispatch(frequencyChanger(2))}
@@ -280,15 +310,19 @@ function NewHabit() {
               </label>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(3))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[3]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Thu
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[3]}
                   onClick={() => dispatch(frequencyChanger(3))}
@@ -296,15 +330,19 @@ function NewHabit() {
               </label>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(4))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[4]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Fri
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[4]}
                   onClick={() => dispatch(frequencyChanger(4))}
@@ -312,15 +350,19 @@ function NewHabit() {
               </label>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(5))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[5]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Sat
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[5]}
                   onClick={() => dispatch(frequencyChanger(5))}
@@ -328,15 +370,19 @@ function NewHabit() {
               </label>
               <br />
               <label
+                onClick={() => dispatch(frequencyChanger(6))}
                 className={
                   isFrequencyCorrect
-                    ? styles["label-checkbox"]
+                    ? weeklyFrequency[6]
+                      ? styles["label-checkbox-checked"]
+                      : styles["label-checkbox"]
                     : styles["label-checkbox-error"]
                 }
                 htmlFor="frequency"
               >
                 Sun
                 <input
+                  className={styles["display-none"]}
                   type="checkbox"
                   checked={weeklyFrequency[6]}
                   onClick={() => dispatch(frequencyChanger(6))}
@@ -348,7 +394,15 @@ function NewHabit() {
               <button
                 className={
                   isFrequencyCorrect
-                    ? styles["weekly-frequency-button"]
+                    ? weeklyFrequency[0] &&
+                      weeklyFrequency[1] &&
+                      weeklyFrequency[2] &&
+                      weeklyFrequency[3] &&
+                      weeklyFrequency[4] &&
+                      !weeklyFrequency[5] &&
+                      !weeklyFrequency[6]
+                      ? styles["weekly-frequency-button-checked"]
+                      : styles["weekly-frequency-button"]
                     : styles["weekly-frequency-button-error"]
                 }
                 onClick={weekDays}
@@ -358,7 +412,15 @@ function NewHabit() {
               <button
                 className={
                   isFrequencyCorrect
-                    ? styles["weekly-frequency-button"]
+                    ? weeklyFrequency[0] &&
+                      weeklyFrequency[1] &&
+                      weeklyFrequency[2] &&
+                      weeklyFrequency[3] &&
+                      weeklyFrequency[4] &&
+                      weeklyFrequency[5] &&
+                      weeklyFrequency[6]
+                      ? styles["weekly-frequency-button-checked"]
+                      : styles["weekly-frequency-button"]
                     : styles["weekly-frequency-button-error"]
                 }
                 onClick={everyDay}
@@ -369,10 +431,10 @@ function NewHabit() {
           </div>
         </form>
         <div className={styles["display-form-button"]}>
-          <button className={styles["form-button"]} onClick={addHabit}>
+          <button className={styles["form-button-another"]} onClick={addHabit}>
             Add Habit
           </button>
-          <button className={styles["form-button"]} onClick={addAnother}>
+          <button className={styles["form-button-add"]} onClick={addAnother}>
             <Plus />
             Add Another
           </button>
