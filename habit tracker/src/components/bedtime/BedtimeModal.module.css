@@ -63,7 +63,7 @@
   justify-content: space-between;
 }
 
-.modal-button-cantel,
+.modal-button-cancel,
 .modal-button-add-bedtime {
   display: flex;
   justify-content: center;
@@ -79,12 +79,12 @@
   width: 16rem;
 }
 
-.modal-button-cantel {
+.modal-button-cancel {
   color: #007bff;
   background-color: white;
 }
 
-.modal-button-cantel:hover {
+.modal-button-cancel:hover {
   border: 0.05rem solid #007bff;
 }
 

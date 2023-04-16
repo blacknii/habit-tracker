@@ -30,9 +30,21 @@ function Header() {
       <div className={styles["overlay"]} onClick={close}></div>
       <div className={styles["comtainer-modal"]}>
         {" "}
-        <button onClick={randomHandler}>random data</button>
-        <button onClick={removeHandler}>remove all</button>
-        <button onClick={close}>cantel</button>
+        <button
+          className={styles["modal-button-random"]}
+          onClick={randomHandler}
+        >
+          Random Data
+        </button>
+        <button
+          className={styles["modal-button-delete"]}
+          onClick={removeHandler}
+        >
+          Remove All
+        </button>
+        <button className={styles["modal-button-cancel"]} onClick={close}>
+          Cancel
+        </button>
       </div>
     </>
   );

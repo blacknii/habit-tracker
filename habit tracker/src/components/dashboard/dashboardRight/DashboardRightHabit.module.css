@@ -233,7 +233,7 @@
   color: white;
 }
 
-.modal-button-cantel,
+.modal-button-cancel,
 .modal-button-delete {
   display: flex;
   justify-content: center;
@@ -248,13 +248,13 @@
   transition-duration: 0.15s;
 }
 
-.modal-button-cantel {
+.modal-button-cancel {
   color: #007bff;
   background-color: white;
   width: 14rem;
 }
 
-.modal-button-cantel:hover {
+.modal-button-cancel:hover {
   border: 0.05rem solid #007bff;
 }
 

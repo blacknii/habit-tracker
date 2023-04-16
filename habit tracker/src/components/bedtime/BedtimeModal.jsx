@@ -141,8 +141,8 @@ function BedtimeModal() {
             </div>
           </div>
           <div className={styles["modal-buttons"]}>
-            <button className={styles["modal-button-cantel"]} onClick={cancel}>
-              Cantel
+            <button className={styles["modal-button-cancel"]} onClick={cancel}>
+              Cancel
             </button>
             <button
               className={styles["modal-button-add-bedtime"]}

@@ -126,8 +126,8 @@ function DashboardRightHabit(props) {
           <h3 className={styles["habit-name-long"]}>{props.name}</h3>
         </div>
         <div className={styles["modal-buttons"]}>
-          <button className={styles["modal-button-cantel"]} onClick={close}>
-            Cantel
+          <button className={styles["modal-button-cancel"]} onClick={close}>
+            Cancel
           </button>
           <button
             className={styles["modal-button-delete"]}
