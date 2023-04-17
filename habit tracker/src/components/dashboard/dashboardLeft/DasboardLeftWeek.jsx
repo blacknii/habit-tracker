@@ -59,8 +59,8 @@ function DasboardLeftWeek() {
   const chosenYearBefore = State.timePeriod.chosenYearBefore;
   const allTime = State.timePeriod.allTime;
   const type = State.timePeriod.type;
-  let timeRange = ["2023-03-01", "2023-03-12"];
-  let timeRangeBefore = ["2023-03-01", "2023-03-12"];
+  let timeRange;
+  let timeRangeBefore;
 
   switch (type) {
     case "Week":
@@ -327,7 +327,7 @@ function DasboardLeftWeek() {
             timeRange[1],
             habbit.name,
           ])[0];
-          if (isEmpty) {
+          if (isEmpty || timeIndex === 0) {
             return (
               <DashboardLeftHabit
                 key={habbit.name}

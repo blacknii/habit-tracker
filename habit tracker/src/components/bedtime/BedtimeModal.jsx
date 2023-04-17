@@ -10,12 +10,16 @@ function BedtimeModal() {
   const { bedtime } = useSelector((state) => state.bedtime);
 
   const [hour, setHour] = useState(
-    bedtime ? Number(bedtime.substr(0, 2)) : "0"
+    bedtime ? Number(bedtime.split(":")[0]) : "0"
   );
   const [minute, setMinute] = useState(
-    bedtime ? Number(bedtime.substr(3, 2)) : "0"
+    bedtime ? Number(bedtime.split(":")[1].substr(0, 2)) : "0"
   );
-  const [period, setPeriod] = useState(bedtime ? bedtime.substr(5, 2) : "AM");
+  const [period, setPeriod] = useState(
+    bedtime === null ? "AM" : bedtime.includes("AM") ? "AM" : "PM"
+  );
+  console.log(bedtime);
+  console.log(period);
 
   const cancel = (event) => {
     event.preventDefault();

@@ -203,8 +203,8 @@ function NewHabit() {
                   : styles["input-text-error"]
               }
               type="text"
-              id="name"
-              name="name"
+              id="habitName"
+              name="habitName"
               value={habitName}
               onChange={habitNameHandler}
             />

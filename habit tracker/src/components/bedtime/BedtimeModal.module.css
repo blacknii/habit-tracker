@@ -132,6 +132,11 @@
   padding: 0.625rem;
 }
 
+.input:focus {
+  outline: none;
+  border: 1px solid #007bff;
+}
+
 .switch {
   background-color: #eef3fb;
   display: flex;
@@ -168,4 +173,10 @@
 
 .switch-label {
   cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Optional: remove margin */
 }

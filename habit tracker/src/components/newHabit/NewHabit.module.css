@@ -91,6 +91,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  /* gap: 1.5rem; */
 }
 
 .label-checkbox,
