@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addRandomHabits, removeAllHabits } from "../../redux/habits";
@@ -48,6 +48,18 @@ function Header() {
       </div>
     </>
   );
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsModalActive(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>

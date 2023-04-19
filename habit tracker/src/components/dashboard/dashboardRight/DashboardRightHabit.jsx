@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DashboardRightHabit.module.css";
 import { useDispatch } from "react-redux";
 import { completionsSwitch, removeHabit } from "../../../redux/habits";
@@ -96,13 +96,27 @@ function DashboardRightHabit(props) {
   const strike = countOnes(reversedArray);
 
   const [isModalActive, setIsModalActive] = useState(false);
+
   const close = () => {
     setIsModalActive(!isModalActive);
   };
+
   const delateHandler = () => {
     dispatch(removeHabit(props.name));
     setIsModalActive(!isModalActive);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsModalActive(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const modal = (
     <>

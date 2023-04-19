@@ -97,6 +97,19 @@ function NewHabit() {
     }
   }, [weeklyFrequency]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        dispatch(modalSwitch(false));
+        dispatch(clear());
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const addAnother = () => {
     if (
       habitName != "" &&

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./BedtimeModal.module.css";
 import Modal from "../UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,6 +52,18 @@ function BedtimeModal() {
   const periodInput = (event) => {
     setPeriod(event.target.value);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        dispatch(setBedtimeModal(false));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
