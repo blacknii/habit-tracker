@@ -13,20 +13,16 @@ export const counterSlice = createSlice({
   reducers: {
     modalSwitch: (state, action) => {
       state.isModalActive = action.payload;
-      console.log(action.payload);
     },
     nameChanger: (state, action) => {
       state.habitName = action.payload;
-      console.log(action.payload);
     },
     typeChanger: (state, action) => {
       state.habitType = action.payload;
-      console.log(action.payload);
     },
     frequencyChanger: (state, action) => {
       state.weeklyFrequency[action.payload] =
         !state.weeklyFrequency[action.payload];
-      console.log(action.payload);
     },
     clear: (state) => {
       state.weeklyFrequency = [false, false, false, false, false, false, false];

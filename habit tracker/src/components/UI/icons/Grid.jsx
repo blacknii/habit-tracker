@@ -4,7 +4,7 @@ function Grid() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="ionicon"
+      className="ionicon"
       viewBox="0 0 512 512"
       height="0.8em"
       width="0.8em"
@@ -20,8 +20,8 @@ function Grid() {
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
+        strokeLinejoin="round"
+        strokeWidth="32"
       />
       <rect
         x="288"
@@ -32,9 +32,9 @@ function Grid() {
         ry="20"
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
       />
       <rect
         x="48"
@@ -45,9 +45,9 @@ function Grid() {
         ry="20"
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
       />
       <rect
         x="288"
@@ -58,9 +58,9 @@ function Grid() {
         ry="20"
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
       />
     </svg>
   );

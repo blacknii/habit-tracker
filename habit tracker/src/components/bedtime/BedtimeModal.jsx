@@ -18,8 +18,6 @@ function BedtimeModal() {
   const [period, setPeriod] = useState(
     bedtime === null ? "AM" : bedtime.includes("AM") ? "AM" : "PM"
   );
-  console.log(bedtime);
-  console.log(period);
 
   const cancel = (event) => {
     event.preventDefault();
