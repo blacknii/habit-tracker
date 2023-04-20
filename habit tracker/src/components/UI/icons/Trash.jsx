@@ -20,7 +20,7 @@ function Trash() {
       <path
         stroke="currentColor"
         strokeLinecap="round"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         strokeWidth="32"
         d="M80 112h352"
       />

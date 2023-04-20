@@ -47,11 +47,7 @@ function NewHabit() {
         JSON.stringify([false, false, false, false, false, false, false])
     ) {
       let isDuplicate = false;
-      console.log(
-        listOfHabits.forEach((element) => {
-          if (element.name === habitName) isDuplicate = true;
-        })
-      );
+
       if (!isDuplicate) {
         dispatch(modalSwitch(false));
         dispatch(
@@ -117,11 +113,6 @@ function NewHabit() {
         JSON.stringify([false, false, false, false, false, false, false])
     ) {
       let isDuplicate = false;
-      console.log(
-        listOfHabits.forEach((element) => {
-          if (element.name === habitName) isDuplicate = true;
-        })
-      );
       if (!isDuplicate) {
         dispatch(
           newHabit({
