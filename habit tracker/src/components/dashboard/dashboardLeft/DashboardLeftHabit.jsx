@@ -94,8 +94,6 @@ function DashboardLeftHabit(props) {
     </div>
   );
 
-  // console.log(props.completionPercentage);
-
   if (props.type === "Week") {
     return (
       <div className={styles.week}>

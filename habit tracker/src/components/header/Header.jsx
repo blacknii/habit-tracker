@@ -14,13 +14,11 @@ function Header() {
   };
 
   const randomHandler = () => {
-    console.log("Adding random habits");
     setIsModalActive(!isModalActive);
     dispatch(addRandomHabits());
   };
 
   const removeHandler = () => {
-    console.log("Removing all habits");
     setIsModalActive(!isModalActive);
     dispatch(removeAllHabits());
   };

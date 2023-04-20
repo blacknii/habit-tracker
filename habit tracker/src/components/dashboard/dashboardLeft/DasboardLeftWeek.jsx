@@ -224,9 +224,6 @@ function DasboardLeftWeek() {
       ])[2]
     );
   });
-  // console.log(listOfHabits);
-
-  // console.log(thisWeekpercentage);
 
   return (
     <div className={styles.container}>
