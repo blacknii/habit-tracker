@@ -13,6 +13,7 @@ import {
 import { newHabit } from "../../redux/habits";
 import Plus from "../UI/icons/Plus";
 import Close from "../UI/icons/Close";
+import RadioButton from "../UI/icons/RadioButton";
 
 const today = new Date().toISOString().slice(0, 10);
 
@@ -220,9 +221,16 @@ function NewHabit() {
             <br />
             <div className={styles["habit-type"]}>
               <div className={styles["habit-type-option"]}>
-                <input type="radio" id="type" name="type" checked={habitType} />
+                <input
+                  type="radio"
+                  id="type"
+                  name="type"
+                  checked={habitType}
+                  onChange={toDo}
+                />
                 <label htmlFor="type" onClick={toDo}>
-                  To-Do
+                  <RadioButton checked={habitType} />
+                  <span>To-Do</span>
                 </label>
               </div>
               <br />
@@ -232,9 +240,11 @@ function NewHabit() {
                   id="type"
                   name="type"
                   checked={!habitType}
+                  onChange={notToDo}
                 />
                 <label htmlFor="type" onClick={notToDo}>
-                  Not-To-Do
+                  <RadioButton checked={!habitType} />
+                  <span>Not-To-Do</span>
                 </label>
                 <br />
               </div>
@@ -268,7 +278,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[0]}
+                  defaultChecked={weeklyFrequency[0]}
                   onClick={() => dispatch(frequencyChanger(0))}
                 />
               </label>
@@ -288,7 +298,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[1]}
+                  defaultChecked={weeklyFrequency[1]}
                   onClick={() => dispatch(frequencyChanger(1))}
                 />
               </label>
@@ -308,7 +318,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[2]}
+                  defaultChecked={weeklyFrequency[2]}
                   onClick={() => dispatch(frequencyChanger(2))}
                 />
               </label>
@@ -328,7 +338,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[3]}
+                  defaultChecked={weeklyFrequency[3]}
                   onClick={() => dispatch(frequencyChanger(3))}
                 />
               </label>
@@ -348,7 +358,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[4]}
+                  defaultChecked={weeklyFrequency[4]}
                   onClick={() => dispatch(frequencyChanger(4))}
                 />
               </label>
@@ -368,7 +378,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[5]}
+                  defaultChecked={weeklyFrequency[5]}
                   onClick={() => dispatch(frequencyChanger(5))}
                 />
               </label>
@@ -388,7 +398,7 @@ function NewHabit() {
                 <input
                   className={styles["display-none"]}
                   type="checkbox"
-                  checked={weeklyFrequency[6]}
+                  defaultChecked={weeklyFrequency[6]}
                   onClick={() => dispatch(frequencyChanger(6))}
                 />
               </label>

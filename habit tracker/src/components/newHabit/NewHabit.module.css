@@ -57,11 +57,26 @@
 }
 
 .habit-type-option label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.habit-type-option span {
+  cursor: pointer;
+}
+
+.habit-type-option svg {
+  cursor: pointer;
+}
+
+.habit-type-option RadioButton {
   cursor: pointer;
 }
 
 .habit-type-option input {
-  cursor: pointer;
+  display: none;
 }
 
 .button {
