@@ -4,3 +4,14 @@
   gap: 3rem;
   padding-bottom: 12rem;
 }
+
+@media (max-width: 1250px) {
+  .container {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    padding-bottom: 12rem;
+    padding: 0 1.5rem 0 1.5rem;
+    overflow: auto;
+  }
+}
