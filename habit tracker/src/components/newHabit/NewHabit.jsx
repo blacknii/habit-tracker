@@ -262,7 +262,6 @@ function NewHabit() {
               )}
             </div>
             <div className={styles["display-label-checkbox"]}>
-              <br />
               <label
                 onClick={() => dispatch(frequencyChanger(0))}
                 className={
@@ -282,7 +281,7 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(0))}
                 />
               </label>
-              <br />
+
               <label
                 onClick={() => dispatch(frequencyChanger(1))}
                 className={
@@ -302,7 +301,7 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(1))}
                 />
               </label>
-              <br />
+
               <label
                 onClick={() => dispatch(frequencyChanger(2))}
                 className={
@@ -322,7 +321,7 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(2))}
                 />
               </label>
-              <br />
+
               <label
                 onClick={() => dispatch(frequencyChanger(3))}
                 className={
@@ -342,7 +341,7 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(3))}
                 />
               </label>
-              <br />
+
               <label
                 onClick={() => dispatch(frequencyChanger(4))}
                 className={
@@ -362,7 +361,7 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(4))}
                 />
               </label>
-              <br />
+
               <label
                 onClick={() => dispatch(frequencyChanger(5))}
                 className={
@@ -382,7 +381,7 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(5))}
                 />
               </label>
-              <br />
+
               <label
                 onClick={() => dispatch(frequencyChanger(6))}
                 className={
@@ -402,7 +401,6 @@ function NewHabit() {
                   onClick={() => dispatch(frequencyChanger(6))}
                 />
               </label>
-              <br />
             </div>
             <div className={styles["display-weekly-frequency-button"]}>
               <button
