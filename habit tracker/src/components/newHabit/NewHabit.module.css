@@ -285,3 +285,9 @@ h2 {
   font-size: 1rem;
   color: #eb1f17;
 }
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
+  }
+}

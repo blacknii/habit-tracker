@@ -278,3 +278,9 @@
 .modal-button-delete:hover {
   background-color: #be0700;
 }
+
+@media (max-width: 624px) {
+  .comtainer-modal {
+    width: 100%;
+  }
+}
