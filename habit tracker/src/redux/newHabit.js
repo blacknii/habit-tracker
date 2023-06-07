@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const allDays = [true, true, true, true, true, true, true];
+const weekDays = [true, true, true, true, true, false, false];
+const empty = [false, false, false, false, false, false, false];
+
 const initialState = {
   isModalActive: false,
   habitName: "",
   habitType: true,
-  weeklyFrequency: [false, false, false, false, false, false, false],
+  weeklyFrequency: empty,
 };
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const newHabbitSlice = createSlice({
+  name: "newHabbit",
   initialState,
   reducers: {
     modalSwitch: (state, action) => {
@@ -25,23 +29,19 @@ export const counterSlice = createSlice({
         !state.weeklyFrequency[action.payload];
     },
     clear: (state) => {
-      state.weeklyFrequency = [false, false, false, false, false, false, false];
+      state.weeklyFrequency = empty;
       state.habitName = "";
       state.habitType = true;
     },
     weekDaysChanger: (state) => {
-      const weekDays = [true, true, true, true, true, false, false];
-      const empty = [false, false, false, false, false, false, false];
-      if (JSON.stringify(state.weeklyFrequency) == JSON.stringify(weekDays)) {
+      if (arraysAreEqual(state.weeklyFrequency, weekDays)) {
         state.weeklyFrequency = empty;
       } else {
         state.weeklyFrequency = weekDays;
       }
     },
     everyDayChanger: (state) => {
-      const allDays = [true, true, true, true, true, true, true];
-      const empty = [false, false, false, false, false, false, false];
-      if (JSON.stringify(state.weeklyFrequency) == JSON.stringify(allDays)) {
+      if (arraysAreEqual(state.weeklyFrequency, allDays)) {
         state.weeklyFrequency = empty;
       } else {
         state.weeklyFrequency = allDays;
@@ -50,7 +50,14 @@ export const counterSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
+function arraysAreEqual(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
 export const {
   nameChanger,
   typeChanger,
@@ -59,5 +66,5 @@ export const {
   everyDayChanger,
   modalSwitch,
   clear,
-} = counterSlice.actions;
-export default counterSlice.reducer;
+} = newHabbitSlice.actions;
+export default newHabbitSlice.reducer;
