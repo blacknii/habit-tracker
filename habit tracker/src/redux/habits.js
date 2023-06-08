@@ -5,56 +5,6 @@ const habbits =
     ? JSON.parse(localStorage.getItem("listOfHabits"))
     : [];
 
-const dD = {
-  name: "Dummy",
-  startDay: "2023-02-18",
-  activeDays: [1, 2, 3, 4, 5, 6, 7],
-  lastWeek: [0, 0, 1, 0, 1, 1, 1],
-};
-
-const DUMMYHABITS = [
-  {
-    name: "English Gramma",
-    startDay: "2023-02-18",
-    activeDays: [1, 2, 3, 4, 5, 6, 7],
-    lastWeek: [
-      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
-      1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1,
-      1, 1, 1, 1, 0,
-    ],
-    habitType: true,
-  },
-  {
-    name: "English Practice",
-    startDay: "2023-02-20",
-    activeDays: [1, 2, 3, 4, 5],
-    lastWeek: [
-      1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0,
-      0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0,
-      1, 1, 1,
-    ],
-    habitType: false,
-  },
-  {
-    name: "Todays Work",
-    startDay: "2023-02-15",
-    activeDays: [1, 4, 5, 6, 7],
-    lastWeek: [
-      1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
-      1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0,
-      1, 1, 0, 1, 1, 0, 0, 0,
-    ],
-    habitType: true,
-  },
-  {
-    name: "abc",
-    startDay: "2023-04-13",
-    activeDays: [1, 2, 3, 4, 5],
-    lastWeek: [1],
-    habitType: true,
-  },
-];
-
 const goodHabits = [
   "🏋️‍♀️ Exercise",
   "📚 Read",
@@ -104,16 +54,18 @@ const initialState = {
   timePeriod: time,
 };
 
+const updateLocalStorage = (listOfHabits) => {
+  localStorage.setItem("listOfHabits", JSON.stringify(listOfHabits));
+};
+
 export const counterSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
     newHabit: (state, action) => {
-      state.listOfHabits.push(action.payload);
-      localStorage.setItem(
-        "listOfHabits",
-        JSON.stringify(state.listOfHabits.map((item) => item))
-      );
+      const newListOfHabits = [...state.listOfHabits, action.payload];
+      state.listOfHabits = newListOfHabits;
+      updateLocalStorage(state.listOfHabits);
     },
     addRandomHabits: (state) => {
       function generateDummyData() {
@@ -182,26 +134,18 @@ export const counterSlice = createSlice({
 
       const habits = generateDummyData();
       state.listOfHabits = habits;
-      localStorage.setItem(
-        "listOfHabits",
-        JSON.stringify(state.listOfHabits.map((item) => item))
-      );
+      updateLocalStorage(state.listOfHabits);
     },
     removeAllHabits: (state) => {
       state.listOfHabits = [];
-      localStorage.setItem(
-        "listOfHabits",
-        JSON.stringify(state.listOfHabits.map((item) => item))
-      );
+      updateLocalStorage(state.listOfHabits);
     },
     removeHabit: (state, action) => {
-      state.listOfHabits = state.listOfHabits.filter((habbit) => {
-        return habbit.name !== action.payload;
-      });
-      localStorage.setItem(
-        "listOfHabits",
-        JSON.stringify(state.listOfHabits.map((item) => item))
+      const updatedListOfHabits = state.listOfHabits.filter(
+        (habit) => habit.name !== action.payload
       );
+      state.listOfHabits = updatedListOfHabits;
+      updateLocalStorage(state.listOfHabits);
     },
     completionsSwitch: (state, action) => {
       state.listOfHabits.map((habbit) => {
@@ -213,10 +157,7 @@ export const counterSlice = createSlice({
             ? (habbit.lastWeek[action.payload[1]] = 0)
             : (habbit.lastWeek[action.payload[1]] = 1);
       });
-      localStorage.setItem(
-        "listOfHabits",
-        JSON.stringify(state.listOfHabits.map((item) => item))
-      );
+      updateLocalStorage(state.listOfHabits);
     },
     fillingUpEmptyDays: (state) => {
       if (state.listOfHabits.length == 0) return;
@@ -247,10 +188,7 @@ export const counterSlice = createSlice({
 
       state.timePeriod.allTime[0] = oldestDate.toISOString().substring(0, 10);
 
-      localStorage.setItem(
-        "listOfHabits",
-        JSON.stringify(state.listOfHabits.map((item) => item))
-      );
+      updateLocalStorage(state.listOfHabits);
     },
     dateCompletion: (state) => {
       const timeIndex = state.timePeriod.timeIndex;
