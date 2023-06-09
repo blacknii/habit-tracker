@@ -41,45 +41,6 @@ function NewHabit() {
     "This is a required field."
   );
 
-  const addHabit = () => {
-    if (
-      habitName != "" &&
-      JSON.stringify(weeklyFrequency) !=
-        JSON.stringify([false, false, false, false, false, false, false])
-    ) {
-      let isDuplicate = false;
-
-      if (!isDuplicate) {
-        dispatch(modalSwitch(false));
-        dispatch(
-          newHabit({
-            name: habitName,
-            startDay: today,
-            activeDays: activeDays,
-            lastWeek: [0],
-            habitType: habitType,
-          })
-        );
-        setFirstLoad(true);
-        dispatch(clear());
-      } else {
-        setNameErrorMessage("A habit with that name already exists");
-        setIsNameCorrect(false);
-      }
-    } else {
-      if (habitName == "") {
-        setNameErrorMessage("This is a required field.");
-        setIsNameCorrect(false);
-      }
-      if (
-        JSON.stringify(weeklyFrequency) ==
-        JSON.stringify([false, false, false, false, false, false, false])
-      ) {
-        setIsFrequencyCorrect(false);
-      }
-    }
-  };
-
   useEffect(() => {
     if (firstLoad) setFirstLoad(false);
 
@@ -107,14 +68,19 @@ function NewHabit() {
     };
   }, []);
 
-  const addAnother = () => {
+  const addHabit = (addAnother = false) => {
     if (
       habitName != "" &&
       JSON.stringify(weeklyFrequency) !=
         JSON.stringify([false, false, false, false, false, false, false])
     ) {
       let isDuplicate = false;
+
       if (!isDuplicate) {
+        if (!addAnother) {
+          dispatch(modalSwitch(false));
+        }
+
         dispatch(
           newHabit({
             name: habitName,
@@ -124,10 +90,11 @@ function NewHabit() {
             habitType: habitType,
           })
         );
+
         setFirstLoad(true);
         dispatch(clear());
       } else {
-        setNameErrorMessage("a habit with that name already exists");
+        setNameErrorMessage("A habit with that name already exists");
         setIsNameCorrect(false);
       }
     } else {
@@ -443,10 +410,16 @@ function NewHabit() {
           </div>
         </form>
         <div className={styles["display-form-button"]}>
-          <button className={styles["form-button-another"]} onClick={addHabit}>
+          <button
+            className={styles["form-button-another"]}
+            onClick={() => addHabit(false)}
+          >
             Add Habit
           </button>
-          <button className={styles["form-button-add"]} onClick={addAnother}>
+          <button
+            className={styles["form-button-add"]}
+            onClick={() => addHabit(true)}
+          >
             <Plus />
             Add Another
           </button>
