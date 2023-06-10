@@ -17,6 +17,10 @@ import RadioButton from "../UI/icons/RadioButton";
 
 const today = new Date().toISOString().slice(0, 10);
 
+const allElementsAreFalse = (arr) => {
+  return arr.every((element) => element === false);
+};
+
 function NewHabit() {
   const { habitName, habitType, weeklyFrequency } = useSelector(
     (state) => state.newHabit
@@ -44,11 +48,7 @@ function NewHabit() {
   useEffect(() => {
     if (firstLoad) setFirstLoad(false);
 
-    if (
-      JSON.stringify(weeklyFrequency) ==
-        JSON.stringify([false, false, false, false, false, false, false]) &&
-      !firstLoad
-    ) {
+    if (allElementsAreFalse(weeklyFrequency) && !firstLoad) {
       setIsFrequencyCorrect(false);
     } else {
       setIsFrequencyCorrect(true);
@@ -69,11 +69,7 @@ function NewHabit() {
   }, []);
 
   const addHabit = (addAnother = false) => {
-    if (
-      habitName != "" &&
-      JSON.stringify(weeklyFrequency) !=
-        JSON.stringify([false, false, false, false, false, false, false])
-    ) {
+    if (habitName != "" && !allElementsAreFalse(weeklyFrequency)) {
       let isDuplicate = false;
 
       if (!isDuplicate) {
@@ -102,10 +98,7 @@ function NewHabit() {
         setNameErrorMessage("This is a required field.");
         setIsNameCorrect(false);
       }
-      if (
-        JSON.stringify(weeklyFrequency) ==
-        JSON.stringify([false, false, false, false, false, false, false])
-      ) {
+      if (allElementsAreFalse(weeklyFrequency)) {
         setIsFrequencyCorrect(false);
       }
     }
