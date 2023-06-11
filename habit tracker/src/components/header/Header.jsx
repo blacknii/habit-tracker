@@ -6,27 +6,27 @@ import Menu from "../../components/UI/icons/Menu";
 import Logo from "../../components/UI/icons/Logo";
 
 function Header() {
-  const [isModalActive, setIsModalActive] = useState(false);
+  const [isModalOpen, setisModalOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const close = () => {
-    setIsModalActive(!isModalActive);
+  const toggleModal = () => {
+    setisModalOpen(!isModalOpen);
   };
 
   const randomHandler = () => {
-    setIsModalActive(!isModalActive);
+    setisModalOpen(!isModalOpen);
     dispatch(addRandomHabits());
   };
 
   const removeHandler = () => {
-    setIsModalActive(!isModalActive);
+    setisModalOpen(!isModalOpen);
     dispatch(removeAllHabits());
   };
 
   const modal = (
     <>
-      <div className={styles["overlay"]} onClick={close}></div>
-      <div className={styles["comtainer-modal"]}>
+      <div className={styles["overlay"]} onClick={toggleModal}></div>
+      <div className={styles["container-modal"]}>
         {" "}
         <button
           className={styles["modal-button-random"]}
@@ -40,7 +40,7 @@ function Header() {
         >
           Remove All
         </button>
-        <button className={styles["modal-button-cancel"]} onClick={close}>
+        <button className={styles["modal-button-cancel"]} onClick={toggleModal}>
           Cancel
         </button>
       </div>
@@ -50,7 +50,7 @@ function Header() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        setIsModalActive(false);
+        setisModalOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -66,11 +66,11 @@ function Header() {
           <Logo />
           <p className={styles.logo}>GoalGetter</p>
         </span>
-        <button className={styles.button} onClick={close}>
+        <button className={styles.button} onClick={toggleModal}>
           <Menu />
         </button>
       </div>
-      {isModalActive && modal}
+      {isModalOpen && modal}
     </div>
   );
 }
