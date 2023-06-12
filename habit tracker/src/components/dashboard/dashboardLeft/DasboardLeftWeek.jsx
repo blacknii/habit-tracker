@@ -11,14 +11,14 @@ import List from "../../UI/icons/List";
 
 function DasboardLeftWeek() {
   const { listOfHabits } = useSelector((state) => state.habits);
-  const State = useSelector((state) => state.habits);
+  const state = useSelector((state) => state.habits);
   const dispatch = useDispatch();
 
   const [thisPeriodpercentage, setThisPeriodpercentage] = useState(0);
   const [lastPeriodpercentage, setLastPeriodpercentage] = useState(0);
   let curr = new Date();
   let dayOfTheWeek = curr.getDay() ? curr.getDay() : 7;
-  const timeIndex = State.timePeriod.timeIndex;
+  const timeIndex = state.timePeriod.timeIndex;
 
   const options = { weekday: "short", month: "short", day: "numeric" };
   const months = [
@@ -51,14 +51,14 @@ function DasboardLeftWeek() {
   ];
 
   const [showProgressBar, setShowProgressBar] = useState(false);
-  const chosenWeek = State.timePeriod.chosenWeek;
-  const chosenMonth = State.timePeriod.chosenMonth;
-  const chosenYear = State.timePeriod.chosenYear;
-  const chosenWeekBefore = State.timePeriod.chosenWeekBefore;
-  const chosenMonthBefore = State.timePeriod.chosenMonthBefore;
-  const chosenYearBefore = State.timePeriod.chosenYearBefore;
-  const allTime = State.timePeriod.allTime;
-  const type = State.timePeriod.type;
+  const chosenWeek = state.timePeriod.chosenWeek;
+  const chosenMonth = state.timePeriod.chosenMonth;
+  const chosenYear = state.timePeriod.chosenYear;
+  const chosenWeekBefore = state.timePeriod.chosenWeekBefore;
+  const chosenMonthBefore = state.timePeriod.chosenMonthBefore;
+  const chosenYearBefore = state.timePeriod.chosenYearBefore;
+  const allTime = state.timePeriod.allTime;
+  const type = state.timePeriod.type;
   let timeRange;
   let timeRangeBefore;
 
@@ -84,20 +84,6 @@ function DasboardLeftWeek() {
   useEffect(() => {
     if (type != "Week") setShowProgressBar(true);
   }, [type]);
-
-  // useEffect(() => {
-  //   if (firstLoad) setFirstLoad(false);
-
-  //   if (
-  //     JSON.stringify(weeklyFrequency) ==
-  //       JSON.stringify([false, false, false, false, false, false, false]) &&
-  //     !firstLoad
-  //   ) {
-  //     setIsFrequencyCorrect(false);
-  //   } else {
-  //     setIsFrequencyCorrect(true);
-  //   }
-  // }, [weeklyFrequency]);
 
   const startOfcurrentPeriod = new Date(timeRange[0]);
   const endOfcurrentPeriod = new Date(timeRange[1]);
