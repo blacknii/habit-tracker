@@ -64,3 +64,20 @@
   overflow: hidden;
   max-width: 7.5rem;
 }
+
+@media (max-width: 600px) {
+  .day-done,
+  .day-not-done,
+  .day-waining,
+  .day-inactive {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
+  .week {
+    display: grid;
+    grid-template-columns: 10rem 1fr 5rem;
+    height: 3.75rem;
+    font-size: 0.9rem;
+  }
+}
