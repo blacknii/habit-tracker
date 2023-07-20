@@ -290,4 +290,15 @@ h2 {
   .container {
     width: 100%;
   }
+
+  .display-label-checkbox {
+    display: flex;
+    font-size: 0.8rem;
+  }
+
+  .label-checkbox,
+  .label-checkbox-error,
+  .label-checkbox-checked {
+    font-size: 0.8rem;
+  }
 }

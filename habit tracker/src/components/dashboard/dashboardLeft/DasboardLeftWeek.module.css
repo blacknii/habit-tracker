@@ -158,3 +158,10 @@
     font-size: 1.2rem;
   }
 }
+
+@media (max-width: 600px) {
+  .day {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
